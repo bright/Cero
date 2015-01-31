@@ -1,0 +1,12 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+target 'Cero', :exclusive => true do
+  pod "Cero", :path => "../"
+end
+
+target 'Tests', :exclusive => true do
+  pod "Cero", :path => "../"
+
+  pod 'Specta', :git => 'https://github.com/specta/specta.git', :tag => 'v0.3.0.beta1'
+  pod 'Expecta'
+end
