@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 Piotr Mionskowski. All rights reserved.
 //
 
-#import <Cero/BIViewHierarchyBuilder.h>
 #import "BIAppDelegate.h"
 #import "ButtonsAndLabelsViewController.h"
 #import "BILayoutConfiguration.h"
