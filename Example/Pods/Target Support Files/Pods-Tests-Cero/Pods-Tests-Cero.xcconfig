@@ -1,0 +1,1 @@
+PODS_TESTS_CERO_OTHER_LDFLAGS = -framework "UIKit"

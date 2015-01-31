@@ -1,0 +1,29 @@
+{
+    "name": "Cero",
+    "version": "0.1.0",
+    "summary": "HTML like views for iOS",
+    "description": "",
+    "homepage": "https://github.com/bright/Cero",
+    "license": "MIT",
+    "authors": {
+        "Piotr Mionskowski": "piotr.mionskowski@brightinventions.pl"
+    },
+    "source": {
+        "git": "https://github.com/bright/Cero.git",
+        "tag": "0.1.0"
+    },
+    "platforms": {
+        "ios": "7.0"
+    },
+    "requires_arc": true,
+    "source_files": [
+        "Pod/Classes",
+        "Pod/Classes/Handlers"
+    ],
+    "resource_bundles": {
+    },
+    "public_header_files": "Pod/Classes/**/*.h",
+    "ios": {
+        "frameworks": "UIKit"
+    }
+}

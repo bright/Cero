@@ -6,13 +6,26 @@
 //  Copyright (c) 2014 Piotr Mionskowski. All rights reserved.
 //
 
+#import <Cero/BIViewHierarchyBuilder.h>
 #import "BIAppDelegate.h"
+#import "ButtonsAndLabelsViewController.h"
+#import "BILayoutConfiguration.h"
 
 @implementation BIAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    BILayoutConfiguration *configuration = [BILayoutConfiguration new];
+    [configuration setRootProjectPathFrom:__FILE__];
+    [configuration setup];
+
     // Override point for customization after application launch.
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    // Override point for customization after application launch.
+    self.window.rootViewController = [ButtonsAndLabelsViewController new];
+    self.window.backgroundColor = [UIColor whiteColor];
+    [self.window makeKeyAndVisible];
+
     return YES;
 }
 							

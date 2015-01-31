@@ -1,0 +1,5 @@
+#include "Pods-Tests-Cero.xcconfig"
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Private" "${PODS_ROOT}/Headers/Private/Cero" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/Cero" "${PODS_ROOT}/Headers/Public/Expecta" "${PODS_ROOT}/Headers/Public/Specta"
+OTHER_LDFLAGS = ${PODS_TESTS_CERO_OTHER_LDFLAGS} -ObjC
+PODS_ROOT = ${SRCROOT}

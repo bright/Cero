@@ -10,29 +10,26 @@
 Pod::Spec.new do |s|
   s.name             = "Cero"
   s.version          = "0.1.0"
-  s.summary          = "A short description of Cero."
+  s.summary          = "HTML like views for iOS"
   s.description      = <<-DESC
-                       An optional longer description of Cero
-
-                       * Markdown format.
-                       * Don't worry about the indent, we strip it!
                        DESC
-  s.homepage         = "https://github.com/<GITHUB_USERNAME>/Cero"
+  s.homepage         = "https://github.com/bright/Cero"
   # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
   s.license          = 'MIT'
-  s.author           = { "Piotr Mionskowski" => "piotr.mionskowski@gmail.com" }
-  s.source           = { :git => "https://github.com/<GITHUB_USERNAME>/Cero.git", :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.author           = { "Piotr Mionskowski" => "piotr.mionskowski@brightinventions.pl" }
+  s.source           = { :git => "https://github.com/bright/Cero.git", :tag => s.version.to_s }
+  # s.social_media_url = 'https://twitter.com/bright'
 
   s.platform     = :ios, '7.0'
   s.requires_arc = true
 
-  s.source_files = 'Pod/Classes'
+  s.source_files = 'Pod/Classes', 'Pod/Classes/Handlers'
   s.resource_bundles = {
-    'Cero' => ['Pod/Assets/*.png']
+    # 'Cero' => []
   }
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
+  s.public_header_files = 'Pod/Classes/**/*.h'
+  # s.frameworks = 'UIKit'
+  s.ios.frameworks = 'UIKit'
   # s.dependency 'AFNetworking', '~> 2.3'
 end
