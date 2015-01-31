@@ -1,6 +1,7 @@
 #import "BILayoutInflater.h"
 #import "BIParserDelegate.h"
 #import "BIViewHierarchyBuilder.h"
+#import "BIInflatedViewContainer.h"
 
 
 @implementation BILayoutInflater {
@@ -17,24 +18,24 @@
     return self;
 }
 
-- (UIView *)inflateFilePath:(NSString *)filePath withContent:(NSData *)content {
+- (BIInflatedViewContainer *)inflateFilePath:(NSString *)filePath withContent:(NSData *)content {
     BIViewHierarchyBuilder *builder = [BIViewHierarchyBuilder builderWithParser:_parserDelegate];
     NSXMLParser *parser = [[NSXMLParser alloc] initWithData:content];
     parser.delegate = _parserDelegate;
     [parser parse];
-    return builder.view;
+    return builder.container;
 }
 
-- (UIView *)inflateFilePath:(NSString *)filePath withContentString:(NSString *)content {
+- (BIInflatedViewContainer *)inflateFilePath:(NSString *)filePath withContentString:(NSString *)content {
     return [self inflateFilePath:filePath withContent:[content dataUsingEncoding:NSUTF8StringEncoding]];
 }
 
-- (UIView *)inflateFilePath:(NSString *)filePath {
+- (BIInflatedViewContainer *)inflateFilePath:(NSString *)filePath {
     NSData *content = [NSData dataWithContentsOfFile:filePath];
     return [self inflateFilePath:filePath withContent:content];
 }
 
-+ (UIView *)inflateViewFromFile:(NSString *)fullPath {
++ (BIInflatedViewContainer *)inflateViewFromFile:(NSString *)fullPath {
     BILayoutInflater *inflater = [BILayoutInflater new];
     return [inflater inflateFilePath:fullPath withContent:nil];
 }

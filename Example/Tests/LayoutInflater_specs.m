@@ -1,6 +1,7 @@
 #import "BILayoutInflater.h"
 #import "BIViewHierarchyBuilder.h"
 #import "UIView+BIViewExtensions.h"
+#import "BIInflatedViewHelper.h"
 
 SpecBegin(BILayoutInflaterSpec)
 
@@ -15,7 +16,8 @@ SpecBegin(BILayoutInflaterSpec)
         beforeEach(^{
             inflater = [BILayoutInflater new];
             inflateView = ^(NSString *xml) {
-                return [inflater inflateFilePath:@"ignore" withContentString:xml];
+                id<BIInflatedViewHelper> container = [inflater inflateFilePath:@"ignore" withContentString:xml];
+                return container.root;
             };
         });
         context(@"having a simple one elment doc", ^{

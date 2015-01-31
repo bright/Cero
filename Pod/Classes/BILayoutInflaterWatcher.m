@@ -1,7 +1,10 @@
 #import "BILayoutInflaterWatcher.h"
+#import "BIInflatedViewHelper.h"
 #import "BILayoutInflater.h"
 #import "BIFileWatcher.h"
 #import "BIEXTScope.h"
+#import "BIInflatedViewContainer.h"
+#import "BICallbacks.h"
 
 
 @implementation BILayoutInflaterWatcher {
@@ -11,7 +14,7 @@
 }
 static NSString *_rootProjectPath;
 
-- (id)init {
+- (instancetype)init {
     self = [super init];
     if (self) {
         _layoutInflater = [BILayoutInflater new];
@@ -20,15 +23,15 @@ static NSString *_rootProjectPath;
     return self;
 }
 
-- (id)initWithFilePath:(NSString *)fileInBundlePath {
+- (instancetype)initWithFilePath:(NSString *)fileInBundlePath {
     return [self initWithFilePath:fileInBundlePath andWatchForChangesInPath:[BILayoutInflaterWatcher findDiskPath:fileInBundlePath]];
 }
 
-- (id)initWithFilePath:(NSString *)fileInBundlePath andWatchForChangesInPath:(NSString *)projectPath {
+- (instancetype)initWithFilePath:(NSString *)fileInBundlePath andWatchForChangesInPath:(NSString *)projectPath {
     return [self initWithFilePath:fileInBundlePath andWatchForChanges:[BIFileWatcher fileWatcher:projectPath]];
 }
 
-- (id)initWithFilePath:(NSString *)fileInBundlePath andWatchForChanges:(BIFileWatcher *)changes {
+- (instancetype)initWithFilePath:(NSString *)fileInBundlePath andWatchForChanges:(BIFileWatcher *)changes {
     self = [self init];
     if (self) {
         _fileInBundlePath = fileInBundlePath;
@@ -56,7 +59,7 @@ static NSString *_rootProjectPath;
 }
 
 
-- (void)fillView:(UIView *)view andNotify:(onViewInflated)notify {
+- (void)fillView:(UIView *)view andNotify:(OnViewInflated)notify {
     [self fillSuperview:view withViewInflatedFrom:_fileInBundlePath andCall:notify];
     @weakify(self);
     _changes.onContentChange = ^(NSString *path, NSData *content) {
@@ -68,22 +71,22 @@ static NSString *_rootProjectPath;
     };
 }
 
-- (void)fillSuperview:(UIView *)view withViewInflatedFrom:(NSString *)from useContent:(NSData *)content andCall:(onViewInflated)notify {
-    UIView *uiView = [self updateSuperView:view withInflatedViewFromPath:from withContent:content];
+- (void)fillSuperview:(UIView *)view withViewInflatedFrom:(NSString *)from useContent:(NSData *)content andCall:(OnViewInflated)notify {
+    BIInflatedViewContainer *uiView = [self updateSuperView:view withInflatedViewFromPath:from withContent:content];
     if (notify != nil) {
         notify(uiView);
     }
 }
 
-- (void)fillSuperview:(UIView *)view withViewInflatedFrom:(NSString *)path andCall:(onViewInflated)notify {
+- (void)fillSuperview:(UIView *)view withViewInflatedFrom:(NSString *)path andCall:(OnViewInflated)notify {
     NSData *data = [NSData dataWithContentsOfFile:path];
     [self fillSuperview:view withViewInflatedFrom:path useContent:data andCall:notify];
 }
 
-- (UIView *)updateSuperView:(UIView *)superView withInflatedViewFromPath:(NSString *)path withContent:(NSData *)content {
-    UIView *newView = [_layoutInflater inflateFilePath:path withContent:content];
+- (BIInflatedViewContainer *)updateSuperView:(UIView *)superView withInflatedViewFromPath:(NSString *)path withContent:(NSData *)content {
+    BIInflatedViewContainer *newView = [_layoutInflater inflateFilePath:path withContent:content];
     [superView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    [superView addSubview:newView];
+    [superView addSubview:newView.root];
     return newView;
 }
 

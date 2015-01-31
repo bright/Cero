@@ -1,5 +1,3 @@
-typedef void (^onViewInflated)(UIView *);
-
 @interface BILayoutInflaterWatcher : NSObject
 - (id)initWithFilePath:(NSString *)fileInBundlePath;
 

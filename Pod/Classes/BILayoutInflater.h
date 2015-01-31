@@ -1,8 +1,9 @@
 @class UIView;
+@class BIInflatedViewContainer;
 
 @interface BILayoutInflater : NSObject
-- (UIView *)inflateFilePath:(NSString *)filePath withContentString:(NSString *)content;
+- (BIInflatedViewContainer *)inflateFilePath:(NSString *)filePath withContentString:(NSString *)content;
 
-- (UIView *)inflateFilePath:(NSString *)filePath;
-- (UIView *)inflateFilePath:(NSString *)filePath withContent:(NSData *)content;
+- (BIInflatedViewContainer *)inflateFilePath:(NSString *)filePath;
+- (BIInflatedViewContainer *)inflateFilePath:(NSString *)filePath withContent:(NSData *)content;
 @end

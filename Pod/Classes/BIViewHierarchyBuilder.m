@@ -7,9 +7,11 @@
 #import "BISimpleViewHandler.h"
 #import "BIButtonHandler.h"
 #import "BIAttributeHandler.h"
+#import "BIInflatedViewContainer.h"
 #import "BIColorAttributeHandler.h"
 #import "BISimpleAttributeHandler.h"
 #import "BITitleForStateHandler.h"
+#import "BIInflatedViewContainer.h"
 
 
 @interface BIViewHierarchyBuilder ()
@@ -24,6 +26,7 @@
     BIParserDelegate *_delegate;
     NSArray *_elementHandlers;
     NSArray *_attributeHandlers;
+    BIInflatedViewContainer *_container;
 }
 static NSMutableArray *_sharedElementHandlers;
 static NSMutableArray *_sharedAttributeHandlers;
@@ -107,9 +110,13 @@ static NSMutableArray *_sharedAttributeHandlers;
     }
 }
 
+-(UIView *)root {
+    return _container.root;
+}
+
 - (void)setCurrent:(UIView *)current {
-    if (_view == nil) {
-        _view = current;
+    if(_container == nil){
+        _container = [BIInflatedViewContainer container:current];
     }
     _current = current;
 }
