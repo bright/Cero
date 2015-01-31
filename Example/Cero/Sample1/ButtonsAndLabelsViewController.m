@@ -9,9 +9,8 @@
 
 - (void)loadView {
     [super loadView];
-    NSString *fullPath = [[NSBundle mainBundle] pathForResource:@"ButtonsAndLabels" ofType:@"xml"];
-    _watcher = [BILayoutInflaterWatcher watcherInflaterFor:fullPath];
-    [_watcher fillView:self.view];
+    _watcher = [BILayoutInflaterWatcher watchingInflaterForLayout:@"ButtonsAndLabels"];
+    [_watcher fillViewOfController:self];
 }
 
 @end

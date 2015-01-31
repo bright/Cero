@@ -2,8 +2,6 @@
 #import "BILayoutInflater.h"
 #import "BIFileWatcher.h"
 #import "BIEXTScope.h"
-#import "BILayoutInflaterWatcher.h"
-#import "BIFileWatcher.h"
 
 
 @implementation BILayoutInflaterWatcher {
@@ -39,13 +37,24 @@ static NSString *_rootProjectPath;
     return self;
 }
 
-+ (BILayoutInflaterWatcher *)watcherInflaterFor:(NSString *)path {
++ (BILayoutInflaterWatcher *)watchingInflaterFor:(NSString *)path {
     return [[self alloc] initWithFilePath:path];
+}
+
+
++ (BILayoutInflaterWatcher *)watchingInflaterForLayout:(NSString *)name {
+    NSString *fullPath = [[NSBundle mainBundle] pathForResource:name ofType:@"xml"];
+    return [[self alloc] initWithFilePath:fullPath];
 }
 
 - (void)fillView:(UIView *)superview {
     [self fillView:superview andNotify:nil];
 }
+
+- (void)fillViewOfController:(UIViewController *)controller {
+    [self fillView:controller.view];
+}
+
 
 - (void)fillView:(UIView *)view andNotify:(onViewInflated)notify {
     [self fillSuperview:view withViewInflatedFrom:_fileInBundlePath andCall:notify];
