@@ -1,21 +1,22 @@
 #import "BILayoutInflater.h"
-#import "BIViewHierarchyBuilder.h"
 #import "UIView+BIViewExtensions.h"
 #import "BIInflatedViewHelper.h"
+#import "BILayoutConfiguration.h"
 
 SpecBegin(BILayoutInflaterSpec)
 
+    __block BILayoutConfiguration* _config;
     beforeEach(^{
-        [BIViewHierarchyBuilder registerDefaultHandlers];
+        _config = [BILayoutConfiguration new];
+        [_config setup];
     });
 
     describe(@"BILayoutInflater", ^{
         __block UIView *view;
-        __block BILayoutInflater *inflater;
         __block UIView *(^inflateView)(NSString *);
         beforeEach(^{
-            inflater = [BILayoutInflater new];
             inflateView = ^(NSString *xml) {
+                BILayoutInflater *inflater = [BILayoutInflater inflaterWithConfiguration:_config];
                 id<BIInflatedViewHelper> container = [inflater inflateFilePath:@"ignore" withContentString:xml];
                 return container.root;
             };

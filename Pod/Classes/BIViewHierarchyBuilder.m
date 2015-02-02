@@ -4,14 +4,9 @@
 #import "BILayoutElement.h"
 
 #import "BIBuilderHandler.h"
-#import "BISimpleViewHandler.h"
-#import "BIButtonHandler.h"
 #import "BIAttributeHandler.h"
 #import "BIInflatedViewContainer.h"
-#import "BIColorAttributeHandler.h"
-#import "BISimpleAttributeHandler.h"
-#import "BITitleForStateHandler.h"
-#import "BIInflatedViewContainer.h"
+#import "BIHandlersConfiguration.h"
 
 
 @interface BIViewHierarchyBuilder ()
@@ -24,52 +19,24 @@
 
 @implementation BIViewHierarchyBuilder {
     BIParserDelegate *_delegate;
-    NSArray *_elementHandlers;
-    NSArray *_attributeHandlers;
     BIInflatedViewContainer *_container;
+    id <BIHandlersConfiguration> _configuration;
 }
-static NSMutableArray *_sharedElementHandlers;
-static NSMutableArray *_sharedAttributeHandlers;
-
 - (void)setCurrentAsSubview:(UIView *)view {
     UIView *parent = self.current;
     [parent addSubview:view];
     self.current = view;
 }
 
-+ (BIViewHierarchyBuilder *)builderWithParser:(BIParserDelegate *)delegate {
-    return [[self alloc] initWithParser:delegate];
++ (instancetype)builder:(id <BIHandlersConfiguration>)configuration parser:(BIParserDelegate *)delegate {
+    return [[self alloc] initWithParserConfiguration:configuration parser:delegate];
 }
 
-+ (void)registerDefaultHandlers {
-    [self registerAttributeHandler:[BIColorAttributeHandler new]];
-    [self registerAttributeHandler:[BISimpleAttributeHandler new]];
-    [self registerElementHandler:[BITitleForStateHandler new]];
-    [self registerElementHandler:[BIButtonHandler new]];
-    [self registerElementHandler:[BISimpleViewHandler new]];
-}
-
-+ (void)registerElementHandler:(id <BIBuilderHandler>)handler {
-    static dispatch_once_t initHandlers;
-    dispatch_once(&initHandlers, ^{
-        _sharedElementHandlers = [NSMutableArray new];
-    });
-    [_sharedElementHandlers addObject:handler];
-}
-
-+ (void)registerAttributeHandler:(id <BIAttributeHandler>)handler {
-    static dispatch_once_t initHandlers;
-    dispatch_once(&initHandlers, ^{
-        _sharedAttributeHandlers = [NSMutableArray new];
-    });
-    [_sharedAttributeHandlers addObject:handler];
-}
-
-
-- (id)initWithParser:(BIParserDelegate *)delegate {
+- (instancetype)initWithParserConfiguration:(id <BIHandlersConfiguration>)configuration parser:(BIParserDelegate *)delegate {
     self = [super init];
     if (self) {
         _delegate = delegate;
+        _configuration = configuration;
         @weakify(self);
         _delegate.onEnterNode = ^(BILayoutElement *node) {
             @strongify(self);
@@ -122,22 +89,17 @@ static NSMutableArray *_sharedAttributeHandlers;
 }
 
 - (NSArray *)elementHandlers {
-    if (_elementHandlers == nil) {
-        _elementHandlers = [NSArray arrayWithArray:_sharedElementHandlers];
-    }
-    return _elementHandlers;
+    return _configuration.elementHandlers;
 }
+
 
 - (NSArray *)attributeHandlers {
-    if (_attributeHandlers == nil) {
-        _attributeHandlers = [NSArray arrayWithArray:_sharedAttributeHandlers];
-    }
-    return _attributeHandlers;
+    return _configuration.attributeHandlers;
 }
-
 
 - (void)setSuperviewAsCurrent {
     UIView *parent = self.current.superview;
     self.current = parent;
 }
+
 @end

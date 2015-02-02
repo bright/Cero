@@ -1,3 +1,4 @@
+#import <Cero/BILayoutConfiguration.h>
 #import "BILayoutInflater.h"
 #import "BIParserDelegate.h"
 #import "BIViewHierarchyBuilder.h"
@@ -7,19 +8,30 @@
 @implementation BILayoutInflater {
 
     BIParserDelegate *_parserDelegate;
+    id <BIHandlersConfiguration> _handlersCache;
 }
 
-- (id)init {
++ (instancetype)defaultInflater {
+    return [self inflaterWithConfiguration:BILayoutConfiguration.defaultConfiguration];
+}
+
++ (instancetype)inflaterWithConfiguration:(BILayoutConfiguration *)configuration {
+    return [[self alloc]initWithConfiguration:configuration];
+}
+
+- (instancetype)initWithConfiguration:(BILayoutConfiguration *)configuration {
     self = [super init];
     if (self) {
         _parserDelegate = [BIParserDelegate new];
-
+        _handlersCache = configuration.handlersCache;
+        
     }
     return self;
 }
 
+
 - (BIInflatedViewContainer *)inflateFilePath:(NSString *)filePath withContent:(NSData *)content {
-    BIViewHierarchyBuilder *builder = [BIViewHierarchyBuilder builderWithParser:_parserDelegate];
+    BIViewHierarchyBuilder*builder = [BIViewHierarchyBuilder builder:_handlersCache parser:_parserDelegate];
     NSXMLParser *parser = [[NSXMLParser alloc] initWithData:content];
     parser.delegate = _parserDelegate;
     [parser parse];

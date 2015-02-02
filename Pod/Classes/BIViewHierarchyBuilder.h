@@ -3,6 +3,8 @@
 @class BIParserDelegate;
 @protocol BIBuilderHandler;
 @class BIInflatedViewContainer;
+@class BILayoutConfiguration;
+@protocol BIHandlersConfiguration;
 
 
 @interface BIViewHierarchyBuilder : NSObject
@@ -12,11 +14,7 @@
 
 - (void)setCurrentAsSubview:(UIView *)view;
 
-+ (BIViewHierarchyBuilder *)builderWithParser:(BIParserDelegate *)delegate;
-
 - (void)setSuperviewAsCurrent;
 
-+ (void)registerElementHandler:(id <BIBuilderHandler>)handler;
-
-+ (void)registerDefaultHandlers;
++ (BIViewHierarchyBuilder *)builder:(id<BIHandlersConfiguration>)configuration parser:(BIParserDelegate *)parser;
 @end
