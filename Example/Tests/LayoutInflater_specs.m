@@ -1,47 +1,31 @@
-#import "BILayoutInflater.h"
 #import "UIView+BIViewExtensions.h"
-#import "BIInflatedViewHelper.h"
-#import "BILayoutConfiguration.h"
+#import "TestHelpers.h"
 
 SpecBegin(BILayoutInflaterSpec)
 
-    __block BILayoutConfiguration* _config;
-    beforeEach(^{
-        _config = [BILayoutConfiguration new];
-        [_config setup];
-    });
-
     describe(@"BILayoutInflater", ^{
         __block UIView *view;
-        __block UIView *(^inflateView)(NSString *);
-        beforeEach(^{
-            inflateView = ^(NSString *xml) {
-                BILayoutInflater *inflater = [BILayoutInflater inflaterWithConfiguration:_config];
-                id<BIInflatedViewHelper> container = [inflater inflateFilePath:@"ignore" withContentString:xml];
-                return container.root;
-            };
-        });
         context(@"having a simple one elment doc", ^{
             it(@"should properly create uiview", ^{
-                view = inflateView(@"<UIView></UIView>");
+                view = testInflateView(@"<UIView></UIView>");
 
                 expect(view).notTo.beNil();
                 expect(view).to.beKindOf(UIView.class);
             });
             it(@"should properly create uibutton", ^{
-                view = inflateView(@"<UIButton></UIButton>");
+                view = testInflateView(@"<UIButton></UIButton>");
 
                 expect(view).notTo.beNil();
                 expect(view).to.beKindOf(UIButton.class);
             });
             it(@"should properly create uibutton with custom type", ^{
-                UIButton *button = (UIButton *) inflateView(@"<UIButton type=\"UIButtonTypeInfoDark\"></UIButton>");
+                UIButton *button = (UIButton *) testInflateView(@"<UIButton type=\"UIButtonTypeInfoDark\"></UIButton>");
                 expect(button).notTo.beNil();
                 expect(button.buttonType).to.equal(UIButtonTypeInfoDark);
             });
             context(@"building ui view with dimension properties", ^{
                 beforeEach(^{
-                    view = inflateView(@"<UIView width=\"100\" height=\"50\" top=\"10\"  left=\"20\" />");
+                    view = testInflateView(@"<UIView width=\"100\" height=\"50\" top=\"10\"  left=\"20\" />");
                 });
                 it(@"should build view properly", ^{
                     expect(view).notTo.beNil();
@@ -62,7 +46,7 @@ SpecBegin(BILayoutInflaterSpec)
             context(@"building button with title for state", ^{
                 __block UIButton *button;
                 beforeEach(^{
-                    button = (UIButton *) inflateView(@"<UIButton>"
+                    button = (UIButton *) testInflateView(@"<UIButton>"
                             "<titleForState state=\"UIControlStateNormal\" value=\"Normal\" />"
                             "<titleForState state=\"UIControlStateSelected\" value=\"Selected\" />"
                             "<titleForState state=\"UIControlStateDisabled\" value=\"Disabled\" />"
@@ -94,7 +78,7 @@ SpecBegin(BILayoutInflaterSpec)
         context(@"having a view hierarchy to build", ^{
             context(@"nesting uiview inside uiview", ^{
                 beforeEach(^{
-                    view = inflateView(@"<UIView><UIView/></UIView>");
+                    view = testInflateView(@"<UIView><UIView/></UIView>");
                 });
                 it(@"should create view properly", ^{
                     expect(view).toNot.beNil();
@@ -106,7 +90,7 @@ SpecBegin(BILayoutInflaterSpec)
             });
             context(@"nesting uibutton inside uiview", ^{
                 beforeEach(^{
-                    view = inflateView(@"<UIView><UIButton /></UIView>");
+                    view = testInflateView(@"<UIView><UIButton /></UIView>");
                 });
 
                 it(@"should create nested button properly", ^{
@@ -116,7 +100,7 @@ SpecBegin(BILayoutInflaterSpec)
             });
             context(@"nesting many uiviews inside uiview", ^{
                 beforeEach(^{
-                    view = inflateView(@"<UIView><UIView/><UIButton /></UIView>");
+                    view = testInflateView(@"<UIView><UIView/><UIButton /></UIView>");
                 });
 
                 it(@"should create first nested view properly", ^{

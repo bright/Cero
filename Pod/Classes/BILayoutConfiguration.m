@@ -7,6 +7,8 @@
 #import "BISimpleAttributeHandler.h"
 #import "BIColorAttributeHandler.h"
 #import "BIHandlersConfigurationCache.h"
+#import "BILayoutInflater.h"
+#import "BIInflatedViewHelper.h"
 
 
 @implementation BILayoutConfiguration {
