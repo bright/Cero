@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
                        DESC
   s.homepage         = "https://github.com/bright/Cero"
   # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
-  s.license          = 'MIT'
+  s.license          = 'Apache License 2.0'
   s.author           = { "Piotr Mionskowski" => "piotr.mionskowski@brightinventions.pl" }
   s.source           = { :git => "https://github.com/bright/Cero.git", :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/bright'
