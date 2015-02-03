@@ -7,6 +7,7 @@
 #import "BIAttributeHandler.h"
 #import "BIInflatedViewContainer.h"
 #import "BIHandlersConfiguration.h"
+#import "BISourceReference.h"
 
 
 @interface BIViewHierarchyBuilder ()
@@ -101,5 +102,4 @@
     UIView *parent = self.current.superview;
     self.current = parent;
 }
-
 @end

@@ -22,6 +22,8 @@
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* PBXBuildFile */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		65BB2552CE67195862A3CC45 /* LayoutInflater_specs.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BB2DD94228E9203AFCAC3E /* LayoutInflater_specs.m */; };
+		65BB29FB50371E86884C9267 /* TestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BB2BABAD6998B7CADD688C /* TestHelper.m */; };
+		65BB2AA0C63F66AFAEB8B290 /* IdAttribute_specs.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BB27DA1669420A576B131E /* IdAttribute_specs.m */; };
 		65BB2DD49C46EC69DDEDBBCC /* ButtonsAndLabels.xml in Resources */ = {isa = PBXBuildFile; fileRef = 65BB26F7D75294D33663CA8E /* ButtonsAndLabels.xml */; };
 		65BB2FB1AF70CBA84E56BEB7 /* ButtonsAndLabelsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BB25EDDED472CB87E32FF1 /* ButtonsAndLabelsViewController.m */; };
 		85E715861570E9375DCB3015 /* libPods-Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CF281AAF4474198BA06B5387 /* libPods-Tests.a */; };
@@ -63,6 +65,8 @@
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		65BB25EDDED472CB87E32FF1 /* ButtonsAndLabelsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonsAndLabelsViewController.m; sourceTree = "<group>"; };
 		65BB26F7D75294D33663CA8E /* ButtonsAndLabels.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ButtonsAndLabels.xml; sourceTree = "<group>"; };
+		65BB27DA1669420A576B131E /* IdAttribute_specs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdAttribute_specs.m; sourceTree = "<group>"; };
+		65BB2BABAD6998B7CADD688C /* TestHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestHelper.m; sourceTree = "<group>"; };
 		65BB2DD94228E9203AFCAC3E /* LayoutInflater_specs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LayoutInflater_specs.m; sourceTree = "<group>"; };
 		65BB2F631E68CC5800F091F2 /* TestHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestHelpers.h; sourceTree = "<group>"; };
 		65BB2F6F426608407F8643AA /* ButtonsAndLabelsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonsAndLabelsViewController.h; sourceTree = "<group>"; };
@@ -169,6 +173,8 @@
 				6003F5B6195388D20070C39A /* Supporting Files */,
 				65BB2DD94228E9203AFCAC3E /* LayoutInflater_specs.m */,
 				65BB2F631E68CC5800F091F2 /* TestHelpers.h */,
+				65BB27DA1669420A576B131E /* IdAttribute_specs.m */,
+				65BB2BABAD6998B7CADD688C /* TestHelper.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -394,6 +400,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				65BB2552CE67195862A3CC45 /* LayoutInflater_specs.m in Sources */,
+				65BB2AA0C63F66AFAEB8B290 /* IdAttribute_specs.m in Sources */,
+				65BB29FB50371E86884C9267 /* TestHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

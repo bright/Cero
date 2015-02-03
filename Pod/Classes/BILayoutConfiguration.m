@@ -9,6 +9,7 @@
 #import "BIHandlersConfigurationCache.h"
 #import "BILayoutInflater.h"
 #import "BIInflatedViewHelper.h"
+#import "BIIdAttributeHandler.h"
 
 
 @implementation BILayoutConfiguration {
@@ -43,6 +44,7 @@ static BILayoutConfiguration*DefaultConfiguration;
 - (void)setup {
     BILayoutInflaterWatcher.rootProjectPath = self.rootProjectPath;
     [self registerAttributeHandler:[BIColorAttributeHandler new]];
+    [self registerAttributeHandler:[BIIdAttributeHandler new]];
     [self registerAttributeHandler:[BISimpleAttributeHandler new]];
     [self registerElementHandler:[BITitleForStateHandler new]];
     [self registerElementHandler:[BIButtonHandler new]];

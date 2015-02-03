@@ -13,6 +13,8 @@ didStartElement:(NSString *)elementName
         element.name = elementName;
         element.namepsaceURI = namespaceURI;
         element.attributes = attributeDict.mutableCopy;
+        element.startLineNumber = (NSUInteger) parser.lineNumber;
+        element.startColumnNumber = (NSUInteger) parser.columnNumber;
         self.onEnterNode(element);
     }
 }

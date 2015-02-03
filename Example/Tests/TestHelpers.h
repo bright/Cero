@@ -5,11 +5,6 @@
 
 typedef UIView *(^InflateTestView)(NSString *);
 
-UIView *testInflateView(NSString *xml){
-    BILayoutConfiguration *config = BILayoutConfiguration.new;
-    [config setup];
-    BILayoutInflater *inflater = [BILayoutInflater inflaterWithConfiguration:config];
-    id<BIInflatedViewHelper> container = [inflater inflateFilePath:@"ignore" withContentString:xml];
-    return container.root;
-}
-
+id <BIInflatedViewHelper> testInflate(NSString *xml);
+UIView *testInflateView(NSString *xml);
+NSString *testReadLog(NSDate* since);

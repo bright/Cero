@@ -3,6 +3,8 @@
 #import "BIParserDelegate.h"
 #import "BIViewHierarchyBuilder.h"
 #import "BIInflatedViewContainer.h"
+#import "BIInflatedViewHelper.h"
+#import "BISourceReference.h"
 
 
 @implementation BILayoutInflater {
@@ -32,13 +34,15 @@
 
 - (BIInflatedViewContainer *)inflateFilePath:(NSString *)filePath withContent:(NSData *)content {
     BIViewHierarchyBuilder*builder = [BIViewHierarchyBuilder builder:_handlersCache parser:_parserDelegate];
+    NSString *contentAsString = [[NSString alloc] initWithData:content encoding:NSUTF8StringEncoding];
+    builder.sourceReference = [BISourceReference reference:filePath andContent:contentAsString];
     NSXMLParser *parser = [[NSXMLParser alloc] initWithData:content];
     parser.delegate = _parserDelegate;
     [parser parse];
     return builder.container;
 }
 
-- (BIInflatedViewContainer *)inflateFilePath:(NSString *)filePath withContentString:(NSString *)content {
+- (NSObject <BIInflatedViewHelper> *)inflateFilePath:(NSString *)filePath withContentString:(NSString *)content {
     return [self inflateFilePath:filePath withContent:[content dataUsingEncoding:NSUTF8StringEncoding]];
 }
 

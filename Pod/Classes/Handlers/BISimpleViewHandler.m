@@ -14,7 +14,7 @@
 
 - (void)handleEnter:(BILayoutElement *)element inBuilder:(BIViewHierarchyBuilder *)builder {
     Class viewClass = NSClassFromString(element.name);
-    UIView *view = [viewClass new];
+    UIView *view = (UIView *) [viewClass new];
     [builder setCurrentAsSubview:view];
 }
 
