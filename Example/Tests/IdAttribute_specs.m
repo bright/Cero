@@ -1,6 +1,13 @@
-#import <Specta/SpectaDSL.h>
 #import <UIKit/UIKit.h>
 #import "TestHelpers.h"
+
+@protocol IdAttributeTestViewHelper <BIInflatedViewHelper>
+- (UIView *)firstChild;
+
+- (UIView *)secondChild;
+
+- (UIView *)notExisting;
+@end
 
 SpecBegin(IdAttribute_specs)
     describe(@"BIAttributeHandler", ^{
@@ -45,5 +52,27 @@ SpecBegin(IdAttribute_specs)
             it(@"print a message about duplicate id", ^{
             });
         });
+
+        context(@"finding views with dynamic methods", ^{
+            beforeEach(^{
+                container = testInflate(@"<UIView> <UIView id='firstChild' />  <UIView id='secondChild' /> </UIView>");
+            });
+
+            it(@"should be able to find a view with a simple method call", ^{
+                id <IdAttributeTestViewHelper> specificContainer = (id <IdAttributeTestViewHelper>) container;
+                UIView *firstChild = specificContainer.firstChild;
+                expect(firstChild).to.equal([container findViewById:@"firstChild"]);
+                UIView *secondChild = specificContainer.secondChild;
+                expect(secondChild).to.equal([container findViewById:@"secondChild"]);
+            });
+
+            it(@"should throw an error if one tries to use method for which view doesn't exist", ^{
+                id <IdAttributeTestViewHelper> specificContainer = (id <IdAttributeTestViewHelper>) container;
+                expect(^{
+                    specificContainer.notExisting;
+                }).to.raiseAny();
+            });
+        });
     });
 SpecEnd
+
