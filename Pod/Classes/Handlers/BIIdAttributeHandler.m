@@ -16,9 +16,9 @@
      ofElement:(BILayoutElement *)element
      inBuilder:(BIViewHierarchyBuilder *)builder {
     NSString *idAttributeValue = element.attributes[attribute];
-    if(idAttributeValue.length > 0){
+    if (idAttributeValue.length > 0) {
         NSError *error;
-        BISourceReference*sourceReference = [builder.sourceReference subReferenceFromLine:element.startLineNumber andColumn:element.startColumnNumber];
+        BISourceReference *sourceReference = [builder.sourceReference subReferenceFromLine:element.startLineNumber andColumn:element.startColumnNumber];
         [builder.container tryAddingView:builder.current
                                   withId:idAttributeValue
                               fromSource:sourceReference
@@ -26,9 +26,6 @@
     } else {
         //TODO: log error message
     }
-
-    [element.attributes removeObjectForKey:@"id"];
-
 }
 
 @end
