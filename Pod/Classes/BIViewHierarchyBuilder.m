@@ -7,13 +7,14 @@
 #import "BIAttributeHandler.h"
 #import "BIInflatedViewContainer.h"
 #import "BIHandlersConfiguration.h"
-#import "BISourceReference.h"
 
 
 @interface BIViewHierarchyBuilder ()
 - (void)onEnterNode:(id)node;
 
 - (void)onLeaveNode:(id)node;
+
+- (void)onReady;
 
 @property(nonatomic, strong) UIView *current;
 @end
@@ -47,6 +48,10 @@
             @strongify(self);
             [self onLeaveNode:node];
         };
+        _delegate.onParsingCompleted = ^() {
+            @strongify(self);
+            [self onReady];
+        };
     }
     return self;
 }
@@ -59,6 +64,11 @@
         }
     }
 }
+
+- (void)onReady {
+
+}
+
 
 - (void)onEnterNode:(BILayoutElement *)node {
     id <BIBuilderHandler> elementHandler = nil;

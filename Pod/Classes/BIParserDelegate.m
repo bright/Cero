@@ -44,7 +44,9 @@ didStartElement:(NSString *)elementName
 }
 
 - (void)parserDidEndDocument:(NSXMLParser *)parser {
-
+    if (self.onParsingCompleted != nil) {
+        self.onParsingCompleted();
+    }
 }
 
 

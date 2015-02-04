@@ -17,7 +17,7 @@ static NSString *_rootProjectPath;
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _layoutInflater = [BILayoutInflater new];
+        _layoutInflater = [BILayoutInflater defaultInflater];
     }
 
     return self;

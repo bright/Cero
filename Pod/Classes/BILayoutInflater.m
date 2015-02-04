@@ -3,7 +3,6 @@
 #import "BIParserDelegate.h"
 #import "BIViewHierarchyBuilder.h"
 #import "BIInflatedViewContainer.h"
-#import "BIInflatedViewHelper.h"
 #import "BISourceReference.h"
 
 
@@ -26,7 +25,6 @@
     if (self) {
         _parserDelegate = [BIParserDelegate new];
         _handlersCache = configuration.handlersCache;
-        
     }
     return self;
 }
@@ -39,6 +37,9 @@
     NSXMLParser *parser = [[NSXMLParser alloc] initWithData:content];
     parser.delegate = _parserDelegate;
     [parser parse];
+    if (parser.parserError != nil) {
+        NSLog(@"Error: %@", parser.parserError);
+    }
     return builder.container;
 }
 

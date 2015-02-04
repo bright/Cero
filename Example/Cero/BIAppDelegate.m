@@ -14,7 +14,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    BILayoutConfiguration *configuration = [BILayoutConfiguration new];
+    BILayoutConfiguration *configuration = [BILayoutConfiguration defaultConfiguration];
     [configuration setRootProjectPathFrom:__FILE__];
     [configuration setup];
 
