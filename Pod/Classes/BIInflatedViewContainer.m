@@ -3,39 +3,8 @@
 #import "NSError+BIErrors.h"
 #import "BISourceReference.h"
 
-@interface BIViewCacheDelegatedFinder : NSObject
-- (instancetype)initWithViewsCache:(NSMapTable *)viewsCache;
-@end
-
-@implementation BIViewCacheDelegatedFinder : NSObject {
-    __weak NSMapTable *_viewsCache;
-}
-- (instancetype)initWithViewsCache:(__weak NSMapTable *)viewsCache {
-    self = [super init];
-    if (self) {
-        _viewsCache = viewsCache;
-    }
-
-    return self;
-}
-
-+ (BOOL)resolveInstanceMethod:(SEL)aSelector {
-    NSString *viewId = NSStringFromSelector(aSelector);
-    IMP impl = imp_implementationWithBlock((UIView *) ^(BIViewCacheDelegatedFinder *self) {
-        return [self findViewById:viewId];
-    });
-    NSString *methodType = [NSString stringWithFormat:@"%s%s%s", @encode(UIView *), @encode(id), @encode(SEL)];
-    class_addMethod([self class], aSelector, impl, [methodType cStringUsingEncoding:NSASCIIStringEncoding]);
-    return true;
-}
-
-- (UIView *)findViewById:(NSString *)id {
-    UIView *view = [_viewsCache objectForKey:id];
-    if (view == nil) {
-        [self doesNotRecognizeSelector:NSSelectorFromString(id)];
-    }
-    return view;
-}
+@interface BIIdCacheDelegatedFinder : NSObject
+- (instancetype)initWithCache:(NSMapTable *)viewsCache;
 @end
 
 @interface BIInflatedViewContainer ()
@@ -43,9 +12,9 @@
 @end
 
 @implementation BIInflatedViewContainer {
-    NSMapTable *_viewsCache;
+    NSMapTable *_byIdsCache;
     NSMutableDictionary *_sourceCache;
-    BIViewCacheDelegatedFinder *_delegatedTarget;
+    BIIdCacheDelegatedFinder *_delegatedTarget;
 }
 + (instancetype)container:(UIView *)root {
     return [[self alloc] initWithRoot:root];
@@ -54,23 +23,27 @@
 - (instancetype)initWithRoot:(UIView *)view {
     self = [super init];
     if (self) {
-        _viewsCache = [NSMapTable strongToWeakObjectsMapTable];
+        _byIdsCache = [NSMapTable strongToWeakObjectsMapTable];
         _sourceCache = NSMutableDictionary.new;
         self.root = view;
-        _delegatedTarget = [[BIViewCacheDelegatedFinder alloc] initWithViewsCache:_viewsCache];
+        _delegatedTarget = [[BIIdCacheDelegatedFinder alloc] initWithCache:_byIdsCache];
     }
     return self;
 }
 
 - (UIView *)findViewById:(NSString *)viewId {
-    UIView *view = [_viewsCache objectForKey:viewId];
-    return view;
+    return [self findElementById:viewId];
+}
+
+- (id)findElementById:(NSString *)viewId {
+    id element = [_byIdsCache objectForKey:viewId];
+    return element;
 }
 
 - (BOOL)tryAddingView:(UIView *)view withId:(NSString *)id fromSource:(BISourceReference *)source error:(NSError **)error {
-    UIView *existing = [_viewsCache objectForKey:id];
+    NSObject *existing = [_byIdsCache objectForKey:id];
     if (existing == nil) {
-        [_viewsCache setObject:view forKey:id];
+        [_byIdsCache setObject:view forKey:id];
         _sourceCache[id] = source;
         return true;
     } else {
@@ -85,7 +58,7 @@
 
 - (id)forwardingTargetForSelector:(SEL)aSelector {
     NSString *propertyName = NSStringFromSelector(aSelector);
-    UIView *view = [self findViewById:propertyName];
+    UIView *view = [self findElementById:propertyName];
     if (view != nil) {
         return _delegatedTarget;
     }
@@ -93,4 +66,35 @@
 }
 
 
+@end
+
+@implementation BIIdCacheDelegatedFinder {
+    __weak NSMapTable *_cache;
+}
+- (instancetype)initWithCache:(NSMapTable *)viewsCache {
+    self = [super init];
+    if (self) {
+        _cache = viewsCache;
+    }
+
+    return self;
+}
+
++ (BOOL)resolveInstanceMethod:(SEL)aSelector {
+    NSString *elementId = NSStringFromSelector(aSelector);
+    IMP impl = imp_implementationWithBlock((UIView *) ^(BIIdCacheDelegatedFinder *self) {
+        return [self findElementById:elementId];
+    });
+    NSString *methodType = [NSString stringWithFormat:@"%s%s%s", @encode(id), @encode(id), @encode(SEL)];
+    class_addMethod([self class], aSelector, impl, [methodType cStringUsingEncoding:NSASCIIStringEncoding]);
+    return true;
+}
+
+- (UIView *)findElementById:(NSString *)id {
+    UIView *element = [_cache objectForKey:id];
+    if (element == nil) {
+        [self doesNotRecognizeSelector:NSSelectorFromString(id)];
+    }
+    return element;
+}
 @end
