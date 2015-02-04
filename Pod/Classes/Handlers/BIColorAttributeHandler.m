@@ -2,9 +2,6 @@
 #import "BIColorAttributeHandler.h"
 #import "BILayoutElement.h"
 #import "BIViewHierarchyBuilder.h"
-#import "BIAttributeHandler.h"
-#import "BIColorAttributeHandler.h"
-#import "BIBuilderHandler.h"
 
 
 @implementation BIColorAttributeHandler
@@ -40,11 +37,11 @@
 }
 
 - (UIColor *)colorFromHexString:(NSString *)hexString {
-    unsigned rgbValue = 0;
+    unsigned int rgbValue = 0;
     NSScanner *scanner = [NSScanner scannerWithString:hexString];
     [scanner setScanLocation:1]; // bypass '#' character
     [scanner scanHexInt:&rgbValue];
-    return [UIColor colorWithRed:((rgbValue & 0xFF0000) >> 16) / 255.0F green:((rgbValue & 0xFF00) >> 8) / 255.0F blue:(rgbValue & 0xFF) / 255.0 alpha:1.0];
+    return [UIColor colorWithRed:((rgbValue & 0xFF0000) >> 16) / 255.0F green:((rgbValue & 0xFF00) >> 8) / 255.0F blue:(rgbValue & 0xFF) / 255.0f alpha:1.0];
 }
 
 @end
