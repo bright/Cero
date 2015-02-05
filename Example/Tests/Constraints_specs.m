@@ -14,11 +14,18 @@ SpecBegin(Constraints_specs)
 
         context(@"constraint width to other element width", ^{
             beforeEach(^{
-                helper = inflateInParent(@"<UIView id='child' />");
+                helper = inflateInParent(@"<UIView id='child'>"
+                        "<Constraint on='NSLayoutAttributeWidth' relation='NSLayoutRelationEqual'"
+                        "            with=':superview' multiplier='0.9'"
+                        "            constant='0' priority='9' />"
+                        "</UIView>");
             });
 
-            it(@"", ^{
-
+            it(@"builds a proper view", ^{
+                expect(helper.root).toNot.beNil();
+            });
+            it(@"should properly build constraint", ^{
+                expect([helper findViewById:@"child"].frame.size.width).to.equal(90);
             });
         });
     });

@@ -1,5 +1,3 @@
-#import <UIKit/UIKit.h>
-
 #import "BIButtonHandler.h"
 #import "BILayoutElement.h"
 #import "BIViewHierarchyBuilder.h"
