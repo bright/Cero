@@ -1,4 +1,4 @@
-#import "BIConstraintHanlder.h"
+#import "BIConstraintHandler.h"
 #import "BILayoutElement.h"
 #import "BIViewHierarchyBuilder.h"
 #import "BISourceReference.h"
@@ -44,7 +44,7 @@ typedef UIView *(^ViewFinder)(BIInflatedViewContainer *container);
 - (BOOL)tryInstall:(BIInflatedViewContainer *)container error:(NSError **)error;
 @end
 
-@implementation BIConstraintHanlder {
+@implementation BIConstraintHandler {
 }
 - (BOOL)canHandle:(BILayoutElement *)element inBuilder:(BIViewHierarchyBuilder *)builder {
     return [element.name isEqualToString:@"Constraint"];

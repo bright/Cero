@@ -7,7 +7,7 @@
 #import "BIColorAttributeHandler.h"
 #import "BIHandlersConfigurationCache.h"
 #import "BIIdAttributeHandler.h"
-#import "BIConstraintHanlder.h"
+#import "BIConstraintHandler.h"
 
 
 @implementation BILayoutConfiguration {
@@ -46,7 +46,7 @@ static BILayoutConfiguration*DefaultConfiguration;
     [self registerAttributeHandler:[BISimpleAttributeHandler new]];
     [self registerElementHandler:[BITitleForStateHandler new]];
     [self registerElementHandler:[BIButtonHandler new]];
-    [self registerElementHandler:[BIConstraintHanlder new]];
+    [self registerElementHandler:[BIConstraintHandler new]];
     [self registerElementHandler:[BISimpleViewHandler new]];
 }
 
