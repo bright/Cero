@@ -1,14 +1,19 @@
 <?xml version="1.0"?>
 
-<UIView>
+<UIView backgroundColor="#00ff00" width="200" height="400">
     <UIButton type="UIButtonTypeInfoDark"
               width="200"
               height="170"
               top="16"
               left="20">
         <titleForState state="UIControlStateNormal" value="Czesc"/>
-
     </UIButton>
+
+
+    <UIView backgroundColor="#ff0000" width="100" height="100" top="50">
+        <Constraint on="left,top" with=":superview"/>
+        <Constraint on="height,width" with=":superview" constant="-30"/>
+    </UIView>
 
     <UILabel text="Ola"
              backgroundColor="yellowColor"

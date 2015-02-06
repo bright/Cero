@@ -27,7 +27,7 @@ static NSDictionary *buttonTypes;
 }
 
 - (BOOL)canHandle:(BILayoutElement *)element inBuilder:(BIViewHierarchyBuilder *)builder {
-    return [self isButton:element] || [self parentIsButton:builder];
+    return [self isButton:element];
 }
 
 - (BOOL)parentIsButton:(BIViewHierarchyBuilder *)builder {

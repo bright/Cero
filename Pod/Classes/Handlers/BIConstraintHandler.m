@@ -240,10 +240,13 @@ typedef UIView *(^ViewFinder)(BIInflatedViewContainer *container);
 }
 
 - (NSInteger)parse:(NSString *)rawValue defaultValue:(NSInteger)defaultValue prefix:(NSString *)prefix valueMap:(NSDictionary *)sourceMap {
-    NSString *shortName = [rawValue substringFromIndex:prefix.length];
+    NSString *longName = rawValue;
+    if ([rawValue rangeOfString:prefix].location == NSNotFound) {
+        longName = [prefix stringByAppendingString:rawValue];
+    }
     NSArray *synonyms = @[
             rawValue,
-            shortName
+            longName
     ];
     NSNumber *attributeValue;
     for (NSString *attributeName in synonyms) {
@@ -275,26 +278,47 @@ static NSDictionary *stringToAttributeMap;
     dispatch_once(&initAttributeMap, ^{
         stringToAttributeMap = @{
                 @"nslayoutattributeleft" : @(NSLayoutAttributeLeft),
+                @"left" : @(NSLayoutAttributeLeft),
                 @"nslayoutattributeright" : @(NSLayoutAttributeRight),
+                @"right" : @(NSLayoutAttributeRight),
                 @"nslayoutattributetop" : @(NSLayoutAttributeTop),
+                @"top" : @(NSLayoutAttributeTop),
                 @"nslayoutattributebottom" : @(NSLayoutAttributeBottom),
+                @"bottom" : @(NSLayoutAttributeBottom),
                 @"nslayoutattributeleading" : @(NSLayoutAttributeLeading),
+                @"leading" : @(NSLayoutAttributeLeading),
                 @"nslayoutattributetrailing" : @(NSLayoutAttributeTrailing),
+                @"trailing" : @(NSLayoutAttributeTrailing),
                 @"nslayoutattributewidth" : @(NSLayoutAttributeWidth),
+                @"width" : @(NSLayoutAttributeWidth),
                 @"nslayoutattributeheight" : @(NSLayoutAttributeHeight),
+                @"height" : @(NSLayoutAttributeHeight),
                 @"nslayoutattributecenterx" : @(NSLayoutAttributeCenterX),
+                @"centerx" : @(NSLayoutAttributeCenterX),
                 @"nslayoutattributecentery" : @(NSLayoutAttributeCenterY),
+                @"centery" : @(NSLayoutAttributeCenterY),
                 @"nslayoutattributebaseline" : @(NSLayoutAttributeBaseline),
+                @"baseline" : @(NSLayoutAttributeBaseline),
                 @"nslayoutattributelastbaseline" : @(NSLayoutAttributeLastBaseline),
+                @"lastbaseline" : @(NSLayoutAttributeLastBaseline),
                 @"nslayoutattributefirstbaseline" : @(NSLayoutAttributeFirstBaseline ),
+                @"firstbaseline" : @(NSLayoutAttributeFirstBaseline ),
                 @"nslayoutattributeleftmargin" : @(NSLayoutAttributeLeftMargin ),
+                @"leftmargin" : @(NSLayoutAttributeLeftMargin ),
                 @"nslayoutattributerightmargin" : @(NSLayoutAttributeRightMargin ),
+                @"rightmargin" : @(NSLayoutAttributeRightMargin ),
                 @"nslayoutattributetopmargin" : @(NSLayoutAttributeTopMargin ),
+                @"topmargin" : @(NSLayoutAttributeTopMargin ),
                 @"nslayoutattributebottommargin" : @(NSLayoutAttributeBottomMargin ),
+                @"bottommargin" : @(NSLayoutAttributeBottomMargin ),
                 @"nslayoutattributeleadingmargin" : @(NSLayoutAttributeLeadingMargin ),
+                @"leadingmargin" : @(NSLayoutAttributeLeadingMargin ),
                 @"nslayoutattributetrailingmargin" : @(NSLayoutAttributeTrailingMargin ),
+                @"trailingmargin" : @(NSLayoutAttributeTrailingMargin ),
                 @"nslayoutattributecenterxwithinmargins" : @(NSLayoutAttributeCenterXWithinMargins),
-                @"nslayoutattributecenterywithinmargins" : @(NSLayoutAttributeCenterYWithinMargins)
+                @"centerxwithinmargins" : @(NSLayoutAttributeCenterXWithinMargins),
+                @"nslayoutattributecenterywithinmargins" : @(NSLayoutAttributeCenterYWithinMargins),
+                @"centerywithinmargins" : @(NSLayoutAttributeCenterYWithinMargins)
         };
     });
 }
