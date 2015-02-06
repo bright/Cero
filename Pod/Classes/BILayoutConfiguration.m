@@ -1,5 +1,4 @@
 #import "BILayoutConfiguration.h"
-#import "BIViewHierarchyBuilder.h"
 #import "BILayoutInflaterWatcher.h"
 #import "BISimpleViewHandler.h"
 #import "BIButtonHandler.h"
@@ -7,9 +6,8 @@
 #import "BISimpleAttributeHandler.h"
 #import "BIColorAttributeHandler.h"
 #import "BIHandlersConfigurationCache.h"
-#import "BILayoutInflater.h"
-#import "BIInflatedViewHelper.h"
 #import "BIIdAttributeHandler.h"
+#import "BIConstraintHanlder.h"
 
 
 @implementation BILayoutConfiguration {
@@ -48,6 +46,7 @@ static BILayoutConfiguration*DefaultConfiguration;
     [self registerAttributeHandler:[BISimpleAttributeHandler new]];
     [self registerElementHandler:[BITitleForStateHandler new]];
     [self registerElementHandler:[BIButtonHandler new]];
+    [self registerElementHandler:[BIConstraintHanlder new]];
     [self registerElementHandler:[BISimpleViewHandler new]];
 }
 

@@ -8,7 +8,8 @@ SpecBegin(Constraints_specs)
         id <BIInflatedViewHelper>(^inflateInParent)(NSString *) = ^(NSString *childViews) {
             NSString *wrappedInFrame = [NSString stringWithFormat:@"<UIView id='root' width='100' height='100'>\n\n%@\n\n</UIView>", childViews];
             id <BIInflatedViewHelper> container = testInflate(wrappedInFrame);
-            [container.root layoutSubviews];
+            [container.root setNeedsLayout];
+            [container.root layoutIfNeeded];
             return container;
         };
 

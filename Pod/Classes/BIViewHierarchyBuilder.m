@@ -16,6 +16,8 @@
 
 - (void)onReady;
 
+@property(nonatomic, copy) OnBuilderReady onReadyQueue;
+
 @property(nonatomic, strong) UIView *current;
 @end
 
@@ -37,6 +39,8 @@
 - (instancetype)initWithParserConfiguration:(id <BIHandlersConfiguration>)configuration parser:(BIParserDelegate *)delegate {
     self = [super init];
     if (self) {
+        self.onReadyQueue = ^(BIInflatedViewContainer *_) {
+        };
         _delegate = delegate;
         _configuration = configuration;
         @weakify(self);
@@ -66,7 +70,7 @@
 }
 
 - (void)onReady {
-
+    self.onReadyQueue(self.container);
 }
 
 
@@ -111,5 +115,15 @@
 - (void)setSuperviewAsCurrent {
     UIView *parent = self.current.superview;
     self.current = parent;
+}
+
+- (void)registerOnReady:(OnBuilderReady)onReady {
+    if (onReady != nil) {
+        OnBuilderReady previous = self.onReadyQueue;
+        self.onReadyQueue = ^(BIInflatedViewContainer *container) {
+            previous(container);
+            onReady(container);
+        };
+    }
 }
 @end
