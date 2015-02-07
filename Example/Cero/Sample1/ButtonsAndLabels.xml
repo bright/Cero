@@ -4,15 +4,15 @@
     <Constraint on="width,height,top,left" with=":superview"/>
 
     <UILabel text="First label" id="firstLabel">
+        <Constraint on="top" with=":superview" constant="40"/>
         <Constraint on="width" with=":superview" constant="-40"/>
-        <Constraint on="height" constant="100"/>
         <Constraint on="centerx" with=":superview"/>
     </UILabel>
 
-    <UIButton type="UIButtonTypeInfoDark">
+    <UIButton type="UIButtonTypeInfoDark" layer.cornerRadius="6" backgroundColor="#00f000">
         <titleForState state="UIControlStateNormal" value="Czesc"/>
         <Constraint on="width,height,left" with="#firstLabel"/>
-        <Constraint on="top" with="#firstLabel.bottom "/>
+        <Constraint on="top" with="#firstLabel.bottom"/>
     </UIButton>
 
     <UILabel text="Kot"

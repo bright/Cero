@@ -1,6 +1,7 @@
 #import "BIConstraintBuilder.h"
 #import "BIInflatedViewContainer.h"
 #import "BIEXTScope.h"
+#import "BISourceReference.h"
 
 @implementation BIIConstraintBuilder {
 }
@@ -17,14 +18,15 @@
         NSLayoutAttribute attribute = (NSLayoutAttribute) attributeWrap.integerValue;
         NSLayoutAttribute otherAttribute = attribute;
         if (self.otherItemAttributes.count == self.firstAttributes.count) {
-            otherAttribute = (NSLayoutAttribute) self.otherItemAttributes[index];
+            NSNumber *otherAttributeWrap = self.otherItemAttributes[index];
+            otherAttribute = (NSLayoutAttribute) otherAttributeWrap.integerValue;
         }
         UIView *otherItem = nil;
         if (self.otherItemFinder != nil) {
             otherItem = self.otherItemFinder(container);
             if (otherItem == nil || ![otherItem isKindOfClass:UIView.class]) {
                 //TODO Error handling
-                NSLog(@"Could not find other item view %@", _sourceReference);
+                NSLog(@"Could not find other item view %@", _sourceReference.sourceDescription);
                 continue;
             }
         }
@@ -79,7 +81,7 @@
 
 - (void)withOtherItem:(NSString *)otherItemSpec {
     if (otherItemSpec.length > 0) {
-        NSArray *components = [otherItemSpec componentsSeparatedByString:@","];
+        NSArray *components = [otherItemSpec componentsSeparatedByString:@"."];
         ViewFinder viewFinder = [self parseViewFinder:components[0]];
         self.otherItemFinder = viewFinder;
         if (components.count > 1) {
@@ -133,8 +135,9 @@
     NSArray *components = [on componentsSeparatedByString:@","];
     NSMutableArray *attributes = NSMutableArray.new;
     for (NSString *component in components) {
-        if (component.length > 0) {
-            NSLayoutAttribute attribute = [self attributeFromString:component];
+        NSString *componentTrimmed = [component stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        if (componentTrimmed.length > 0) {
+            NSLayoutAttribute attribute = [self attributeFromString:componentTrimmed];
             if (attribute != NSLayoutAttributeNotAnAttribute) {
                 [attributes addObject:@(attribute)];
             } else {
