@@ -9,7 +9,6 @@
 
 SpecBegin(Constraints_specs)
     describe(@"BIConstraintElementHandler", ^{
-        __block UIView *view;
         NSInteger rootWidth = 100;
         NSInteger rootHeight = 300;
         __block id <BIInflatedViewHelper> helper;
