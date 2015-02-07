@@ -108,6 +108,34 @@
             return self.firstItem.superview;
         };
     }
+    if ([pseudoSelector isEqualToString:@":previous"]) {
+        @weakify(self);
+        return ^(BIInflatedViewContainer *container) {
+            @strongify(self);
+            UIView *firstItem = self.firstItem;
+            NSArray *siblings = firstItem.superview.subviews;
+            NSUInteger indexOfFirstItem = [siblings indexOfObject:firstItem];
+            if (indexOfFirstItem > 0) {
+                UIView *sibling = siblings[indexOfFirstItem - 1];
+                return sibling;
+            }
+            return (UIView *) nil;
+        };
+    }
+    if ([pseudoSelector isEqualToString:@":next"]) {
+        @weakify(self);
+        return ^(BIInflatedViewContainer *container) {
+            @strongify(self);
+            UIView *firstItem = self.firstItem;
+            NSArray *siblings = firstItem.superview.subviews;
+            NSUInteger indexOfFirstItem = [siblings indexOfObject:firstItem];
+            if (indexOfFirstItem < siblings.count - 1) {
+                UIView *sibling = siblings[indexOfFirstItem + 1];
+                return sibling;
+            }
+            return (UIView *) nil;
+        };
+    }
     return NULL;
 }
 

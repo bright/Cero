@@ -97,5 +97,42 @@ SpecBegin(Constraints_specs)
                 expect(childSize.width).to.equal(rootWidth * 0.5);
             });
         });
+        context(@"constraint with previous selector", ^{
+            beforeEach(^{
+                helper = inflateInParent(@""
+                        "<UIView id='firstChild'>"
+                        "<Constraint on='height' constant='100' />"
+                        "</UIView>"
+                        "<UIView id='secondChild'>"
+                        "<Constraint on='height' constant='100' />"
+                        "<Constraint on='top' with=':previous.bottom' />"
+                        "</UIView>"
+                        ""
+                        "");
+            });
+            it(@"should properly build constraint", ^{
+                CGRect secondChildRect = [helper findViewById:@"secondChild"].frame;
+                expect(secondChildRect.origin.y).to.equal(100);
+            });
+        });
+        context(@"constraint with next selector", ^{
+            beforeEach(^{
+                helper = inflateInParent(@""
+                        "<UIView id='firstChild'>"
+                        "<Constraint on='height' constant='100' />"
+                        "<Constraint on='bottom' with=':next.top' />"
+                        "</UIView>"
+                        "<UIView id='secondChild'>"
+                        "<Constraint on='height' constant='100' />"
+                        "<Constraint on='top' constant='400' />"
+                        "</UIView>"
+                        ""
+                        "");
+            });
+            it(@"should properly build constraint", ^{
+                CGRect secondChildRect = [helper findViewById:@"firstChild"].frame;
+                expect(secondChildRect.origin.y).to.equal(300);
+            });
+        });
     });
 SpecEnd

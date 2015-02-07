@@ -11,25 +11,19 @@
 
     <UIButton type="UIButtonTypeInfoDark" layer.cornerRadius="6" backgroundColor="#00f000">
         <titleForState state="UIControlStateNormal" value="Czesc"/>
-        <Constraint on="width,height,left" with="#firstLabel"/>
-        <Constraint on="top" with="#firstLabel.bottom"/>
+        <Constraint on="width,left" with="#firstLabel"/>
+        <Constraint on="top" with="#firstLabel.bottom" constant="30"/>
     </UIButton>
 
-    <UILabel text="Kot"
-             backgroundColor="yellowColor"
-             width="30"
-             top="100"
-             left="50"
-             height="50"
-            />
+    <UIButton layer.cornerRadius="10" backgroundColor="#000f00">
+        <titleForState state="UIControlStateNormal" value="Czesc"/>
+        <Constraint on="width,left" with=":previous"/>
+        <Constraint on="top" with=":previous.bottom" constant="10"/>
+    </UIButton>
 
-    <UIProgressView
-            left="20"
-            top="20"
-            progress="0.3"
-            tintColor="#00ff00"
-            width="240"
-            height="50"
-            backgroundColor="redColor"
-            />
+    <UIProgressView progress="0.3"
+                    tintColor="#00ff00">
+        <Constraint on="width,left" with=":previous"/>
+        <Constraint on="top" with=":previous.bottom" constant="10"/>
+    </UIProgressView>
 </UIView>
