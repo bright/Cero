@@ -10,20 +10,21 @@
     </UILabel>
 
     <UIButton type="UIButtonTypeInfoDark" layer.cornerRadius="6" backgroundColor="#90f000">
-    <titleForState state="UIControlStateNormal" value="Czesc"/>
-        <Constraint on="width,left" with="#firstLabel"/>
+        <titleForState state="UIControlStateNormal" value="Left"/>
+        <Constraint on="left" with="#firstLabel"/>
+        <Constraint on="width" with=":previous" multiplier="0.5" constant="-10"/>
         <Constraint on="top" with="#firstLabel.bottom" constant="30"/>
     </UIButton>
 
     <UIButton layer.cornerRadius="10" backgroundColor="#000f70">
-    <titleForState state="UIControlStateNormal" value="Czesc"/>
-        <Constraint on="width,left" with=":previous"/>
-        <Constraint on="top" with=":previous.bottom" constant="10"/>
+        <titleForState state="UIControlStateNormal" value="Right"/>
+        <Constraint on="width,top" with=":previous"/>
+        <Constraint on="left" with=":previous.right" constant="20"/>
     </UIButton>
 
     <UIProgressView progress="0.3"
                     tintColor="#00ff00">
-        <Constraint on="width,left" with=":previous"/>
+        <Constraint on="width,left" with="#firstLabel"/>
         <Constraint on="top" with=":previous.bottom" constant="10"/>
     </UIProgressView>
 </UIView>
