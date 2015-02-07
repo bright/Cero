@@ -56,8 +56,8 @@
 
     NSString *first = [keyPath substringToIndex:delimeterRange.location];
     NSString *rest = [keyPath substringFromIndex:(delimeterRange.location + 1)];
-
-    if ([self canSetValueForKey:first]) {
+    SEL readSelector = NSSelectorFromString(first);
+    if ([self respondsToSelector:readSelector]) {
         return [[self valueForKey:first] canSetValueForKeyPath:rest];
     }
 
