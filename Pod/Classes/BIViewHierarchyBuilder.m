@@ -97,7 +97,7 @@
 }
 
 - (void)setCurrent:(UIView *)current {
-    if(_container == nil){
+    if (_container == nil && current != nil) {
         _container = [BIInflatedViewContainer container:current];
     }
     _current = current;

@@ -22,8 +22,10 @@
         UIView *otherItem = nil;
         if (self.otherItemFinder != nil) {
             otherItem = self.otherItemFinder(container);
-            if (otherItem == nil) {
+            if (otherItem == nil || ![otherItem isKindOfClass:UIView.class]) {
                 //TODO Error handling
+                NSLog(@"Could not find other item view %@", _sourceReference);
+                continue;
             }
         }
 

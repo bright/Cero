@@ -67,7 +67,7 @@ static NSString *_rootProjectPath;
         [self fillSuperview:view
        withViewInflatedFrom:path
                  useContent:content
-                  andCall:notify];
+                    andCall:notify];
     };
 }
 
@@ -84,9 +84,10 @@ static NSString *_rootProjectPath;
 }
 
 - (BIInflatedViewContainer *)updateSuperView:(UIView *)superView withInflatedViewFromPath:(NSString *)path withContent:(NSData *)content {
-    BIInflatedViewContainer *newView = [_layoutInflater inflateFilePath:path withContent:content];
     [superView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    [superView addSubview:newView.root];
+    BIInflatedViewContainer *newView = [_layoutInflater inflateFilePath:path
+                                                            withContent:content
+                                                            inSuperview:superView];
     return newView;
 }
 
