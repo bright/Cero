@@ -1,6 +1,12 @@
 #import <UIKit/UIKit.h>
 #import "TestHelpers.h"
 
+@protocol HasHeightConstraint <BIInflatedViewHelper>
+- (NSLayoutConstraint *)heightConstraint;
+
+- (NSArray *)constraints;
+@end
+
 SpecBegin(Constraints_specs)
     describe(@"BIConstraintElementHandler", ^{
         __block UIView *view;
@@ -132,6 +138,46 @@ SpecBegin(Constraints_specs)
             it(@"should properly build constraint", ^{
                 CGRect secondChildRect = [helper findViewById:@"firstChild"].frame;
                 expect(secondChildRect.origin.y).to.equal(300);
+            });
+        });
+        context(@"a single constraint can be referenced by id", ^{
+            beforeEach(^{
+                helper = inflateInParent(@""
+                        "<UIView id='firstChild'>"
+                        "<Constraint id='heightConstraint' on='height' constant='100' />"
+                        "</UIView>"
+                        ""
+                        "");
+            });
+            it(@"should be able find constraint by id", ^{
+                NSLayoutConstraint *heightConstraint = [helper findElementById:@"heightConstraint"];
+                expect(heightConstraint).notTo.beNil();
+                expect(heightConstraint).to.beInstanceOf([NSLayoutConstraint class]);
+            });
+            it(@"should be able to find constraint using protocol method", ^{
+                id <HasHeightConstraint> helperSpecific = (id <HasHeightConstraint>) helper;
+                expect(helperSpecific.heightConstraint).notTo.beNil();
+            });
+        });
+        context(@"multiple constraints can be referenced by id", ^{
+            beforeEach(^{
+                helper = inflateInParent(@""
+                        "<UIView id='firstChild'>"
+                        "<Constraint id='constraints' on='height,width' constant='100' />"
+                        "</UIView>"
+                        ""
+                        "");
+            });
+            it(@"should be able find constraints by id", ^{
+                NSArray *constraints = [helper findElementById:@"constraints"];
+                expect(constraints).notTo.beNil();
+                expect(constraints.count).to.equal(2);
+                expect(constraints[0]).to.beInstanceOf([NSLayoutConstraint class]);
+                expect(constraints[1]).to.beInstanceOf([NSLayoutConstraint class]);
+            });
+            it(@"should be able to find constraints using protocol method", ^{
+                id <HasHeightConstraint> helperSpecific = (id <HasHeightConstraint>) helper;
+                expect(helperSpecific.constraints).notTo.beNil();
             });
         });
     });

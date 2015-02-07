@@ -8,5 +8,5 @@
 
 + (instancetype)container:(UIView *)root;
 
-- (BOOL)tryAddingView:(UIView *)view withId:(NSString *)id fromSource:(BISourceReference *)source error:(NSError **)error;
+- (BOOL)tryAddingElement:(id)element withId:(NSString *)id fromSource:(BISourceReference *)source error:(NSError **)error;
 @end

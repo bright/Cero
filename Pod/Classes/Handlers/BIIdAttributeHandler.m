@@ -19,10 +19,10 @@
     if (idAttributeValue.length > 0) {
         NSError *error;
         BISourceReference *sourceReference = [builder.sourceReference subReferenceFromLine:element.startLineNumber andColumn:element.startColumnNumber];
-        [builder.container tryAddingView:builder.current
-                                  withId:idAttributeValue
-                              fromSource:sourceReference
-                                   error:&error];
+        [builder.container tryAddingElement:builder.current
+                                     withId:idAttributeValue
+                                 fromSource:sourceReference
+                                      error:&error];
     } else {
         //TODO: log error message
     }

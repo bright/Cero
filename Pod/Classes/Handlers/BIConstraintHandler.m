@@ -31,17 +31,38 @@
 
     NSError *validationError;
     if ([constraintBuilder validForCompletion:&validationError]) {
-        [builder registerOnReady:^(BIInflatedViewContainer *container) {
-            NSError *installError;
-            if (![constraintBuilder tryInstall:container error:&installError]) {
-                NSLog(@"Failed to isntall constraint: %@", installError);
-            }
-        }];
+        [self registerForInstall:builder attributes:attributes constraintBuilder:constraintBuilder];
     } else {
         NSLog(@"ERROR Constraint cannot be build: %@", validationError);
     }
 
     element.attributes = NSMutableDictionary.new;
+}
+
+- (void)registerForInstall:(BIViewHierarchyBuilder *)builder attributes:(NSMutableDictionary *)attributes constraintBuilder:(BIIConstraintBuilder *)constraintBuilder {
+    [builder registerOnReady:^(BIInflatedViewContainer *container) {
+        NSError *installError;
+        NSArray *constraints = [constraintBuilder tryInstall:container error:&installError];
+        if (installError == nil && constraints.count > 0) {
+            NSString *idAttributeValue = attributes[@"id"];
+            if (idAttributeValue.length > 0) {
+                NSError *error;
+                if (constraints.count == 1) {
+                    [builder.container tryAddingElement:constraints[0]
+                                                 withId:idAttributeValue
+                                             fromSource:constraintBuilder.sourceReference
+                                                  error:&error];
+                } else {
+                    [builder.container tryAddingElement:constraints
+                                                 withId:idAttributeValue
+                                             fromSource:constraintBuilder.sourceReference
+                                                  error:&error];
+                }
+            }
+        } else {
+            NSLog(@"Failed to isntall constraint: %@", installError);
+        }
+    }];
 }
 
 - (void)handleLeave:(BILayoutElement *)element inBuilder:(BIViewHierarchyBuilder *)builder {

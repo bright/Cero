@@ -23,5 +23,7 @@ typedef UIView *(^ViewFinder)(BIInflatedViewContainer *container);
 
 - (BOOL)validForCompletion:(NSError **)pError;
 
-- (BOOL)tryInstall:(BIInflatedViewContainer *)container error:(NSError **)error;
+- (NSArray *)tryInstall:(BIInflatedViewContainer *)container error:(NSError **)error;
+
+- (BISourceReference *)sourceReference;
 @end

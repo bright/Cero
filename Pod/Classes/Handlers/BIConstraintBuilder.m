@@ -26,7 +26,7 @@
     self.sourceReference = reference;
 }
 
-- (BOOL)tryInstall:(BIInflatedViewContainer *)container error:(NSError **)error {
+- (NSArray *)tryInstall:(BIInflatedViewContainer *)container error:(NSError **)error {
     NSUInteger index = 0;
     NSMutableArray *constraints = NSMutableArray.new;
     self.firstItem.translatesAutoresizingMaskIntoConstraints = NO;
@@ -60,7 +60,7 @@
     }
     //TODO first common ancestor would be better here
     [container.root addConstraints:constraints];
-    return YES;
+    return constraints;
 }
 
 - (instancetype)init {

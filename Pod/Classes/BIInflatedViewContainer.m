@@ -35,15 +35,15 @@
     return [self findElementById:viewId];
 }
 
-- (id)findElementById:(NSString *)viewId {
-    id element = [_byIdsCache objectForKey:viewId];
+- (id)findElementById:(NSString *)elementId {
+    id element = [_byIdsCache objectForKey:elementId];
     return element;
 }
 
-- (BOOL)tryAddingView:(UIView *)view withId:(NSString *)id fromSource:(BISourceReference *)source error:(NSError **)error {
+- (BOOL)tryAddingElement:(id)element withId:(NSString *)id fromSource:(BISourceReference *)source error:(NSError **)error {
     NSObject *existing = [_byIdsCache objectForKey:id];
     if (existing == nil) {
-        [_byIdsCache setObject:view forKey:id];
+        [_byIdsCache setObject:element forKey:id];
         _sourceCache[id] = source;
         return true;
     } else {
