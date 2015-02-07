@@ -5,6 +5,11 @@
 [![License](https://img.shields.io/cocoapods/l/Cero.svg?style=flat)](http://cocoadocs.org/docsets/Cero)
 [![Platform](https://img.shields.io/cocoapods/p/Cero.svg?style=flat)](http://cocoadocs.org/docsets/Cero)
 
+
+#### Cero allows you to build your view hierarchy in clean xml layout that refresh whenever you save them.
+
+[![Demo](http://img.youtube.com/vi/NHEU3Q-9JPo/0.jpg)](http://www.youtube.com/watch?v=NHEU3Q-9JPo)
+
 ## Usage
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
@@ -25,4 +30,3 @@ Piotr Mionskowski, piotr.mionskowski@gmail.com
 ## License
 
 Cero is available under the Apache License, Version 2.0. See the LICENSE file for more info.
-
