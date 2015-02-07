@@ -3,8 +3,24 @@
 #import "BIEXTScope.h"
 #import "BISourceReference.h"
 
-@implementation BIIConstraintBuilder {
-}
+@interface BIIConstraintBuilder ()
+@property(nonatomic, strong) UIView *firstItem;
+@property(nonatomic, strong) NSArray *firstAttributes;
+@property(nonatomic) enum NSLayoutRelation relation;
+
+@property(nonatomic, copy) ViewFinder otherItemFinder;
+
+@property(nonatomic, strong) NSArray *otherItemAttributes;
+
+@property(nonatomic) CGFloat multiplier;
+
+@property(nonatomic) CGFloat constant;
+
+@property(nonatomic, strong) BISourceReference *sourceReference;
+
+@end
+
+@implementation BIIConstraintBuilder
 
 - (void)withSourceReference:(BISourceReference *)reference {
     self.sourceReference = reference;

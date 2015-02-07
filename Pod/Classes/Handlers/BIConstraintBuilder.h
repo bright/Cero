@@ -4,20 +4,6 @@
 typedef UIView *(^ViewFinder)(BIInflatedViewContainer *container);
 
 @interface BIIConstraintBuilder : NSObject
-@property(nonatomic, strong) UIView *firstItem;
-@property(nonatomic, strong) NSArray *firstAttributes;
-
-@property(nonatomic) enum NSLayoutRelation relation;
-
-@property(nonatomic, copy) ViewFinder otherItemFinder;
-
-@property(nonatomic, strong) NSArray *otherItemAttributes;
-
-@property(nonatomic) CGFloat multiplier;
-
-@property(nonatomic) CGFloat constant;
-
-@property(nonatomic, strong) BISourceReference *sourceReference;
 
 + (instancetype)builderFor:(UIView *)view;
 

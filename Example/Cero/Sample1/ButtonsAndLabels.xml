@@ -9,14 +9,14 @@
         <Constraint on="centerx" with=":superview"/>
     </UILabel>
 
-    <UIButton type="UIButtonTypeInfoDark" layer.cornerRadius="6" backgroundColor="#00f000">
-        <titleForState state="UIControlStateNormal" value="Czesc"/>
+    <UIButton type="UIButtonTypeInfoDark" layer.cornerRadius="6" backgroundColor="#90f000">
+    <titleForState state="UIControlStateNormal" value="Czesc"/>
         <Constraint on="width,left" with="#firstLabel"/>
         <Constraint on="top" with="#firstLabel.bottom" constant="30"/>
     </UIButton>
 
-    <UIButton layer.cornerRadius="10" backgroundColor="#000f00">
-        <titleForState state="UIControlStateNormal" value="Czesc"/>
+    <UIButton layer.cornerRadius="10" backgroundColor="#000f70">
+    <titleForState state="UIControlStateNormal" value="Czesc"/>
         <Constraint on="width,left" with=":previous"/>
         <Constraint on="top" with=":previous.bottom" constant="10"/>
     </UIButton>
