@@ -26,4 +26,6 @@ typedef UIView *(^ViewFinder)(BIInflatedViewContainer *container);
 - (NSArray *)tryInstall:(BIInflatedViewContainer *)container error:(NSError **)error;
 
 - (BISourceReference *)sourceReference;
+
+- (void)withPriority:(NSString *)priority;
 @end

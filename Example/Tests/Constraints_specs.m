@@ -81,6 +81,17 @@ SpecBegin(Constraints_specs)
                 expect(constraint.identifier).to.contain(@"<Constraint id='childConstraint' on='height' constant='50' />");
             });
         });
+        context(@"multiple constraints on height with different priorities", ^{
+            beforeEach(^{
+                helper = inflateInParent(@"<UIView id='child'>\n"
+                        "<Constraint on='height' constant='50' priority='UILayoutPriorityDefaultLow' />\n"
+                        "<Constraint on='height' constant='150' priority='UILayoutPriorityDefaultHigh' />\n"
+                        "</UIView>");
+            });
+            it(@"should properly build constraint", ^{
+                expect([helper findViewById:@"child"].frame.size.height).to.equal(150);
+            });
+        });
         context(@"constraint both width and height to superview width short format", ^{
             beforeEach(^{
                 helper = inflateInParent(@"<UIView id='child'>"

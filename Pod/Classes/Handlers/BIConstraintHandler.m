@@ -27,6 +27,7 @@
     [constraintBuilder withOtherItem:attributes[@"with"]];
     [constraintBuilder withMultiplier:attributes[@"multiplier"]];
     [constraintBuilder withConstant:attributes[@"constant"]];
+    [constraintBuilder withPriority:attributes[@"priority"]];
     [constraintBuilder withSourceReference:reference];
 
     NSError *validationError;

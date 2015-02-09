@@ -18,6 +18,7 @@
 
 @property(nonatomic, strong) BISourceReference *sourceReference;
 
+@property(nonatomic, strong) NSNumber *priority;
 @end
 
 @implementation BIIConstraintBuilder
@@ -55,6 +56,9 @@
                                                                      multiplier:self.multiplier
                                                                        constant:self.constant];
         constraint.identifier = self.sourceReference.source;
+        if (self.priority != nil) {
+            constraint.priority = self.priority.floatValue;
+        }
         [constraints addObject:constraint];
         index += 1;
     }
@@ -302,4 +306,42 @@ static NSDictionary *stringToRelationMap;
     });
 }
 
+static NSDictionary *stringToPriorityMap;
+
+- (void)initPriorityMap {
+    static dispatch_once_t init;
+    dispatch_once(&init, ^{
+        stringToPriorityMap = @{
+                @"uilayoutpriorityrequired" : @(UILayoutPriorityRequired),
+                @"required" : @(UILayoutPriorityRequired),
+                @"uilayoutprioritydefaulthigh" : @(UILayoutPriorityDefaultHigh),
+                @"high" : @(UILayoutPriorityDefaultHigh),
+                @"uilayoutprioritydefaultlow" : @(UILayoutPriorityDefaultLow),
+                @"low" : @(UILayoutPriorityDefaultHigh),
+                @"uilayoutpriorityfittingsizelevel" : @(UILayoutPriorityFittingSizeLevel),
+                @"fittingsizelevel" : @(UILayoutPriorityDefaultHigh),
+
+        };
+    });
+}
+
+- (void)withPriority:(NSString *)priority {
+    if (priority.length > 0) {
+        [self initPriorityMap];
+        UILayoutPriority uiLayoutPriority = [self parse:priority
+                                           defaultValue:-1
+                                                 prefix:@"UILayoutPriority"
+                                               valueMap:stringToPriorityMap];
+        if (uiLayoutPriority != -1) {
+            self.priority = @(uiLayoutPriority);
+        } else {
+            float priorityValue = priority.floatValue;
+            if (priorityValue >= 0 && priorityValue <= UILayoutPriorityRequired) {
+                self.priority = @(priorityValue);
+            } else {
+                NSLog(@"Invalid priority value %@ (values must be between 0 and 1000)", priority);
+            }
+        }
+    }
+}
 @end
