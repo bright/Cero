@@ -170,9 +170,9 @@
 - (enum NSLayoutRelation)parseRelation:(NSString *)relation {
     [self initRelationMap];
     return (NSLayoutRelation) [self parse:relation
-                             defaultValue:NSLayoutRelationEqual
+                             defaultValue:@(NSLayoutRelationEqual)
                                    prefix:@"NSLayoutRelation"
-                                 valueMap:stringToRelationMap];
+                                 valueMap:stringToRelationMap].integerValue;
 }
 
 - (void)constraintOn:(NSString *)on {
@@ -200,12 +200,12 @@
 - (NSLayoutAttribute)attributeFromString:(NSString *)component {
     [self initAttributeMap];
     return (NSLayoutAttribute) [self parse:component
-                              defaultValue:NSLayoutAttributeNotAnAttribute
+                              defaultValue:@(NSLayoutAttributeNotAnAttribute)
                                     prefix:@"NSLayoutAttribute"
-                                  valueMap:stringToAttributeMap];
+                                  valueMap:stringToAttributeMap].integerValue;
 }
 
-- (NSInteger)parse:(NSString *)rawValue defaultValue:(NSInteger)defaultValue prefix:(NSString *)prefix valueMap:(NSDictionary *)sourceMap {
+- (NSNumber *)parse:(NSString *)rawValue defaultValue:(NSNumber *)defaultValue prefix:(NSString *)prefix valueMap:(NSDictionary *)sourceMap {
     NSString *longName = rawValue;
     if ([rawValue rangeOfString:prefix].location == NSNotFound) {
         longName = [prefix stringByAppendingString:rawValue];
@@ -218,7 +218,7 @@
     for (NSString *attributeName in synonyms) {
         attributeValue = sourceMap[attributeName.lowercaseString];
         if (attributeValue != nil) {
-            return (NSLayoutAttribute) attributeValue.integerValue;
+            return attributeValue;
         }
     }
     return defaultValue;
@@ -328,12 +328,12 @@ static NSDictionary *stringToPriorityMap;
 - (void)withPriority:(NSString *)priority {
     if (priority.length > 0) {
         [self initPriorityMap];
-        UILayoutPriority uiLayoutPriority = [self parse:priority
-                                           defaultValue:-1
+        NSNumber *uiLayoutPriority = [self parse:priority
+                                    defaultValue:nil
                                                  prefix:@"UILayoutPriority"
                                                valueMap:stringToPriorityMap];
-        if (uiLayoutPriority != -1) {
-            self.priority = @(uiLayoutPriority);
+        if (uiLayoutPriority != nil) {
+            self.priority = uiLayoutPriority;
         } else {
             float priorityValue = priority.floatValue;
             if (priorityValue >= 0 && priorityValue <= UILayoutPriorityRequired) {
