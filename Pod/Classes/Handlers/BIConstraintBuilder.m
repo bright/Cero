@@ -54,7 +54,7 @@
                                                                       attribute:otherAttribute
                                                                      multiplier:self.multiplier
                                                                        constant:self.constant];
-
+        constraint.identifier = self.sourceReference.source;
         [constraints addObject:constraint];
         index += 1;
     }

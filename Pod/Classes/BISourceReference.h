@@ -6,4 +6,6 @@
 - (BISourceReference *)subReferenceFromLine:(NSUInteger)lineNumber andColumn:(NSUInteger)columnNumber;
 
 - (NSString *)sourceDescription;
+
+- (NSString *)source;
 @end

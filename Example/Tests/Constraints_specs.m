@@ -53,7 +53,7 @@ SpecBegin(Constraints_specs)
                 expect([helper findViewById:@"child"].frame.size.width).to.equal(rootWidth * 0.9);
             });
         });
-        context(@"constraint width superview width short format", ^{
+        context(@"constraint with superview width short format", ^{
             beforeEach(^{
                 helper = inflateInParent(@"<UIView id='child'>"
                         "<Constraint on='width' with=':superview' multiplier='0.9' />"
@@ -64,6 +64,21 @@ SpecBegin(Constraints_specs)
             });
             it(@"should properly build constraint", ^{
                 expect([helper findViewById:@"child"].frame.size.width).to.equal(rootWidth * 0.9);
+            });
+        });
+        context(@"constraint height with id", ^{
+            beforeEach(^{
+                helper = inflateInParent(@"<UIView id='child'>"
+                        "<Constraint id='childConstraint' on='height' constant='50' />"
+                        "</UIView>");
+            });
+            it(@"should properly build constraint", ^{
+                expect([helper findViewById:@"child"].frame.size.height).to.equal(50);
+            });
+            it(@"uses constraint definition as identifier", ^{
+                NSLayoutConstraint *constraint = [helper findElementById:@"childConstraint"];
+                expect(constraint).toNot.beNil();
+                expect(constraint.identifier).to.contain(@"<Constraint id='childConstraint' on='height' constant='50' />");
             });
         });
         context(@"constraint both width and height to superview width short format", ^{

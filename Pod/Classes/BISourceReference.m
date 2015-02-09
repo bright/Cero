@@ -42,4 +42,8 @@
     return [NSString stringWithFormat:@"%@(%@:%@)\n%@", self.sourcePath,
         @(self.startLine), @(self.startColumn), self.sourceContent];
 }
+
+- (NSString *)source {
+    return self.sourceContent;
+}
 @end
