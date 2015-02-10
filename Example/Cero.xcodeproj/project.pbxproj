@@ -26,6 +26,7 @@
 		65BB29FB50371E86884C9267 /* TestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BB2BABAD6998B7CADD688C /* TestHelper.m */; };
 		65BB2AA0C63F66AFAEB8B290 /* IdAttribute_specs.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BB27DA1669420A576B131E /* IdAttribute_specs.m */; };
 		65BB2DD49C46EC69DDEDBBCC /* ButtonsAndLabels.xml in Resources */ = {isa = PBXBuildFile; fileRef = 65BB26F7D75294D33663CA8E /* ButtonsAndLabels.xml */; };
+		65BB2ED4AA66FEECB005F76F /* bright.png in Resources */ = {isa = PBXBuildFile; fileRef = 65BB271D16C0EC61C9A7AF2F /* bright.png */; };
 		65BB2FB1AF70CBA84E56BEB7 /* ButtonsAndLabelsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BB25EDDED472CB87E32FF1 /* ButtonsAndLabelsViewController.m */; };
 		85E715861570E9375DCB3015 /* libPods-Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CF281AAF4474198BA06B5387 /* libPods-Tests.a */; };
 /* End PBXBuildFile section */
@@ -67,6 +68,7 @@
 		65BB2295CF84EEB59CA2EAAA /* Constraints_specs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constraints_specs.m; sourceTree = "<group>"; };
 		65BB25EDDED472CB87E32FF1 /* ButtonsAndLabelsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonsAndLabelsViewController.m; sourceTree = "<group>"; };
 		65BB26F7D75294D33663CA8E /* ButtonsAndLabels.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ButtonsAndLabels.xml; sourceTree = "<group>"; };
+		65BB271D16C0EC61C9A7AF2F /* bright.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bright.png; sourceTree = "<group>"; };
 		65BB27DA1669420A576B131E /* IdAttribute_specs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdAttribute_specs.m; sourceTree = "<group>"; };
 		65BB2BABAD6998B7CADD688C /* TestHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestHelper.m; sourceTree = "<group>"; };
 		65BB2DD94228E9203AFCAC3E /* LayoutInflater_specs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LayoutInflater_specs.m; sourceTree = "<group>"; };
@@ -208,6 +210,7 @@
 				65BB26F7D75294D33663CA8E /* ButtonsAndLabels.xml */,
 				65BB2F6F426608407F8643AA /* ButtonsAndLabelsViewController.h */,
 				65BB25EDDED472CB87E32FF1 /* ButtonsAndLabelsViewController.m */,
+				65BB271D16C0EC61C9A7AF2F /* bright.png */,
 			);
 			name = Sample1;
 			path = Cero/Sample1;
@@ -310,6 +313,7 @@
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
 				65BB2DD49C46EC69DDEDBBCC /* ButtonsAndLabels.xml in Resources */,
+				65BB2ED4AA66FEECB005F76F /* bright.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
