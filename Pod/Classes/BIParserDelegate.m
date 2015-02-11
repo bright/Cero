@@ -2,19 +2,31 @@
 #import "BILayoutElement.h"
 
 
-@implementation BIParserDelegate
+@implementation BIParserDelegate {
+    NSMutableArray *_stack;
+}
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _stack = NSMutableArray.new;
+    }
+
+    return self;
+}
+
 - (void) parser:(NSXMLParser *)parser
 didStartElement:(NSString *)elementName
    namespaceURI:(NSString *)namespaceURI
   qualifiedName:(NSString *)qName
      attributes:(NSDictionary *)attributeDict {
+    BILayoutElement *element = [BILayoutElement new];
+    element.name = elementName;
+    element.namepsaceURI = namespaceURI;
+    element.attributes = attributeDict.mutableCopy;
+    element.startLineNumber = (NSUInteger) parser.lineNumber;
+    element.startColumnNumber = (NSUInteger) parser.columnNumber;
+    [self pushToStack:element];
     if (self.onEnterNode != nil) {
-        BILayoutElement *element = [BILayoutElement new];
-        element.name = elementName;
-        element.namepsaceURI = namespaceURI;
-        element.attributes = attributeDict.mutableCopy;
-        element.startLineNumber = (NSUInteger) parser.lineNumber;
-        element.startColumnNumber = (NSUInteger) parser.columnNumber;
         self.onEnterNode(element);
     }
 }
@@ -23,10 +35,10 @@ didStartElement:(NSString *)elementName
  didEndElement:(NSString *)elementName
   namespaceURI:(NSString *)namespaceURI
  qualifiedName:(NSString *)qName {
+    BILayoutElement *element = [self popFromStack];
+    element.endLineNumber = (NSUInteger) parser.lineNumber;
+    element.endColumnNumber = (NSUInteger) parser.columnNumber;
     if (self.onLeaveNode != nil) {
-        BILayoutElement *element = [BILayoutElement new];
-        element.name = elementName;
-        element.namepsaceURI = namespaceURI;
         self.onLeaveNode(element);
     }
 }
@@ -47,6 +59,16 @@ didStartElement:(NSString *)elementName
     if (self.onParsingCompleted != nil) {
         self.onParsingCompleted();
     }
+}
+
+- (void)pushToStack:(BILayoutElement *)element {
+    [_stack addObject:element];
+}
+
+- (BILayoutElement *)popFromStack {
+    BILayoutElement *element = [_stack lastObject];
+    [_stack removeLastObject];
+    return element;
 }
 
 

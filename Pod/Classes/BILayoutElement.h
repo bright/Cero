@@ -7,4 +7,6 @@
 
 @property(nonatomic) NSUInteger startColumnNumber;
 @property(nonatomic) BOOL handledAllAttributes;
+@property(nonatomic) NSUInteger endLineNumber;
+@property(nonatomic) NSUInteger endColumnNumber;
 @end
