@@ -32,15 +32,15 @@
 
     NSError *validationError;
     if ([constraintBuilder validForCompletion:&validationError]) {
-        [self registerForInstall:builder attributes:attributes constraintBuilder:constraintBuilder];
+        [self registerInstallWhenBuilderReady:builder attributes:attributes constraintBuilder:constraintBuilder];
     } else {
         NSLog(@"ERROR Constraint cannot be build: %@", validationError);
     }
     element.handledAllAttributes = YES;
 }
 
-- (void)registerForInstall:(BIViewHierarchyBuilder *)builder attributes:(NSMutableDictionary *)attributes constraintBuilder:(BIIConstraintBuilder *)constraintBuilder {
-    [builder registerOnReady:^(BIInflatedViewContainer *container) {
+- (void)registerInstallWhenBuilderReady:(BIViewHierarchyBuilder *)builder attributes:(NSMutableDictionary *)attributes constraintBuilder:(BIIConstraintBuilder *)constraintBuilder {
+    [builder pushOnReady:^(BIInflatedViewContainer *container) {
         NSError *installError;
         NSArray *constraints = [constraintBuilder tryInstall:container error:&installError];
         if (installError == nil && constraints.count > 0) {

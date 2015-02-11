@@ -21,8 +21,8 @@ typedef void(^OnBuilderReady)(BIInflatedViewContainer *container);
 
 - (void)setSuperviewAsCurrent;
 
-+ (BIViewHierarchyBuilder *)builder:(id<BIHandlersConfiguration>)configuration parser:(BIParserDelegate *)parser;
++ (BIViewHierarchyBuilder *)builder:(id <BIHandlersConfiguration>)configuration parser:(BIParserDelegate *)parser;
 
-- (void)registerOnReady:(OnBuilderReady)onReady;
+- (void)pushOnReady:(OnBuilderReady)onReady;
 
 @end

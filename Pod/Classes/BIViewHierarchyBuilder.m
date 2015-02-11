@@ -119,7 +119,7 @@
     self.current = parent;
 }
 
-- (void)registerOnReady:(OnBuilderReady)onReady {
+- (void)pushOnReady:(OnBuilderReady)onReady {
     if (onReady != nil) {
         OnBuilderReady previous = self.onReadyQueue;
         self.onReadyQueue = ^(BIInflatedViewContainer *container) {
