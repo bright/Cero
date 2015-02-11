@@ -82,17 +82,19 @@
             break;
         }
     }
-    for (NSString *attribute in node.attributes) {
-        for (id <BIAttributeHandler> attributeHandler in [self attributeHandlers]) {
-            if ([attributeHandler canHandle:attribute ofElement:node inBuilder:self]) {
-                [attributeHandler handle:attribute ofElement:node inBuilder:self];
-                break;
+    if (!node.handledAllAttributes) {
+        for (NSString *attribute in node.attributes) {
+            for (id <BIAttributeHandler> attributeHandler in [self attributeHandlers]) {
+                if ([attributeHandler canHandle:attribute ofElement:node inBuilder:self]) {
+                    [attributeHandler handle:attribute ofElement:node inBuilder:self];
+                    break;
+                }
             }
         }
     }
 }
 
--(UIView *)root {
+- (UIView *)root {
     return _container.root;
 }
 

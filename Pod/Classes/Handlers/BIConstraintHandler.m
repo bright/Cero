@@ -36,8 +36,7 @@
     } else {
         NSLog(@"ERROR Constraint cannot be build: %@", validationError);
     }
-
-    element.attributes = NSMutableDictionary.new;
+    element.handledAllAttributes = YES;
 }
 
 - (void)registerForInstall:(BIViewHierarchyBuilder *)builder attributes:(NSMutableDictionary *)attributes constraintBuilder:(BIIConstraintBuilder *)constraintBuilder {
