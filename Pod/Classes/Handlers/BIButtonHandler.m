@@ -1,6 +1,7 @@
 #import "BIButtonHandler.h"
 #import "BILayoutElement.h"
 #import "BIViewHierarchyBuilder.h"
+#import "BIInflatedViewContainer.h"
 
 
 @implementation BIButtonHandler
@@ -40,13 +41,17 @@ static NSDictionary *buttonTypes;
 
 - (void)handleEnter:(BILayoutElement *)element inBuilder:(BIViewHierarchyBuilder *)builder {
     UIButtonType buttonType = [self parseButtonType:element.attributes];
-    UIButton *button = [UIButton buttonWithType:buttonType];
     [element.attributes removeObjectForKey:@"type"];
-    [builder setCurrentAsSubview:button];
+    [builder addBuildStep:^(BIInflatedViewContainer *container) {
+        UIButton *button = [UIButton buttonWithType:buttonType];
+        [container setCurrentAsSubview:button];
+    }];
 }
 
 - (void)handleLeave:(BILayoutElement *)element inBuilder:(BIViewHierarchyBuilder *)builder {
-    [builder setSuperviewAsCurrent];
+    [builder addBuildStep:^(BIInflatedViewContainer *container) {
+        [container setSuperviewAsCurrent];
+    }];
 }
 
 - (enum UIButtonType)parseButtonType:(NSDictionary *)attributes {

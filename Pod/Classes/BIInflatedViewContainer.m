@@ -66,6 +66,17 @@
 }
 
 
+- (void)setSuperviewAsCurrent {
+    UIView *parent = self.current.superview;
+    self.current = parent;
+}
+
+- (void)setCurrentAsSubview:(UIView *)view {
+    UIView *parent = self.current;
+    [parent addSubview:view];
+    self.current = view;
+}
+
 @end
 
 @implementation BIIdCacheDelegatedFinder {

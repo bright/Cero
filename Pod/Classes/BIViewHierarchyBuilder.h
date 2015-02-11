@@ -10,19 +10,19 @@
 
 typedef void(^OnBuilderReady)(BIInflatedViewContainer *container);
 
+typedef void(^BuilderStep)(BIInflatedViewContainer *container);
+
 @interface BIViewHierarchyBuilder : NSObject
 @property(nonatomic, readonly) UIView *root;
 @property(nonatomic, readonly) BIInflatedViewContainer *container;
-@property(nonatomic, readonly) UIView *current;
 @property(nonatomic, strong) BISourceReference *sourceReference;
 
 
-- (void)setCurrentAsSubview:(UIView *)view;
-
-- (void)setSuperviewAsCurrent;
-
 + (BIViewHierarchyBuilder *)builder:(id <BIHandlersConfiguration>)configuration parser:(BIParserDelegate *)parser;
+
+- (UIView *)current;
 
 - (void)pushOnReady:(OnBuilderReady)onReady;
 
+- (void)addBuildStep:(BuilderStep)step;
 @end

@@ -18,18 +18,13 @@
 
 @property(nonatomic, copy) OnBuilderReady onReadyQueue;
 
-@property(nonatomic, strong) UIView *current;
 @end
 
 @implementation BIViewHierarchyBuilder {
     BIParserDelegate *_delegate;
     BIInflatedViewContainer *_container;
     id <BIHandlersConfiguration> _configuration;
-}
-- (void)setCurrentAsSubview:(UIView *)view {
-    UIView *parent = self.current;
-    [parent addSubview:view];
-    self.current = view;
+    NSMutableArray *_builderSteps;
 }
 
 + (instancetype)builder:(id <BIHandlersConfiguration>)configuration parser:(BIParserDelegate *)delegate {
@@ -39,6 +34,7 @@
 - (instancetype)initWithParserConfiguration:(id <BIHandlersConfiguration>)configuration parser:(BIParserDelegate *)delegate {
     self = [super init];
     if (self) {
+        _builderSteps = NSMutableArray.new;
         self.onReadyQueue = ^(BIInflatedViewContainer *_) {
         };
         _delegate = delegate;
@@ -60,19 +56,9 @@
     return self;
 }
 
-- (void)onLeaveNode:(BILayoutElement *)node {
-    for (id <BIBuilderHandler> handler in [self elementHandlers]) {
-        if ([handler canHandle:node inBuilder:self]) {
-            [handler handleLeave:node inBuilder:self];
-            break;
-        }
-    }
-}
-
 - (void)onReady {
     self.onReadyQueue(self.container);
 }
-
 
 - (void)onEnterNode:(BILayoutElement *)node {
     id <BIBuilderHandler> elementHandler = nil;
@@ -94,6 +80,16 @@
     }
 }
 
+
+- (void)onLeaveNode:(BILayoutElement *)node {
+    for (id <BIBuilderHandler> handler in [self elementHandlers]) {
+        if ([handler canHandle:node inBuilder:self]) {
+            [handler handleLeave:node inBuilder:self];
+            break;
+        }
+    }
+}
+
 - (UIView *)root {
     return _container.root;
 }
@@ -102,7 +98,11 @@
     if (_container == nil && current != nil) {
         _container = [BIInflatedViewContainer container:current];
     }
-    _current = current;
+    _container.current = current;
+}
+
+- (UIView *)current {
+    return _container.current;
 }
 
 - (NSArray *)elementHandlers {
@@ -114,10 +114,6 @@
     return _configuration.attributeHandlers;
 }
 
-- (void)setSuperviewAsCurrent {
-    UIView *parent = self.current.superview;
-    self.current = parent;
-}
 
 - (void)pushOnReady:(OnBuilderReady)onReady {
     if (onReady != nil) {
@@ -127,5 +123,10 @@
             onReady(container);
         };
     }
+}
+
+- (void)addBuildStep:(BuilderStep)step {
+    step(self.container);
+    [_builderSteps addObject:step];
 }
 @end
