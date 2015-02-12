@@ -129,4 +129,9 @@
     step(self.container);
     [_builderSteps addObject:step];
 }
+
+- (void)startWithSuperView:(UIView *)view {
+    _container = [BIInflatedViewContainer container:view];
+    _container.current = view;
+}
 @end

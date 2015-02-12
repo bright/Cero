@@ -1,5 +1,4 @@
-#import <UIKit/UIKit.h>
-
+#import "BIInflatedViewContainer.h"
 #import "BISimpleViewHandler.h"
 #import "BILayoutElement.h"
 #import "BIViewHierarchyBuilder.h"
@@ -14,12 +13,16 @@
 
 - (void)handleEnter:(BILayoutElement *)element inBuilder:(BIViewHierarchyBuilder *)builder {
     Class viewClass = NSClassFromString(element.name);
-    UIView *view = (UIView *) [viewClass new];
-    [builder setCurrentAsSubview:view];
+    [builder addBuildStep:^(BIInflatedViewContainer *container) {
+        UIView *view = (UIView *) [viewClass new];
+        [container setCurrentAsSubview:view];
+    }];
 }
 
 - (void)handleLeave:(BILayoutElement *)element inBuilder:(BIViewHierarchyBuilder *)builder {
-    [builder setSuperviewAsCurrent];
+    [builder addBuildStep:^(BIInflatedViewContainer *container) {
+        [container setSuperviewAsCurrent];
+    }];
 }
 
 

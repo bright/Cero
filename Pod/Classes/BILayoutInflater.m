@@ -31,7 +31,7 @@
 
 - (BIInflatedViewContainer *)inflateFilePath:(NSString *)filePath withContent:(NSData *)content inSuperview:(UIView *)superview {
     BIViewHierarchyBuilder*builder = [BIViewHierarchyBuilder builder:_handlersCache parser:_parserDelegate];
-    [builder setCurrentAsSubview:superview];
+    [builder startWithSuperView:superview];
     NSString *contentAsString = [[NSString alloc] initWithData:content encoding:NSUTF8StringEncoding];
     builder.sourceReference = [BISourceReference reference:filePath andContent:contentAsString];
     NSXMLParser *parser = [[NSXMLParser alloc] initWithData:content];

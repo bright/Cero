@@ -25,4 +25,6 @@ typedef void(^BuilderStep)(BIInflatedViewContainer *container);
 - (void)pushOnReady:(OnBuilderReady)onReady;
 
 - (void)addBuildStep:(BuilderStep)step;
+
+- (void)startWithSuperView:(UIView *)view;
 @end

@@ -72,6 +72,9 @@
 }
 
 - (void)setCurrentAsSubview:(UIView *)view {
+    if (self.root == nil) {
+        self.root = view;
+    }
     UIView *parent = self.current;
     [parent addSubview:view];
     self.current = view;
