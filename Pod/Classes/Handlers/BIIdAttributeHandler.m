@@ -17,12 +17,14 @@
      inBuilder:(BIViewHierarchyBuilder *)builder {
     NSString *idAttributeValue = element.attributes[attribute];
     if (idAttributeValue.length > 0) {
-        NSError *error;
         BISourceReference *sourceReference = [builder.sourceReference subReferenceFromLine:element.startLineNumber andColumn:element.startColumnNumber];
-        [builder.container tryAddingElement:builder.current
-                                     withId:idAttributeValue
-                                 fromSource:sourceReference
-                                      error:&error];
+        [builder addBuildStep:^(BIInflatedViewContainer *container) {
+            NSError *error;
+            [container tryAddingElement:container.current
+                                 withId:idAttributeValue
+                             fromSource:sourceReference
+                                  error:&error];
+        }];
     } else {
         //TODO: log error message
     }

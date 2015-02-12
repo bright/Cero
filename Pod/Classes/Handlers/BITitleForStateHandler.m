@@ -2,6 +2,7 @@
 #import "BITitleForStateHandler.h"
 #import "BILayoutElement.h"
 #import "BIViewHierarchyBuilder.h"
+#import "BIInflatedViewContainer.h"
 
 
 @implementation BITitleForStateHandler {
@@ -19,13 +20,17 @@
             @"UIControlStateDisabled" : @(UIControlStateDisabled),
             @"UIControlStateApplication" : @(UIControlStateApplication),
     };
-    UIButton *button = (UIButton *) builder.current;
+
     NSString *stateValue = element.attributes[@"state"];
+    NSString *title = element.attributes[@"value"];
     for(NSString *stateName in stateStringToStateEnum){
         if ([stateValue isEqualToString:stateName]) {
             NSNumber * state = stateStringToStateEnum[stateName];
-            [button setTitle:element.attributes[@"value"] forState:(UIControlState) state.unsignedIntegerValue];
-        }    
+            [builder addBuildStep:^(BIInflatedViewContainer *container) {
+                UIButton *button = (UIButton *) container.current;
+                [button setTitle:title forState:(UIControlState) state.unsignedIntegerValue];
+            }];
+        }
     }
     [element.attributes removeObjectsForKeys:@[@"value", @"state"]];
 }

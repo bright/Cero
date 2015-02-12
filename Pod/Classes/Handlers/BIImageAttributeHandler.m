@@ -1,6 +1,7 @@
 #import "BIImageAttributeHandler.h"
 #import "BILayoutElement.h"
 #import "BIViewHierarchyBuilder.h"
+#import "BIInflatedViewContainer.h"
 
 @implementation BIImageAttributeHandler {
 
@@ -10,13 +11,16 @@
 }
 
 - (void)handle:(NSString *)attribute ofElement:(BILayoutElement *)element inBuilder:(BIViewHierarchyBuilder *)builder {
-    UIImageView *current = (UIImageView *) builder.current;
     UIImage *image = [UIImage imageNamed:element.attributes[attribute]];
-    current.image = image;
-    CGRect rect = current.frame;
-    CGPoint origin = rect.origin;
-    rect = CGRectMake(origin.x, origin.y, image.size.width, image.size.height);
-    current.frame = rect;
+    [builder addBuildStep:^(BIInflatedViewContainer *container) {
+        UIImageView *current = (UIImageView *) container.current;
+        current.image = image;
+        CGRect rect = current.frame;
+        CGPoint origin = rect.origin;
+        rect = CGRectMake(origin.x, origin.y, image.size.width, image.size.height);
+        current.frame = rect;
+    }];
+
 }
 
 @end

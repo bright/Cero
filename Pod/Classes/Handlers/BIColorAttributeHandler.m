@@ -2,6 +2,7 @@
 #import "BIColorAttributeHandler.h"
 #import "BILayoutElement.h"
 #import "BIViewHierarchyBuilder.h"
+#import "BIInflatedViewContainer.h"
 
 
 @implementation BIColorAttributeHandler
@@ -19,10 +20,12 @@
 - (void)handle:(NSString *)attribute ofElement:(BILayoutElement *)element inBuilder:(BIViewHierarchyBuilder *)builder {
     UIColor *color = [self parseColorValue:element.attributes[attribute]];
     SEL currentViewSelector = [self parseSetColorSelector:attribute];
+    [builder addBuildStep:^(BIInflatedViewContainer *container) {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-    [builder.current performSelector:currentViewSelector withObject:color];
+        [container.current performSelector:currentViewSelector withObject:color];
 #pragma clang diagnostic pop
+    }];
 }
 
 - (UIColor *)parseColorValue:(NSString *)color {
