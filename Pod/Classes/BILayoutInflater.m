@@ -8,7 +8,6 @@
 
 @implementation BILayoutInflater {
 
-    BIParserDelegate *_parserDelegate;
     id <BIHandlersConfiguration> _handlersCache;
 }
 
@@ -23,19 +22,28 @@
 - (instancetype)initWithConfiguration:(BILayoutConfiguration *)configuration {
     self = [super init];
     if (self) {
-        _parserDelegate = [BIParserDelegate new];
         _handlersCache = configuration.handlersCache;
     }
     return self;
 }
 
 - (BIInflatedViewContainer *)inflateFilePath:(NSString *)filePath withContent:(NSData *)content inSuperview:(UIView *)superview {
-    BIViewHierarchyBuilder*builder = [BIViewHierarchyBuilder builder:_handlersCache parser:_parserDelegate];
+    BIParserDelegate *parserDelegate = [BIParserDelegate new];
+    BIViewHierarchyBuilder *builder = [BIViewHierarchyBuilder builder:_handlersCache];
+    parserDelegate.onEnterNode = ^(BILayoutElement *element) {
+        [builder onEnterNode:element];
+    };
+    parserDelegate.onLeaveNode = ^(BILayoutElement *element) {
+        [builder onLeaveNode:element];
+    };
+    parserDelegate.onParsingCompleted = ^{
+        [builder onReady];
+    };
     [builder startWithSuperView:superview];
     NSString *contentAsString = [[NSString alloc] initWithData:content encoding:NSUTF8StringEncoding];
     builder.sourceReference = [BISourceReference reference:filePath andContent:contentAsString];
     NSXMLParser *parser = [[NSXMLParser alloc] initWithData:content];
-    parser.delegate = _parserDelegate;
+    parser.delegate = parserDelegate;
     [parser parse];
     if (parser.parserError != nil) {
         NSLog(@"Error: %@", parser.parserError);

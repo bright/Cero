@@ -18,7 +18,13 @@ typedef void(^BuilderStep)(BIInflatedViewContainer *container);
 @property(nonatomic, strong) BISourceReference *sourceReference;
 
 
-+ (BIViewHierarchyBuilder *)builder:(id <BIHandlersConfiguration>)configuration parser:(BIParserDelegate *)parser;
++ (instancetype)builder:(id <BIHandlersConfiguration>)configuration;
+
+- (void)onReady;
+
+- (void)onEnterNode:(BILayoutElement *)node;
+
+- (void)onLeaveNode:(BILayoutElement *)node;
 
 - (UIView *)current;
 

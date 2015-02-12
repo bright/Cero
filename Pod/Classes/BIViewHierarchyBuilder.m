@@ -1,6 +1,4 @@
 #import "BIViewHierarchyBuilder.h"
-#import "BIParserDelegate.h"
-#import "BIEXTScope.h"
 #import "BILayoutElement.h"
 
 #import "BIBuilderHandler.h"
@@ -10,48 +8,28 @@
 
 
 @interface BIViewHierarchyBuilder ()
-- (void)onEnterNode:(id)node;
-
-- (void)onLeaveNode:(id)node;
-
-- (void)onReady;
 
 @property(nonatomic, copy) OnBuilderReady onReadyQueue;
 
 @end
 
 @implementation BIViewHierarchyBuilder {
-    BIParserDelegate *_delegate;
     BIInflatedViewContainer *_container;
     id <BIHandlersConfiguration> _configuration;
     NSMutableArray *_builderSteps;
 }
 
-+ (instancetype)builder:(id <BIHandlersConfiguration>)configuration parser:(BIParserDelegate *)delegate {
-    return [[self alloc] initWithParserConfiguration:configuration parser:delegate];
++ (instancetype)builder:(id <BIHandlersConfiguration>)configuration {
+    return [[self alloc] initWithParserConfiguration:configuration];
 }
 
-- (instancetype)initWithParserConfiguration:(id <BIHandlersConfiguration>)configuration parser:(BIParserDelegate *)delegate {
+- (instancetype)initWithParserConfiguration:(id <BIHandlersConfiguration>)configuration {
     self = [super init];
     if (self) {
         _builderSteps = NSMutableArray.new;
         self.onReadyQueue = ^(BIInflatedViewContainer *_) {
         };
-        _delegate = delegate;
         _configuration = configuration;
-        @weakify(self);
-        _delegate.onEnterNode = ^(BILayoutElement *node) {
-            @strongify(self);
-            [self onEnterNode:node];
-        };
-        _delegate.onLeaveNode = ^(BILayoutElement *node) {
-            @strongify(self);
-            [self onLeaveNode:node];
-        };
-        _delegate.onParsingCompleted = ^() {
-            @strongify(self);
-            [self onReady];
-        };
     }
     return self;
 }
