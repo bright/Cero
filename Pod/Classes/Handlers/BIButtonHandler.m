@@ -31,10 +31,6 @@ static NSDictionary *buttonTypes;
     return [self isButton:element];
 }
 
-- (BOOL)parentIsButton:(BIViewHierarchyBuilder *)builder {
-    return [builder.current isKindOfClass:UIButton.class];
-}
-
 - (BOOL)isButton:(BILayoutElement *)element {
     return [element.name isEqualToString:NSStringFromClass(UIButton.class)];
 }
