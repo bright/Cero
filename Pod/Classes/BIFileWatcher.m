@@ -44,12 +44,15 @@
 }
 
 - (void)notifyOfChanges {
-    void (^onContentChange)(NSString *path, NSData *content) = self.onContentChange;
-    if (onContentChange != nil) {
+    if (self.onContentChange != nil) {
         NSString *path = _path;
         NSData *data = [NSData dataWithContentsOfFile:path];
+        @weakify(self);
         dispatch_async(dispatch_get_main_queue(), ^{
-            onContentChange(path, data);
+            @strongify(self);
+            if (self.onContentChange != nil) {
+                self.onContentChange(path, data);
+            }
         });
     }
     _recreateDispatchSource = YES;
@@ -61,7 +64,7 @@
     close(_fileDescriptor);
     _fileDescriptor = 0;
     _source = nil;
-    if(_recreateDispatchSource){
+    if (_recreateDispatchSource) {
         _recreateDispatchSource = NO;
         [self watchPathForContentChanges];
     }
