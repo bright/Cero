@@ -40,10 +40,6 @@ static NSString *_rootProjectPath;
     return self;
 }
 
-+ (BILayoutInflaterWatcher *)watchingInflaterFor:(NSString *)path {
-    return [[self alloc] initWithFilePath:path];
-}
-
 
 + (BILayoutInflaterWatcher *)watchingInflaterForLayout:(NSString *)name {
     NSString *fullPath = [[NSBundle mainBundle] pathForResource:name ofType:@"xml"];
