@@ -11,8 +11,6 @@
 
 - (NSObject <BIInflatedViewHelper> *)inflateFilePath:(NSString *)filePath withContentString:(NSString *)content;
 
-- (BIInflatedViewContainer *)inflateFilePath:(NSString *)filePath;
-
 - (BIInflatedViewContainer *)inflateFilePath:(NSString *)filePath withContent:(NSData *)content;
 
 - (BIInflatedViewContainer *)inflateFilePath:(NSString *)filePath withContent:(NSData *)content inSuperview:(UIView *)superview;

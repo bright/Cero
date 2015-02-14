@@ -16,7 +16,7 @@
 }
 
 + (instancetype)inflaterWithConfiguration:(BILayoutConfiguration *)configuration {
-    return [[self alloc]initWithConfiguration:configuration];
+    return [[self alloc] initWithConfiguration:configuration];
 }
 
 - (instancetype)initWithConfiguration:(BILayoutConfiguration *)configuration {
@@ -59,13 +59,4 @@
     return [self inflateFilePath:filePath withContent:[content dataUsingEncoding:NSUTF8StringEncoding]];
 }
 
-- (BIInflatedViewContainer *)inflateFilePath:(NSString *)filePath {
-    NSData *content = [NSData dataWithContentsOfFile:filePath];
-    return [self inflateFilePath:filePath withContent:content];
-}
-
-+ (BIInflatedViewContainer *)inflateViewFromFile:(NSString *)fullPath {
-    BILayoutInflater *inflater = [BILayoutInflater new];
-    return [inflater inflateFilePath:fullPath withContent:nil];
-}
 @end
