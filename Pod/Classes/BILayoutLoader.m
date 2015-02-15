@@ -2,7 +2,9 @@
 #import "BIInflatedViewHelper.h"
 #import "BILayoutInflater.h"
 #import "BIInflatedViewContainer.h"
-
+#import "BIBuildersCache.h"
+#import "BIContentChangeObserver.h"
+#import "BIEXTScope.h"
 
 @implementation BILayoutLoader {
     BILayoutInflater *_layoutInflater;
@@ -50,8 +52,22 @@
 }
 
 - (BIInflatedViewContainer *)updateSuperView:(UIView *)superView withInflatedViewFromPath:(NSString *)path andCall:(OnViewInflated)notify {
-    [superView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    BIInflatedViewContainer *newView = [_layoutInflater inflateFilePath:path superview:superView callback:NULL];
+    BIInflatedViewContainer *newView = [self fillSuperview:superView path:path notify:notify];
+    BIContentChangeObserver *observer = [_layoutInflater.buildersCache contentChangedObserver:path];
+    @weakify(self);
+    [observer addHandler:^{
+        @strongify(self);
+        [self fillSuperview:superView path:path notify:notify];
+    }            boundTo:superView];
+    return newView;
+}
+
+- (BIInflatedViewContainer *)fillSuperview:(UIView *)superview path:(NSString *)path notify:(OnViewInflated)notify {
+    [superview.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    BIInflatedViewContainer *newView = [_layoutInflater inflateFilePath:path superview:superview];
+    if (notify != nil) {
+        notify(newView);
+    }
     return newView;
 }
 

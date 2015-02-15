@@ -30,7 +30,7 @@
     return self;
 }
 
-- (BIInflatedViewContainer *)inflateFilePath:(NSString *)filePath superview:(UIView *)superview callback:(OnViewInflated)callback {
+- (BIInflatedViewContainer *)inflateFilePath:(NSString *)filePath superview:(UIView *)superview {
     BIViewHierarchyBuilder *builder = [self.buildersCache cachedBuilderFor:filePath onNew:^(NSData *content) {
         return [self inflateFilePath:filePath superview:superview content:content];
     }                                                             onCached:^(BIViewHierarchyBuilder *cachedBuilder) {
@@ -45,14 +45,14 @@
     BIParserDelegate *parserDelegate = [BIParserDelegate new];
     BIViewHierarchyBuilder *newBuilder = [BIViewHierarchyBuilder builder:_handlersCache];
     parserDelegate.onEnterNode = ^(BILayoutElement *element) {
-            [newBuilder onEnterNode:element];
-        };
+        [newBuilder onEnterNode:element];
+    };
     parserDelegate.onLeaveNode = ^(BILayoutElement *element) {
-            [newBuilder onLeaveNode:element];
-        };
+        [newBuilder onLeaveNode:element];
+    };
     parserDelegate.onParsingCompleted = ^{
-            [newBuilder onReady];
-        };
+        [newBuilder onReady];
+    };
     [newBuilder startWithSuperView:superview];
     NSString *contentAsString = [[NSString alloc] initWithData:content encoding:NSUTF8StringEncoding];
     newBuilder.sourceReference = [BISourceReference reference:filePath andContent:contentAsString];
@@ -60,13 +60,12 @@
     parser.delegate = parserDelegate;
     [parser parse];
     if (parser.parserError != nil) {
-            NSLog(@"Error: %@", parser.parserError);
-        }
+        NSLog(@"Error: %@", parser.parserError);
+    }
     return newBuilder;
 }
 
 - (BIBuildersCache *)buildersCache {
     return _handlersCache.buildersCache;
 }
-
 @end

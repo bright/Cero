@@ -9,7 +9,7 @@
         <Constraint on="top" with=":superview" constant="200"/>
     </UIImageView>
 
-    <UILabel text="First label and a like" id="firstLabel">
+    <UILabel text="First label" id="firstLabel">
     <Constraint on="topMargin" with=":superview" constant="40"/>
         <Constraint on="width" with=":superview" constant="-20"/>
         <Constraint on="centerx" with=":superview"/>

@@ -1,13 +1,20 @@
 #import "BIBuildersCache.h"
 #import "BIViewHierarchyBuilder.h"
+#import "BIContentChanges.h"
+#import "BIContentChangeObserver.h"
 
 @implementation BIBuildersCache {
     NSMutableDictionary *_cache;
+    BIContentChanges *_watchers;
+    NSMutableDictionary *_oneTimeCacheContent;
 }
 - (instancetype)init {
     self = [super init];
     if (self) {
         _cache = [NSMutableDictionary new];
+        _oneTimeCacheContent = [NSMutableDictionary new];
+        _watchers = [BIContentChanges new];
+        _watchers.cache = self;
     }
 
     return self;
@@ -17,7 +24,6 @@
                                        onNew:(BuilderFactory)builderFactory
                                     onCached:(CachedBuilderFactory)cachedFactory {
     NSData *fileContent = [self readFile:inBundlePath];
-
     if (inBundlePath.length == 0) {
         return builderFactory(fileContent);
     }
@@ -32,21 +38,22 @@
 
 }
 
-- (NSData *)readFile:(NSString *)path {
-    NSData *data = [NSData dataWithContentsOfFile:path];
+- (NSData *)readFile:(NSString *)inBundlePath {
+    NSData *data = _oneTimeCacheContent[inBundlePath];
+    if (data == nil) {
+        data = [NSData dataWithContentsOfFile:inBundlePath];
+    }
+    [_oneTimeCacheContent removeObjectForKey:inBundlePath];
+
     return data;
 }
 
-- (NSString *)findDiskPath:(NSString *)inBundlePath {
-    NSString *bundleRootPath = [[NSBundle mainBundle] bundlePath];
-    NSString *relativeFileInBundlePath = [inBundlePath substringFromIndex:bundleRootPath.length];
-    NSFileManager *manager = [NSFileManager defaultManager];
-    NSDirectoryEnumerator *enumerator = [manager enumeratorAtPath:_rootProjectPath];
-    for (NSString *relativeProjectPath in enumerator) {
-        if ([relativeProjectPath hasSuffix:relativeFileInBundlePath]) {
-            return [_rootProjectPath stringByAppendingPathComponent:relativeProjectPath];
-        }
-    }
-    return nil;
+- (BIContentChangeObserver *)contentChangedObserver:(NSString *)inBundlePath {
+    return [_watchers contentChangedObserver:inBundlePath rootProjectPath:_rootProjectPath];
+}
+
+- (void)invalidateFilePath:(NSString *)inBundlePath withNewContent:(NSData *)content {
+    [_cache removeObjectForKey:inBundlePath];
+    _oneTimeCacheContent[inBundlePath] = content;
 }
 @end

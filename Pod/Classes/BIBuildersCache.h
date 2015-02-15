@@ -1,4 +1,5 @@
 @class BIViewHierarchyBuilder;
+@class BIContentChangeObserver;
 
 typedef BIViewHierarchyBuilder *(^BuilderFactory)(NSData *content);
 
@@ -8,4 +9,8 @@ typedef BIViewHierarchyBuilder *(^CachedBuilderFactory)(BIViewHierarchyBuilder *
 @property(nonatomic, copy) NSString *rootProjectPath;
 
 - (BIViewHierarchyBuilder *)cachedBuilderFor:(NSString *)inBundlePath onNew:(BuilderFactory)builderFactory onCached:(CachedBuilderFactory)cachedFactory;
+
+- (BIContentChangeObserver *)contentChangedObserver:(NSString *)inBundlePath;
+
+- (void)invalidateFilePath:(NSString *)inBundlePath withNewContent:(NSData *)content;
 @end

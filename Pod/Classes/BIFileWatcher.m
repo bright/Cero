@@ -17,11 +17,10 @@
 - (instancetype)initWithPath:(NSString *)path {
     self = [super init];
     if (self) {
+        NSAssert(path.length > 0, @"File watcher must have not empty path");
         _path = path;
         _dispatchQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-        if (_path) {
-            [self watchPathForContentChanges];
-        }
+        [self watchPathForContentChanges];
     }
     return self;
 }
@@ -50,8 +49,9 @@
         @weakify(self);
         dispatch_async(dispatch_get_main_queue(), ^{
             @strongify(self);
-            if (self.onContentChange != nil) {
-                self.onContentChange(path, data);
+            OnContentChange change = self.onContentChange;
+            if (change != nil) {
+                change(path, data);
             }
         });
     }
