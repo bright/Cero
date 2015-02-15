@@ -2,6 +2,7 @@
 #import "BILayoutLoader.h"
 #import "BIEXTScope.h"
 #import "ButtonsAndLabelsViewController.h"
+#import "TableSampleViewController.h"
 
 @protocol Examples <BIInflatedViewHelper>
 - (UIButton *)buttonsAndLabels;
@@ -17,6 +18,7 @@
     self = [super init];
     if (self) {
         self.title = @"Examples";
+        _watcher = BILayoutLoader.new;
     }
 
     return self;
@@ -24,9 +26,8 @@
 
 - (void)loadView {
     [super loadView];
-    _watcher = [BILayoutLoader watchingInflaterForLayout:@"Examples"];
     @weakify(self);
-    [_watcher fillViewOfController:self andNotify:^(NSObject <Examples> *view) {
+    [_watcher fillViewOfController:self layout:@"Examples" loaded:^(NSObject <Examples> *view) {
         @strongify(self);
         [self setupView:view];
     }];
@@ -34,6 +35,11 @@
 
 - (void)setupView:(NSObject <Examples> *)viewHelper {
     [viewHelper.buttonsAndLabels addTarget:self action:@selector(openButtonsAndLabels) forControlEvents:UIControlEventTouchUpInside];
+    [viewHelper.tableSample addTarget:self action:@selector(openTableSample) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)openTableSample {
+    [self.navigationController pushViewController:TableSampleViewController.new animated:YES];
 }
 
 - (void)openButtonsAndLabels {

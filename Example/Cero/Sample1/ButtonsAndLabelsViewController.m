@@ -4,13 +4,22 @@
 
 @implementation ButtonsAndLabelsViewController {
 
-    BILayoutLoader *_watcher;
+    BILayoutLoader *_loader;
 }
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _loader = BILayoutLoader.new;
+        self.title = @"Buttons and Labels";
+    }
+
+    return self;
+}
+
 
 - (void)loadView {
     [super loadView];
-    _watcher = [BILayoutLoader watchingInflaterForLayout:@"ButtonsAndLabels"];
-    [_watcher fillViewOfController:self];
+    [_loader fillViewOfController:self layout:@"ButtonsAndLabels"];
 }
 
 @end

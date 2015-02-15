@@ -5,10 +5,10 @@
 #import "BIBuildersCache.h"
 #import "BIContentChangeObserver.h"
 #import "BIEXTScope.h"
+#import "UIView+BIAttributes.h"
 
 @implementation BILayoutLoader {
     BILayoutInflater *_layoutInflater;
-    NSString *_fileInBundlePath;
 }
 
 - (instancetype)init {
@@ -20,42 +20,36 @@
     return self;
 }
 
-- (instancetype)initWithFilePath:(NSString *)fileInBundlePath {
-    self = [self init];
-    if (self) {
-        _fileInBundlePath = fileInBundlePath;
+- (void)fillViewOfController:(UIViewController *)controller layout:(NSString *)layoutName {
+    [self fillViewOfController:controller layout:layoutName loaded:nil];
+}
+
+- (void)fillViewOfController:(UIViewController *)controller layout:(NSString *)layoutName loaded:(OnViewInflated)notify {
+    [self fillView:controller.view layout:layoutName andCall:notify];
+}
+
+- (UITableViewCell *)fillTableCellContent:(UITableView *)tableView layout:(NSString *)layoutName loaded:(OnViewInflated)loaded {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:layoutName];
+    if (cell == nil) {
+        cell = UITableViewCell.new;
+        NSString *path = [self layoutPathInMainBundle:layoutName];
+        BIInflatedViewContainer *container = [self reloadSuperview:cell.contentView path:path notify:loaded];
+        cell.bi_cachedViewHelper = container;
+        BIContentChangeObserver *observer = [_layoutInflater.buildersCache contentChangedObserver:path];
+        @weakify(tableView);
+        [observer addHandler:^{
+            @strongify(tableView);
+            [tableView reloadData];
+        }            boundTo:tableView];
+    } else {
+        loaded(cell.bi_cachedViewHelper);
     }
-    return self;
+
+    return cell;
 }
 
-
-+ (BILayoutLoader *)watchingInflaterForLayout:(NSString *)name {
-    NSString *fullPath = [[NSBundle mainBundle] pathForResource:name ofType:@"xml"];
-    return [[self alloc] initWithFilePath:fullPath];
-}
-
-- (void)fillView:(UIView *)superview {
-    [self fillView:superview andNotify:nil];
-}
-
-- (void)fillViewOfController:(UIViewController *)controller {
-    [self fillViewOfController:controller andNotify:nil];
-}
-
-- (void)fillViewOfController:(UIViewController *)controller andNotify:(OnViewInflated)notify {
-    [self fillView:controller.view andNotify:notify];
-}
-
-
-- (void)fillView:(UIView *)view andNotify:(OnViewInflated)notify {
-    [self fillSuperview:view withViewInflatedFrom:_fileInBundlePath andCall:notify];
-}
-
-- (void)fillSuperview:(UIView *)view withViewInflatedFrom:(NSString *)from andCall:(OnViewInflated)notify {
-    [self updateSuperView:view withInflatedViewFromPath:from andCall:notify];
-}
-
-- (BIInflatedViewContainer *)updateSuperView:(UIView *)superview withInflatedViewFromPath:(NSString *)path andCall:(OnViewInflated)notify {
+- (BIInflatedViewContainer *)fillView:(UIView *)superview layout:(NSString *)layoutName andCall:(OnViewInflated)notify {
+    NSString *path = [self layoutPathInMainBundle:layoutName];
     BIInflatedViewContainer *newView = [self reloadSuperview:superview path:path notify:notify];
     BIContentChangeObserver *observer = [_layoutInflater.buildersCache contentChangedObserver:path];
     @weakify(self, superview);
@@ -64,8 +58,12 @@
         [self reloadSuperview:superview
                          path:path
                        notify:notify];
-    } boundTo:superview];
+    }            boundTo:superview];
     return newView;
+}
+
+- (NSString *)layoutPathInMainBundle:(NSString *)layoutName {
+    return [NSBundle.mainBundle pathForResource:layoutName ofType:@"xml"];
 }
 
 - (BIInflatedViewContainer *)reloadSuperview:(UIView *)superview path:(NSString *)path notify:(OnViewInflated)notify {
@@ -86,5 +84,4 @@
     }
     return newView;
 }
-
 @end

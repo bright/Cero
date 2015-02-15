@@ -1,13 +1,11 @@
-#import <Cero/BICallbacks.h>
+@protocol BIInflatedViewHelper;
+
+typedef void (^OnViewInflated)(id <BIInflatedViewHelper>);
 
 @interface BILayoutLoader : NSObject
-- (id)initWithFilePath:(NSString *)fileInBundlePath;
+- (void)fillViewOfController:(UIViewController *)controller layout:(NSString *)layoutName;
 
-- (void)fillView:(UIView *)superview;
+- (void)fillViewOfController:(UIViewController *)controller layout:(NSString *)layoutName loaded:(OnViewInflated)notify;
 
-- (void)fillViewOfController:(UIViewController *)controller;
-
-- (void)fillViewOfController:(UIViewController *)controller andNotify:(OnViewInflated)notify;
-
-+ (BILayoutLoader *)watchingInflaterForLayout:(NSString *)name;
+- (UITableViewCell *)fillTableCellContent:(UITableView *)tableView layout:(NSString *)layoutName loaded:(OnViewInflated)loaded;
 @end
