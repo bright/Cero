@@ -1,8 +1,12 @@
 #import "ExamplesViewController.h"
 #import "BILayoutLoader.h"
 #import "BIEXTScope.h"
+#import "ButtonsAndLabelsViewController.h"
 
 @protocol Examples <BIInflatedViewHelper>
+- (UIButton *)buttonsAndLabels;
+
+- (UIButton *)tableSample;
 @end
 
 @implementation ExamplesViewController {
@@ -29,7 +33,11 @@
 }
 
 - (void)setupView:(NSObject <Examples> *)viewHelper {
+    [viewHelper.buttonsAndLabels addTarget:self action:@selector(openButtonsAndLabels) forControlEvents:UIControlEventTouchUpInside];
+}
 
+- (void)openButtonsAndLabels {
+    [self.navigationController pushViewController:ButtonsAndLabelsViewController.new animated:YES];
 }
 
 @end
