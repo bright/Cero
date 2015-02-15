@@ -23,6 +23,7 @@
 - (BIViewHierarchyBuilder *)cachedBuilderFor:(NSString *)inBundlePath
                                        onNew:(BuilderFactory)builderFactory
                                     onCached:(CachedBuilderFactory)cachedFactory {
+    NSAssert(inBundlePath.length > 0, @"In bundle path may not be nil");
     NSData *fileContent = [self readFile:inBundlePath];
     if (inBundlePath.length == 0) {
         return builderFactory(fileContent);
