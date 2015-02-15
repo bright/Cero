@@ -5,9 +5,7 @@ typedef UIView *(^ViewFinder)(BIInflatedViewContainer *container);
 
 @interface BIIConstraintBuilder : NSObject
 
-+ (instancetype)builderFor:(UIView *)view;
-
-- (instancetype)initWithView:(UIView *)view;
++ (instancetype)builderFor:(ViewFinder)viewFinder;
 
 - (void)constraintOn:(NSString *)on;
 

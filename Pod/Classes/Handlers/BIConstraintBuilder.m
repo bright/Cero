@@ -4,7 +4,7 @@
 #import "BISourceReference.h"
 
 @interface BIIConstraintBuilder ()
-@property(nonatomic, strong) UIView *firstItem;
+@property(nonatomic, copy) ViewFinder firstItemFinder;
 @property(nonatomic, strong) NSArray *firstAttributes;
 @property(nonatomic) enum NSLayoutRelation relation;
 
@@ -30,37 +30,42 @@
 - (NSArray *)tryInstall:(BIInflatedViewContainer *)container error:(NSError **)error {
     NSUInteger index = 0;
     NSMutableArray *constraints = NSMutableArray.new;
-    self.firstItem.translatesAutoresizingMaskIntoConstraints = NO;
-    for (NSNumber *attributeWrap in self.firstAttributes) {
-        NSLayoutAttribute attribute = (NSLayoutAttribute) attributeWrap.integerValue;
-        NSLayoutAttribute otherAttribute = attribute;
-        if (self.otherItemAttributes.count == self.firstAttributes.count) {
-            NSNumber *otherAttributeWrap = self.otherItemAttributes[index];
-            otherAttribute = (NSLayoutAttribute) otherAttributeWrap.integerValue;
-        }
-        UIView *otherItem = nil;
-        if (self.otherItemFinder != nil) {
-            otherItem = self.otherItemFinder(container);
-            if (otherItem == nil || ![otherItem isKindOfClass:UIView.class]) {
-                //TODO Error handling
-                NSLog(@"Could not find other item view %@", _sourceReference.sourceDescription);
-                continue;
+    UIView *firstItem = self.firstItemFinder(container);
+    if (firstItem != nil) {
+        for (NSNumber *attributeWrap in self.firstAttributes) {
+            firstItem.translatesAutoresizingMaskIntoConstraints = NO;
+            NSLayoutAttribute attribute = (NSLayoutAttribute) attributeWrap.integerValue;
+            NSLayoutAttribute otherAttribute = attribute;
+            if (self.otherItemAttributes.count == self.firstAttributes.count) {
+                NSNumber *otherAttributeWrap = self.otherItemAttributes[index];
+                otherAttribute = (NSLayoutAttribute) otherAttributeWrap.integerValue;
             }
-        }
+            UIView *otherItem = nil;
+            if (self.otherItemFinder != nil) {
+                otherItem = self.otherItemFinder(container);
+                if (otherItem == nil || ![otherItem isKindOfClass:UIView.class]) {
+                    //TODO Error handling
+                    NSLog(@"Could not find other item view %@", _sourceReference.sourceDescription);
+                    continue;
+                }
+            }
 
-        NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self.firstItem
-                                                                      attribute:attribute
-                                                                      relatedBy:self.relation
-                                                                         toItem:otherItem
-                                                                      attribute:otherAttribute
-                                                                     multiplier:self.multiplier
-                                                                       constant:self.constant];
-        constraint.identifier = self.sourceReference.source;
-        if (self.priority != nil) {
-            constraint.priority = self.priority.floatValue;
+            NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:firstItem
+                                                                          attribute:attribute
+                                                                          relatedBy:self.relation
+                                                                             toItem:otherItem
+                                                                          attribute:otherAttribute
+                                                                         multiplier:self.multiplier
+                                                                           constant:self.constant];
+            constraint.identifier = self.sourceReference.source;
+            if (self.priority != nil) {
+                constraint.priority = self.priority.floatValue;
+            }
+            [constraints addObject:constraint];
+            index += 1;
         }
-        [constraints addObject:constraint];
-        index += 1;
+    } else {
+        NSLog(@"Error first item for constraint not found: %@", _sourceReference.sourceDescription);
     }
     //TODO first common ancestor would be better here
     [container.root addConstraints:constraints];
@@ -125,14 +130,15 @@
         @weakify(self);
         return ^(BIInflatedViewContainer *container) {
             @strongify(self);
-            return self.firstItem.superview;
+            UIView *view = self.firstItemFinder(container);
+            return view.superview;
         };
     }
     if ([pseudoSelector isEqualToString:@":previous"]) {
         @weakify(self);
         return ^(BIInflatedViewContainer *container) {
             @strongify(self);
-            UIView *firstItem = self.firstItem;
+            UIView *firstItem = self.firstItemFinder(container);
             NSArray *siblings = firstItem.superview.subviews;
             NSUInteger indexOfFirstItem = [siblings indexOfObject:firstItem];
             if (indexOfFirstItem > 0) {
@@ -146,7 +152,7 @@
         @weakify(self);
         return ^(BIInflatedViewContainer *container) {
             @strongify(self);
-            UIView *firstItem = self.firstItem;
+            UIView *firstItem = self.firstItemFinder(container);
             NSArray *siblings = firstItem.superview.subviews;
             NSUInteger indexOfFirstItem = [siblings indexOfObject:firstItem];
             if (indexOfFirstItem < siblings.count - 1) {
@@ -225,14 +231,15 @@
 }
 
 
-+ (instancetype)builderFor:(UIView *)view {
-    return [[self alloc] initWithView:view];
++ (instancetype)builderFor:(ViewFinder)viewFinder {
+    return [[self alloc] initWithView:viewFinder];
 }
 
-- (instancetype)initWithView:(UIView *)view {
+- (instancetype)initWithView:(ViewFinder)view {
     self = [self init];
     if (self) {
-        self.firstItem = view;
+        NSAssert(view != nil, @"View finder must not be nil");
+        self.firstItemFinder = view;
     }
     return self;
 }
@@ -330,8 +337,8 @@ static NSDictionary *stringToPriorityMap;
         [self initPriorityMap];
         NSNumber *uiLayoutPriority = [self parse:priority
                                     defaultValue:nil
-                                                 prefix:@"UILayoutPriority"
-                                               valueMap:stringToPriorityMap];
+                                          prefix:@"UILayoutPriority"
+                                        valueMap:stringToPriorityMap];
         if (uiLayoutPriority != nil) {
             self.priority = uiLayoutPriority;
         } else {

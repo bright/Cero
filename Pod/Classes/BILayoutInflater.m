@@ -61,7 +61,7 @@
             NSLog(@"Error: %@", parser.parserError);
         }
         return newBuilder;
-    }                                                             onCached:^(BIViewHierarchyBuilder *cachedBuilder) {
+    } onCached:^(BIViewHierarchyBuilder *cachedBuilder) {
         [cachedBuilder startWithSuperView:superview];
         [cachedBuilder runBuildSteps];
         return cachedBuilder;

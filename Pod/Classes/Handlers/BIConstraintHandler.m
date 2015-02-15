@@ -20,7 +20,14 @@
     NSMutableDictionary *attributes = element.attributes;
     NSString *on = attributes[@"on"];
 
-    BIIConstraintBuilder *constraintBuilder = [BIIConstraintBuilder builderFor:builder.current];
+    //we can't reference current item directly here, instead we'll wait until the step is executed
+    __block UIView *firstItem;
+    [builder addBuildStep:^(BIInflatedViewContainer *container) {
+        firstItem = container.current;
+    }];
+    BIIConstraintBuilder *constraintBuilder = [BIIConstraintBuilder builderFor:^(BIInflatedViewContainer *container) {
+        return firstItem;
+    }];
     [constraintBuilder constraintOn:on];
     [constraintBuilder withRelation:attributes[@"relation"]];
 
