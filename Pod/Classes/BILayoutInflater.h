@@ -1,5 +1,3 @@
-#import "BICallbacks.h"
-
 @class UIView;
 @class BIInflatedViewContainer;
 @class BIViewHierarchyBuilder;
