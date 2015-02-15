@@ -1,4 +1,4 @@
-#import "BILayoutInflaterWatcher.h"
+#import "BILayoutLoader.h"
 #import "BIInflatedViewHelper.h"
 #import "BILayoutInflater.h"
 #import "BIFileWatcher.h"
@@ -7,7 +7,7 @@
 #import "BICallbacks.h"
 
 
-@implementation BILayoutInflaterWatcher {
+@implementation BILayoutLoader {
     BILayoutInflater *_layoutInflater;
     NSString *_fileInBundlePath;
     BIFileWatcher *_changes;
@@ -24,7 +24,7 @@ static NSString *_rootProjectPath;
 }
 
 - (instancetype)initWithFilePath:(NSString *)fileInBundlePath {
-    return [self initWithFilePath:fileInBundlePath andWatchForChangesInPath:[BILayoutInflaterWatcher findDiskPath:fileInBundlePath]];
+    return [self initWithFilePath:fileInBundlePath andWatchForChangesInPath:[BILayoutLoader findDiskPath:fileInBundlePath]];
 }
 
 - (instancetype)initWithFilePath:(NSString *)fileInBundlePath andWatchForChangesInPath:(NSString *)projectPath {
@@ -41,7 +41,7 @@ static NSString *_rootProjectPath;
 }
 
 
-+ (BILayoutInflaterWatcher *)watchingInflaterForLayout:(NSString *)name {
++ (BILayoutLoader *)watchingInflaterForLayout:(NSString *)name {
     NSString *fullPath = [[NSBundle mainBundle] pathForResource:name ofType:@"xml"];
     return [[self alloc] initWithFilePath:fullPath];
 }

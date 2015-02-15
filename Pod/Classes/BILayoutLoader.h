@@ -1,4 +1,4 @@
-@interface BILayoutInflaterWatcher : NSObject
+@interface BILayoutLoader : NSObject
 - (id)initWithFilePath:(NSString *)fileInBundlePath;
 
 - (void)fillView:(UIView *)superview;
@@ -8,5 +8,5 @@
 + (void)setRootProjectPath:(NSString *)path;
 
 
-+ (BILayoutInflaterWatcher *)watchingInflaterForLayout:(NSString *)name;
++ (BILayoutLoader *)watchingInflaterForLayout:(NSString *)name;
 @end

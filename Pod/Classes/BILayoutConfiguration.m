@@ -1,5 +1,5 @@
 #import "BILayoutConfiguration.h"
-#import "BILayoutInflaterWatcher.h"
+#import "BILayoutLoader.h"
 #import "BISimpleViewHandler.h"
 #import "BIButtonHandler.h"
 #import "BITitleForStateHandler.h"
@@ -16,7 +16,8 @@
     NSMutableArray *_sharedAttributeHandlers;
     NSMutableArray *_sharedElementHandlers;
 }
-static BILayoutConfiguration*DefaultConfiguration;
+static BILayoutConfiguration *DefaultConfiguration;
+
 - (instancetype)init {
     self = [super init];
     if (self) {
@@ -35,7 +36,7 @@ static BILayoutConfiguration*DefaultConfiguration;
 
 + (instancetype)defaultConfiguration {
     @synchronized (self) {
-        if(DefaultConfiguration == nil){
+        if (DefaultConfiguration == nil) {
             DefaultConfiguration = [self new];
         }
     }
@@ -43,7 +44,7 @@ static BILayoutConfiguration*DefaultConfiguration;
 }
 
 - (void)setup {
-    BILayoutInflaterWatcher.rootProjectPath = self.rootProjectPath;
+    BILayoutLoader.rootProjectPath = self.rootProjectPath;
     [self registerAttributeHandler:[BIImageAttributeHandler new]];
     [self registerAttributeHandler:[BIColorAttributeHandler new]];
     [self registerAttributeHandler:[BIIdAttributeHandler new]];
@@ -63,7 +64,7 @@ static BILayoutConfiguration*DefaultConfiguration;
 }
 
 - (id <BIHandlersConfiguration>)handlersCache {
-    BIHandlersConfigurationCache* object = [BIHandlersConfigurationCache new];
+    BIHandlersConfigurationCache *object = [BIHandlersConfigurationCache new];
     object.attributeHandlers = _sharedAttributeHandlers.copy;
     object.elementHandlers = _sharedElementHandlers.copy;
     object.buildersCache = self.buildersCache;

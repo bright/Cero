@@ -1,15 +1,15 @@
 #import "ButtonsAndLabelsViewController.h"
-#import "BILayoutInflaterWatcher.h"
+#import "BILayoutLoader.h"
 
 
 @implementation ButtonsAndLabelsViewController {
 
-    BILayoutInflaterWatcher *_watcher;
+    BILayoutLoader *_watcher;
 }
 
 - (void)loadView {
     [super loadView];
-    _watcher = [BILayoutInflaterWatcher watchingInflaterForLayout:@"ButtonsAndLabels"];
+    _watcher = [BILayoutLoader watchingInflaterForLayout:@"ButtonsAndLabels"];
     [_watcher fillViewOfController:self];
 }
 
