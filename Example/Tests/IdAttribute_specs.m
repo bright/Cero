@@ -69,7 +69,7 @@ SpecBegin(IdAttribute_specs)
             it(@"should throw an error if one tries to use method for which view doesn't exist", ^{
                 id <IdAttributeTestViewHelper> specificContainer = (id <IdAttributeTestViewHelper>) container;
                 expect(^{
-                    specificContainer.notExisting;
+                    [specificContainer notExisting];
                 }).to.raiseAny();
             });
         });
