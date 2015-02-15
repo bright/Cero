@@ -4,7 +4,7 @@
 @class BISourceReference;
 
 @interface BIInflatedViewContainer : NSObject <BIInflatedViewHelper>
-@property(nonatomic, readonly) UIView *root;
+@property(nonatomic, weak, readonly) UIView *root;
 
 @property(nonatomic, strong) UIView *current;
 

@@ -8,7 +8,7 @@
 @end
 
 @interface BIInflatedViewContainer ()
-@property(nonatomic, strong) UIView *root;
+@property(nonatomic, weak) UIView *root;
 @end
 
 @implementation BIInflatedViewContainer {
