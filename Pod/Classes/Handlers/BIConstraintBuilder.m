@@ -2,6 +2,7 @@
 #import "BIInflatedViewContainer.h"
 #import "BIEXTScope.h"
 #import "BISourceReference.h"
+#import "UIView+ControllerFinder.h"
 
 @interface BIIConstraintBuilder ()
 @property(nonatomic, copy) ViewFinder firstItemFinder;
@@ -107,7 +108,8 @@
 - (void)withOtherItem:(NSString *)otherItemSpec {
     if (otherItemSpec.length > 0) {
         NSArray *components = [otherItemSpec componentsSeparatedByString:@"."];
-        ViewFinder viewFinder = [self parseViewFinder:components[0]];
+        NSString *viewSelector = components[0];
+        ViewFinder viewFinder = [self parseViewFinder:viewSelector];
         self.otherItemFinder = viewFinder;
         if (components.count > 1) {
             NSString *attributePart = components[1];
@@ -125,6 +127,24 @@
                 return [container findViewById:viewId];
             };
         }
+    }
+    if ([pseudoSelector isEqualToString:@":topLayoutGuide"]) {
+        @weakify(self);
+        return ^UIView *(BIInflatedViewContainer *container) {
+            @strongify(self);
+            UIView *view = self.firstItemFinder(container);
+            UIViewController *controller = view.bi_firstViewController;
+            return (id) controller.topLayoutGuide;
+        };
+    }
+    if ([pseudoSelector isEqualToString:@":bottomLayoutGuide"]) {
+        @weakify(self);
+        return ^UIView *(BIInflatedViewContainer *container) {
+            @strongify(self);
+            UIView *view = self.firstItemFinder(container);
+            UIViewController *controller = view.bi_firstViewController;
+            return (id) controller.topLayoutGuide;
+        };
     }
     if ([pseudoSelector isEqualToString:@":superview"]) {
         @weakify(self);
