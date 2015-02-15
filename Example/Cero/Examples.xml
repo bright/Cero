@@ -1,0 +1,17 @@
+<UIView>
+    <Constraint on="width, height" with=":superview"/>
+    <Constraint on="topmargin" with=":topLayoutGuide.bottom"/>
+
+    <UIButton backgroundColor="#f17e00" id="buttonsAndLabels">
+        <Constraint on="width" with=":superview" multiplier="0.8"/>
+        <Constraint on="centerX" with=":superview"/>
+        <Constraint on="topmargin" with=":superview" constant="50"/>
+        <titleForState state="UIControlStateNormal" value="Buttons and Labels"/>
+    </UIButton>
+
+    <UIButton backgroundColor="#dd2a1b" id="tableSample">
+        <Constraint on="width, centerX" with=":previous"/>
+        <Constraint on="top" with=":previous.bottom" constant="50"/>
+        <titleForState state="UIControlStateNormal" value="Table view"/>
+    </UIButton>
+</UIView>

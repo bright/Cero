@@ -23,10 +23,12 @@
 		6003F5BC195388D20070C39A /* PBXBuildFile */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		65BB2552CE67195862A3CC45 /* LayoutInflater_specs.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BB2DD94228E9203AFCAC3E /* LayoutInflater_specs.m */; };
 		65BB25982354972BEE6BBE50 /* Constraints_specs.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BB2295CF84EEB59CA2EAAA /* Constraints_specs.m */; };
+		65BB27E01950A4036769318B /* Examples.xml in Resources */ = {isa = PBXBuildFile; fileRef = 65BB2EEBB6AA87AF43F59AF0 /* Examples.xml */; };
 		65BB29FB50371E86884C9267 /* TestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BB2BABAD6998B7CADD688C /* TestHelper.m */; };
 		65BB2AA0C63F66AFAEB8B290 /* IdAttribute_specs.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BB27DA1669420A576B131E /* IdAttribute_specs.m */; };
 		65BB2DD49C46EC69DDEDBBCC /* ButtonsAndLabels.xml in Resources */ = {isa = PBXBuildFile; fileRef = 65BB26F7D75294D33663CA8E /* ButtonsAndLabels.xml */; };
 		65BB2ED4AA66FEECB005F76F /* bright.png in Resources */ = {isa = PBXBuildFile; fileRef = 65BB271D16C0EC61C9A7AF2F /* bright.png */; };
+		65BB2F693EE0D0D5917A623C /* ExamplesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BB257FB5DFCF76D0A3938C /* ExamplesViewController.m */; };
 		65BB2FB1AF70CBA84E56BEB7 /* ButtonsAndLabelsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BB25EDDED472CB87E32FF1 /* ButtonsAndLabelsViewController.m */; };
 		85E715861570E9375DCB3015 /* libPods-Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CF281AAF4474198BA06B5387 /* libPods-Tests.a */; };
 /* End PBXBuildFile section */
@@ -65,13 +67,16 @@
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
+		65BB212CDDA51648EC3F134D /* ExamplesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExamplesViewController.h; sourceTree = "<group>"; };
 		65BB2295CF84EEB59CA2EAAA /* Constraints_specs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constraints_specs.m; sourceTree = "<group>"; };
+		65BB257FB5DFCF76D0A3938C /* ExamplesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamplesViewController.m; sourceTree = "<group>"; };
 		65BB25EDDED472CB87E32FF1 /* ButtonsAndLabelsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonsAndLabelsViewController.m; sourceTree = "<group>"; };
 		65BB26F7D75294D33663CA8E /* ButtonsAndLabels.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ButtonsAndLabels.xml; sourceTree = "<group>"; };
 		65BB271D16C0EC61C9A7AF2F /* bright.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bright.png; sourceTree = "<group>"; };
 		65BB27DA1669420A576B131E /* IdAttribute_specs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdAttribute_specs.m; sourceTree = "<group>"; };
 		65BB2BABAD6998B7CADD688C /* TestHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestHelper.m; sourceTree = "<group>"; };
 		65BB2DD94228E9203AFCAC3E /* LayoutInflater_specs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LayoutInflater_specs.m; sourceTree = "<group>"; };
+		65BB2EEBB6AA87AF43F59AF0 /* Examples.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Examples.xml; sourceTree = "<group>"; };
 		65BB2F631E68CC5800F091F2 /* TestHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestHelpers.h; sourceTree = "<group>"; };
 		65BB2F6F426608407F8643AA /* ButtonsAndLabelsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonsAndLabelsViewController.h; sourceTree = "<group>"; };
 		77630BFEAE6ED351EAD0A1BE /* Pods-Cero.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cero.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cero/Pods-Cero.release.xcconfig"; sourceTree = "<group>"; };
@@ -155,6 +160,9 @@
 				6003F5A6195388D20070C39A /* BIViewController.m */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
+				65BB257FB5DFCF76D0A3938C /* ExamplesViewController.m */,
+				65BB212CDDA51648EC3F134D /* ExamplesViewController.h */,
+				65BB2EEBB6AA87AF43F59AF0 /* Examples.xml */,
 			);
 			path = Cero;
 			sourceTree = "<group>";
@@ -314,6 +322,7 @@
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
 				65BB2DD49C46EC69DDEDBBCC /* ButtonsAndLabels.xml in Resources */,
 				65BB2ED4AA66FEECB005F76F /* bright.png in Resources */,
+				65BB27E01950A4036769318B /* Examples.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,6 +408,7 @@
 				6003F5A7195388D20070C39A /* BIViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 				65BB2FB1AF70CBA84E56BEB7 /* ButtonsAndLabelsViewController.m in Sources */,
+				65BB2F693EE0D0D5917A623C /* ExamplesViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

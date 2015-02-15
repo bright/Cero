@@ -42,7 +42,7 @@
 
 - (NSString *)findDiskPath:(NSString *)inBundlePath rootProjectPath:(NSString *)rootProjectPath {
     NSString *bundleRootPath = [[NSBundle mainBundle] bundlePath];
-    NSString *relativeFileInBundlePath = [inBundlePath substringFromIndex:bundleRootPath.length];
+    NSString *relativeFileInBundlePath = [inBundlePath lastPathComponent];
     NSFileManager *manager = [NSFileManager defaultManager];
     NSDirectoryEnumerator *enumerator = [manager enumeratorAtPath:rootProjectPath];
     for (NSString *relativeProjectPath in enumerator) {
