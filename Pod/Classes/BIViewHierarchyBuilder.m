@@ -105,4 +105,11 @@
     _container = [BIInflatedViewContainer container:view];
     _container.current = view;
 }
+
+- (void)runBuildSteps {
+    for (BuilderStep step in _builderSteps) {
+        step(self.container);
+    }
+    self.onReadyQueue(self.container);
+}
 @end

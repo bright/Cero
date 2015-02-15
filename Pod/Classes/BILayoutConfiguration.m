@@ -9,6 +9,7 @@
 #import "BIIdAttributeHandler.h"
 #import "BIConstraintHandler.h"
 #import "BIImageAttributeHandler.h"
+#import "BIBuildersCache.h"
 
 
 @implementation BILayoutConfiguration {
@@ -21,6 +22,7 @@ static BILayoutConfiguration*DefaultConfiguration;
     if (self) {
         _sharedAttributeHandlers = [NSMutableArray new];
         _sharedElementHandlers = [NSMutableArray new];
+        self.buildersCache = BIBuildersCache.new;
     }
 
     return self;
@@ -64,6 +66,7 @@ static BILayoutConfiguration*DefaultConfiguration;
     BIHandlersConfigurationCache* object = [BIHandlersConfigurationCache new];
     object.attributeHandlers = _sharedAttributeHandlers.copy;
     object.elementHandlers = _sharedElementHandlers.copy;
+    object.buildersCache = self.buildersCache;
     return object;
 }
 @end

@@ -33,4 +33,6 @@ typedef void(^BuilderStep)(BIInflatedViewContainer *container);
 - (void)addBuildStep:(BuilderStep)step;
 
 - (void)startWithSuperView:(UIView *)view;
+
+- (void)runBuildSteps;
 @end

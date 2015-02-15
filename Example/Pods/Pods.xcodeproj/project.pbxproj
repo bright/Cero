@@ -104,6 +104,9 @@
 		64743D2DBBCFC36BA8904E77 /* SPTExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 6297F8613AC8A9D523303F26 /* SPTExample.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		650B83E4D06ED201AAA29B8A /* BIParserDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BEE7B6B604D857E80F97C04 /* BIParserDelegate.h */; };
 		652914FA64B7E08747A40DDD /* SpectaUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 077E3B8419F2C7F29AD23D68 /* SpectaUtility.h */; };
+		65BB20732DB43459EC66A3A7 /* BIBuildersCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 65BB2DDCEB29FA35CA7B4864 /* BIBuildersCache.h */; };
+		65BB210BCA3CB8851849A962 /* BIBuildersCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 65BB2E913C03BFA456774C41 /* BIBuildersCache.h */; };
+		65BB22D5F87E58E6CC6214F3 /* BIBuildersCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BB2B75B0423910B2715C68 /* BIBuildersCache.m */; };
 		662A5327A81A42B2AD1A60B2 /* ExpectaSupport.h in Headers */ = {isa = PBXBuildFile; fileRef = 19EB328F17836AF36FD6F406 /* ExpectaSupport.h */; };
 		66DCB9597F8D3D2C3D4E6674 /* BIImageAttributeHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 15075785C288909CD6623E35 /* BIImageAttributeHandler.m */; };
 		66E9F5EB02D4B20139F7AF2B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B274D47165AA941062CE502 /* Foundation.framework */; };
@@ -327,6 +330,10 @@
 		6297F8613AC8A9D523303F26 /* SPTExample.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SPTExample.m; path = Specta/Specta/SPTExample.m; sourceTree = "<group>"; };
 		63839E03144122B6698575E5 /* BISimpleViewHandler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BISimpleViewHandler.h; sourceTree = "<group>"; };
 		65112FD5F5C8B4CA1CCB750A /* EXPMatchers+beSupersetOf.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "EXPMatchers+beSupersetOf.m"; path = "src/matchers/EXPMatchers+beSupersetOf.m"; sourceTree = "<group>"; };
+		65BB2B75B0423910B2715C68 /* BIBuildersCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIBuildersCache.m; sourceTree = "<group>"; };
+		65BB2C7DAD39FA122F180288 /* BICache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BICache.m; path = ../Pod/Classes/BICache.m; sourceTree = "<group>"; };
+		65BB2DDCEB29FA35CA7B4864 /* BIBuildersCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIBuildersCache.h; sourceTree = "<group>"; };
+		65BB2E913C03BFA456774C41 /* BIBuildersCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BIBuildersCache.h; path = ../Pod/Classes/BIBuildersCache.h; sourceTree = "<group>"; };
 		664B427AC626AEF7C6A042F0 /* EXPMatchers+beGreaterThan.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "EXPMatchers+beGreaterThan.h"; path = "src/matchers/EXPMatchers+beGreaterThan.h"; sourceTree = "<group>"; };
 		672731E81A81486BA74B4717 /* EXPMatchers+raise.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "EXPMatchers+raise.m"; path = "src/matchers/EXPMatchers+raise.m"; sourceTree = "<group>"; };
 		674C14102EF65CF3E8F49A1B /* BISourceReference.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BISourceReference.h; sourceTree = "<group>"; };
@@ -680,6 +687,8 @@
 				27A70E4DBAE5B8832184DE6C /* UIView+BIViewExtensions.m */,
 				A4E4D3D377860E5BF86835C9 /* xlmetamacros.h */,
 				E4410B7731674DEB4EAFD6C0 /* Handlers */,
+				65BB2B75B0423910B2715C68 /* BIBuildersCache.m */,
+				65BB2DDCEB29FA35CA7B4864 /* BIBuildersCache.h */,
 			);
 			name = Classes;
 			path = Classes;
@@ -891,6 +900,8 @@
 				476CD3386E940845743D88BA /* NSObject+KVCExtensions.h in Headers */,
 				C5CECF74EB2D52790C95A392 /* UIView+BIViewExtensions.h in Headers */,
 				623FFD92DBD7558E06910DC4 /* xlmetamacros.h in Headers */,
+				65BB210BCA3CB8851849A962 /* BIBuildersCache.h in Headers */,
+				65BB20732DB43459EC66A3A7 /* BIBuildersCache.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1188,6 +1199,8 @@
 				F62E252837D5397B7FB438F8 /* NSObject+KVCExtensions.m in Sources */,
 				1F2A0CE9563418F04C29A6EB /* Pods-Cero-Cero-dummy.m in Sources */,
 				8C9DCB8192F3D05E8AA85D1A /* UIView+BIViewExtensions.m in Sources */,
+				65BB28177EA959ECCD9DB4A7,
+				65BB22D5F87E58E6CC6214F3 /* BIBuildersCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
