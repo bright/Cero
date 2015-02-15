@@ -8,7 +8,6 @@
     BILayoutInflater *_layoutInflater;
     NSString *_fileInBundlePath;
 }
-static NSString *_rootProjectPath;
 
 - (instancetype)init {
     self = [super init];
@@ -54,23 +53,6 @@ static NSString *_rootProjectPath;
     [superView.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     BIInflatedViewContainer *newView = [_layoutInflater inflateFilePath:path superview:superView callback:NULL];
     return newView;
-}
-
-+ (NSString *)findDiskPath:(NSString *)inBundlePath {
-    NSString *bundleRootPath = [[NSBundle mainBundle] bundlePath];
-    NSString *relativeFileInBundlePath = [inBundlePath substringFromIndex:bundleRootPath.length];
-    NSFileManager *manager = [NSFileManager defaultManager];
-    NSDirectoryEnumerator *enumerator = [manager enumeratorAtPath:_rootProjectPath];
-    for (NSString *relativeProjectPath in enumerator) {
-        if ([relativeProjectPath hasSuffix:relativeFileInBundlePath]) {
-            return [_rootProjectPath stringByAppendingPathComponent:relativeProjectPath];
-        }
-    }
-    return nil;
-}
-
-+ (void)setRootProjectPath:(NSString *)path {
-    _rootProjectPath = path;
 }
 
 @end

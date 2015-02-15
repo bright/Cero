@@ -5,8 +5,6 @@
 
 - (void)fillViewOfController:(UIViewController *)controller;
 
-+ (void)setRootProjectPath:(NSString *)path;
-
 
 + (BILayoutLoader *)watchingInflaterForLayout:(NSString *)name;
 @end

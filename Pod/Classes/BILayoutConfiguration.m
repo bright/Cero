@@ -1,5 +1,4 @@
 #import "BILayoutConfiguration.h"
-#import "BILayoutLoader.h"
 #import "BISimpleViewHandler.h"
 #import "BIButtonHandler.h"
 #import "BITitleForStateHandler.h"
@@ -23,7 +22,7 @@ static BILayoutConfiguration *DefaultConfiguration;
     if (self) {
         _sharedAttributeHandlers = [NSMutableArray new];
         _sharedElementHandlers = [NSMutableArray new];
-        self.buildersCache = BIBuildersCache.new;
+        _buildersCache = BIBuildersCache.new;
     }
 
     return self;
@@ -44,7 +43,7 @@ static BILayoutConfiguration *DefaultConfiguration;
 }
 
 - (void)setup {
-    BILayoutLoader.rootProjectPath = self.rootProjectPath;
+    _buildersCache.rootProjectPath = self.rootProjectPath;
     [self registerAttributeHandler:[BIImageAttributeHandler new]];
     [self registerAttributeHandler:[BIColorAttributeHandler new]];
     [self registerAttributeHandler:[BIIdAttributeHandler new]];

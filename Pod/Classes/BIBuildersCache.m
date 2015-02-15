@@ -17,6 +17,7 @@
                                        onNew:(BuilderFactory)builderFactory
                                     onCached:(CachedBuilderFactory)cachedFactory {
     NSData *fileContent = [self readFile:inBundlePath];
+
     if (inBundlePath.length == 0) {
         return builderFactory(fileContent);
     }
@@ -36,4 +37,16 @@
     return data;
 }
 
+- (NSString *)findDiskPath:(NSString *)inBundlePath {
+    NSString *bundleRootPath = [[NSBundle mainBundle] bundlePath];
+    NSString *relativeFileInBundlePath = [inBundlePath substringFromIndex:bundleRootPath.length];
+    NSFileManager *manager = [NSFileManager defaultManager];
+    NSDirectoryEnumerator *enumerator = [manager enumeratorAtPath:_rootProjectPath];
+    for (NSString *relativeProjectPath in enumerator) {
+        if ([relativeProjectPath hasSuffix:relativeFileInBundlePath]) {
+            return [_rootProjectPath stringByAppendingPathComponent:relativeProjectPath];
+        }
+    }
+    return nil;
+}
 @end
