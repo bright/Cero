@@ -39,7 +39,11 @@
 }
 
 - (void)fillViewOfController:(UIViewController *)controller {
-    [self fillView:controller.view];
+    [self fillViewOfController:controller andNotify:nil];
+}
+
+- (void)fillViewOfController:(UIViewController *)controller andNotify:(OnViewInflated)notify {
+    [self fillView:controller.view andNotify:notify];
 }
 
 
@@ -51,19 +55,31 @@
     [self updateSuperView:view withInflatedViewFromPath:from andCall:notify];
 }
 
-- (BIInflatedViewContainer *)updateSuperView:(UIView *)superView withInflatedViewFromPath:(NSString *)path andCall:(OnViewInflated)notify {
-    BIInflatedViewContainer *newView = [self fillSuperview:superView path:path notify:notify];
+- (BIInflatedViewContainer *)updateSuperView:(UIView *)superview withInflatedViewFromPath:(NSString *)path andCall:(OnViewInflated)notify {
+    BIInflatedViewContainer *newView = [self reloadSuperview:superview path:path notify:notify];
     BIContentChangeObserver *observer = [_layoutInflater.buildersCache contentChangedObserver:path];
-    @weakify(self);
+    @weakify(self, superview);
     [observer addHandler:^{
-        @strongify(self);
-        [self fillSuperview:superView path:path notify:notify];
-    }            boundTo:superView];
+        @strongify(self, superview);
+        [self reloadSuperview:superview
+                         path:path
+                       notify:notify];
+    } boundTo:superview];
     return newView;
 }
 
-- (BIInflatedViewContainer *)fillSuperview:(UIView *)superview path:(NSString *)path notify:(OnViewInflated)notify {
-    [superview.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
+- (BIInflatedViewContainer *)reloadSuperview:(UIView *)superview path:(NSString *)path notify:(OnViewInflated)notify {
+    for (UIView *view in superview.subviews) {
+        //TODO: this is an awful hack - some of the subviews are not create by layout i.e. top layout guide
+        //to fix this we need to either:
+        // - remember all views created by layout
+        // - mark them with some property (tag or associated object)
+        if (![[NSStringFromClass(view.class) substringToIndex:1] isEqualToString:@"_"]) {
+            [view removeFromSuperview];
+        } else {
+            NSLog(@"Subviews item is a private UIView %@", view);
+        }
+    }
     BIInflatedViewContainer *newView = [_layoutInflater inflateFilePath:path superview:superview];
     if (notify != nil) {
         notify(newView);

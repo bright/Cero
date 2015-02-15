@@ -2,7 +2,7 @@
 #import "BIInflatedViewContainer.h"
 #import "BIEXTScope.h"
 #import "BISourceReference.h"
-#import "UIView+ControllerFinder.h"
+#import "UIView+Finders.h"
 
 @interface BIIConstraintBuilder ()
 @property(nonatomic, copy) ViewFinder firstItemFinder;
@@ -62,14 +62,19 @@
             if (self.priority != nil) {
                 constraint.priority = self.priority.floatValue;
             }
-            [constraints addObject:constraint];
+
+            UIView *constraintRoot = [firstItem bi_commonSuperviewForConstraint:otherItem];
+            if (constraintRoot == nil) {
+                NSLog(@"ERROR: Can't find common superview for %@ and %@", firstItem, otherItem);
+            } else {
+                [constraintRoot addConstraint:constraint];
+                [constraints addObject:constraint];
+            }
             index += 1;
         }
     } else {
         NSLog(@"Error first item for constraint not found: %@", _sourceReference.sourceDescription);
     }
-    //TODO first common ancestor would be better here
-    [container.root addConstraints:constraints];
     return constraints;
 }
 
