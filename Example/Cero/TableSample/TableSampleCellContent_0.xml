@@ -1,0 +1,6 @@
+<UIView backgroundColor="#00aaff">
+    <Constraint on="width,height" with=":superview"/>
+    <UILabel id="label">
+        <Constraint on="centerX,centerY" with=":superview"/>
+    </UILabel>
+</UIView>
