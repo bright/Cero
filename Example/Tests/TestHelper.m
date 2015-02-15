@@ -3,12 +3,15 @@
 #import "BIInflatedViewHelper.h"
 #import "TestHelpers.h"
 #import "BIInflatedViewContainer.h"
+#import "BIViewHierarchyBuilder.h"
 
 id <BIInflatedViewHelper> testInflate(NSString *xml){
     BILayoutConfiguration *config = BILayoutConfiguration.new;
     [config setup];
     BILayoutInflater *inflater = [BILayoutInflater inflaterWithConfiguration:config];
-    BIInflatedViewContainer *container = [inflater inflateFilePath:@"ignore"];
+    NSData *data = [xml dataUsingEncoding:NSUTF8StringEncoding];
+    BIViewHierarchyBuilder *builder = [inflater inflateFilePath:@"ignore" superview:nil content:data];
+    BIInflatedViewContainer *container = builder.container;
     return container;
 }
 

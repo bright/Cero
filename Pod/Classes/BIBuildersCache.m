@@ -16,18 +16,24 @@
 - (BIViewHierarchyBuilder *)cachedBuilderFor:(NSString *)inBundlePath
                                        onNew:(BuilderFactory)builderFactory
                                     onCached:(CachedBuilderFactory)cachedFactory {
+    NSData *fileContent = [self readFile:inBundlePath];
     if (inBundlePath.length == 0) {
-        return builderFactory();
+        return builderFactory(fileContent);
     }
     BIViewHierarchyBuilder *cachedBuilder = _cache[inBundlePath];
     if (cachedBuilder == nil) {
-        cachedBuilder = _cache[inBundlePath] = builderFactory();
+        cachedBuilder = _cache[inBundlePath] = builderFactory(fileContent);
     } else {
         cachedBuilder = _cache[inBundlePath] = cachedFactory(cachedBuilder);
     }
 
     return cachedBuilder;
 
+}
+
+- (NSData *)readFile:(NSString *)path {
+    NSData *data = [NSData dataWithContentsOfFile:path];
+    return data;
 }
 
 @end

@@ -1,6 +1,6 @@
 @class BIViewHierarchyBuilder;
 
-typedef BIViewHierarchyBuilder *(^BuilderFactory)();
+typedef BIViewHierarchyBuilder *(^BuilderFactory)(NSData *content);
 
 typedef BIViewHierarchyBuilder *(^CachedBuilderFactory)(BIViewHierarchyBuilder *);
 

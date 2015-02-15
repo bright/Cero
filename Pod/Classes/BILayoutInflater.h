@@ -1,3 +1,5 @@
+#import "BICallbacks.h"
+
 @class UIView;
 @class BIInflatedViewContainer;
 @class BIViewHierarchyBuilder;
@@ -9,9 +11,7 @@
 
 + (instancetype)inflaterWithConfiguration:(BILayoutConfiguration *)configuration;
 
-- (NSObject <BIInflatedViewHelper> *)inflateFilePath:(NSString *)filePath withContentString:(NSString *)content;
+- (BIInflatedViewContainer *)inflateFilePath:(NSString *)filePath superview:(UIView *)superview callback:(OnViewInflated)callback;
 
-- (BIInflatedViewContainer *)inflateFilePath:(NSString *)filePath withContent:(NSData *)content;
-
-- (BIInflatedViewContainer *)inflateFilePath:(NSString *)filePath withContent:(NSData *)content inSuperview:(UIView *)superview;
+- (BIViewHierarchyBuilder *)inflateFilePath:(NSString *)filePath superview:(UIView *)superview content:(NSData *)content;
 @end
