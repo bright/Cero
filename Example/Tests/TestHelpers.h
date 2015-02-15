@@ -6,5 +6,5 @@
 typedef UIView *(^InflateTestView)(NSString *);
 
 id <BIInflatedViewHelper> testInflate(NSString *xml);
+
 UIView *testInflateView(NSString *xml);
-NSString *testReadLog(NSDate* since);
