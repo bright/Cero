@@ -9,7 +9,7 @@
 @end
 
 @interface BIInflatedViewContainer ()
-@property(nonatomic, weak) UIView *root;
+@property(nonatomic, strong) UIView *root;
 @end
 
 @implementation BIInflatedViewContainer {
@@ -73,6 +73,7 @@
 }
 
 - (void)setCurrentAsSubview:(UIView *)view {
+    NSAssert(view != nil, @"Subview (view) must not be nil");
     if (self.root == nil) {
         self.root = view;
     }
@@ -82,6 +83,9 @@
     self.current = view;
 }
 
+- (void)clearRootToAvoidMemoryLeaks {
+    self.root = nil;
+}
 @end
 
 @implementation BIIdCacheDelegatedFinder {

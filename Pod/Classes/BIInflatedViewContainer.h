@@ -4,7 +4,7 @@
 @class BISourceReference;
 
 @interface BIInflatedViewContainer : NSObject <BIInflatedViewHelper>
-@property(nonatomic, weak, readonly) UIView *root;
+@property(nonatomic, strong, readonly) UIView *root;
 
 @property(nonatomic, strong) UIView *current;
 
@@ -15,4 +15,6 @@
 - (void)setSuperviewAsCurrent;
 
 - (void)setCurrentAsSubview:(UIView *)view;
+
+- (void)clearRootToAvoidMemoryLeaks;
 @end

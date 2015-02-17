@@ -76,6 +76,7 @@
     if (notify != nil) {
         notify(newView);
     }
+    [newView clearRootToAvoidMemoryLeaks];
     return newView;
 }
 @end
