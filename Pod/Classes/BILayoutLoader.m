@@ -68,14 +68,8 @@
 
 - (BIInflatedViewContainer *)reloadSuperview:(UIView *)superview path:(NSString *)path notify:(OnViewInflated)notify {
     for (UIView *view in superview.subviews) {
-        //TODO: this is an awful hack - some of the subviews are not create by layout i.e. top layout guide
-        //to fix this we need to either:
-        // - remember all views created by layout
-        // - mark them with some property (tag or associated object)
-        if (![[NSStringFromClass(view.class) substringToIndex:1] isEqualToString:@"_"]) {
+        if (view.bi_isPartOfLayout) {
             [view removeFromSuperview];
-        } else {
-            NSLog(@"Subviews item is a private UIView %@", view);
         }
     }
     BIInflatedViewContainer *newView = [_layoutInflater inflateFilePath:path superview:superview];

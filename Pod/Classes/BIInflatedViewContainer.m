@@ -2,6 +2,7 @@
 #import "BIInflatedViewContainer.h"
 #import "NSError+BIErrors.h"
 #import "BISourceReference.h"
+#import "UIView+BIAttributes.h"
 
 @interface BIIdCacheDelegatedFinder : NSObject
 - (instancetype)initWithCache:(NSMapTable *)viewsCache;
@@ -77,6 +78,7 @@
     }
     UIView *parent = self.current;
     [parent addSubview:view];
+    view.bi_isPartOfLayout = YES;
     self.current = view;
 }
 

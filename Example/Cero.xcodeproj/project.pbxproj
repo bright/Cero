@@ -20,7 +20,6 @@
 		6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
-		6003F5BC195388D20070C39A /* PBXBuildFile */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		65BB2552CE67195862A3CC45 /* LayoutInflater_specs.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BB2DD94228E9203AFCAC3E /* LayoutInflater_specs.m */; };
 		65BB25982354972BEE6BBE50 /* Constraints_specs.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BB2295CF84EEB59CA2EAAA /* Constraints_specs.m */; };
 		65BB26C53C0939D527FF8672 /* TableSampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BB20E9087135377B50EAD1 /* TableSampleViewController.m */; };
@@ -48,7 +47,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		227DDEEC1A7C0F4C000A1415 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		227DDEEC1A7C0F4C000A1415 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		23A0A9B94B93E54EFA1E8591 /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* Cero.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Cero.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -90,11 +89,11 @@
 		65BB2F6F426608407F8643AA /* ButtonsAndLabelsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonsAndLabelsViewController.h; sourceTree = "<group>"; };
 		77630BFEAE6ED351EAD0A1BE /* Pods-Cero.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cero.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cero/Pods-Cero.release.xcconfig"; sourceTree = "<group>"; };
 		7856DDCA83FF8AF8A3B39934 /* Pods-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.release.xcconfig"; sourceTree = "<group>"; };
-		C12FD457A764EB473E5E643D /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		C12FD457A764EB473E5E643D /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		C3819C35BFD7C80C1C52BAC5 /* Pods-Cero.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cero.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Cero/Pods-Cero.debug.xcconfig"; sourceTree = "<group>"; };
 		CF281AAF4474198BA06B5387 /* libPods-Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DDDD05C941C32396630A539E /* libPods-Cero.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Cero.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		FC7AB56E12759BFE2F302985 /* Cero.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = Cero.podspec; path = ../Cero.podspec; sourceTree = "<group>"; };
+		FC7AB56E12759BFE2F302985 /* Cero.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Cero.podspec; path = ../Cero.podspec; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -309,6 +308,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Piotr Mionskowski";
 				TargetAttributes = {
+					6003F589195388D20070C39A = {
+						DevelopmentTeam = CBE57AW4A4;
+					};
 					6003F5AD195388D20070C39A = {
 						TestTargetID = 6003F589195388D20070C39A;
 					};
@@ -325,8 +327,6 @@
 			mainGroup = 6003F581195388D10070C39A;
 			productRefGroup = 6003F58B195388D20070C39A /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-			);
 			projectRoot = "";
 			targets = (
 				6003F589195388D20070C39A /* Cero */,
