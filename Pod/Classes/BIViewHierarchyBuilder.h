@@ -7,6 +7,8 @@
 @protocol BIHandlersConfiguration;
 @class BISourceReference;
 @class BILayoutElement;
+@class BILayoutLoader;
+@class BILayoutInflater;
 
 typedef void(^OnBuilderReady)(BIInflatedViewContainer *container);
 
@@ -17,6 +19,10 @@ typedef void(^BuilderStep)(BIInflatedViewContainer *container);
 @property(nonatomic, readonly) BIInflatedViewContainer *container;
 @property(nonatomic, strong) BISourceReference *sourceReference;
 
+
+@property(nonatomic, copy) NSString *rootInBundlePath;
+
+@property(nonatomic, weak) BILayoutInflater *layoutInflater;
 
 + (instancetype)builder:(id <BIHandlersConfiguration>)configuration;
 

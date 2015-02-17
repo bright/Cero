@@ -34,7 +34,6 @@
     } else {
         cachedBuilder = _cache[inBundlePath] = cachedFactory(cachedBuilder);
     }
-
     return cachedBuilder;
 
 }
@@ -56,5 +55,9 @@
 - (void)invalidateFilePath:(NSString *)inBundlePath withNewContent:(NSData *)content {
     [_cache removeObjectForKey:inBundlePath];
     _oneTimeCacheContent[inBundlePath] = content;
+}
+
+- (void)addChangeSource:(NSString *)inBundlePath contentChangeObserver:(NSString *)rootInBundlePath {
+    [_watchers addChangeSource:inBundlePath contentChangeObserver:rootInBundlePath rootProjectPath:_rootProjectPath];
 }
 @end

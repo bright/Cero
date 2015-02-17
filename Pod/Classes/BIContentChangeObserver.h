@@ -11,6 +11,8 @@ typedef void (^OnContentChangedAction)();
 
 - (instancetype)initWithObservable:(id <BIContentChangeObservable>)observable;
 
+- (void)addObservable:(id <BIContentChangeObservable>)observable;
+
 - (void)addContentChangedHandler:(OnContentChange)handler boundTo:(id)boundObject;
 
 - (void)addHandler:(OnContentChangedAction)handler boundTo:(id)boundObject;

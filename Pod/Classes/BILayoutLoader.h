@@ -8,4 +8,5 @@ typedef void (^OnViewInflated)(id <BIInflatedViewHelper>);
 - (void)fillViewOfController:(UIViewController *)controller layout:(NSString *)layoutName loaded:(OnViewInflated)notify;
 
 - (UITableViewCell *)fillTableCellContent:(UITableView *)tableView layout:(NSString *)layoutName loaded:(OnViewInflated)loaded;
+
 @end

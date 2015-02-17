@@ -1,6 +1,7 @@
+#import <Cero/BILayoutInflater.h>
 #import "BILayoutLoader.h"
+#import "BILayoutLoader+BIIncludeAssistance.h"
 #import "BIInflatedViewHelper.h"
-#import "BILayoutInflater.h"
 #import "BIInflatedViewContainer.h"
 #import "BIBuildersCache.h"
 #import "BIContentChangeObserver.h"
@@ -32,10 +33,10 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:layoutName];
     if (cell == nil) {
         cell = UITableViewCell.new;
-        NSString *path = [self layoutPathInMainBundle:layoutName];
+        NSString *path = [self layoutPath:layoutName];
         BIInflatedViewContainer *container = [self reloadSuperview:cell.contentView path:path notify:loaded];
         cell.bi_cachedViewHelper = container;
-        BIContentChangeObserver *observer = [_layoutInflater.buildersCache contentChangedObserver:path];
+        BIContentChangeObserver *observer = [self contentChangeObserveForPath:path];
         @weakify(tableView);
         [observer addHandler:^{
             @strongify(tableView);
@@ -49,9 +50,9 @@
 }
 
 - (BIInflatedViewContainer *)fillView:(UIView *)superview layout:(NSString *)layoutName andCall:(OnViewInflated)notify {
-    NSString *path = [self layoutPathInMainBundle:layoutName];
+    NSString *path = [self layoutPath:layoutName];
     BIInflatedViewContainer *newView = [self reloadSuperview:superview path:path notify:notify];
-    BIContentChangeObserver *observer = [_layoutInflater.buildersCache contentChangedObserver:path];
+    BIContentChangeObserver *observer = [self contentChangeObserveForPath:path];
     @weakify(self, superview);
     [observer addHandler:^{
         @strongify(self, superview);
@@ -62,21 +63,17 @@
     return newView;
 }
 
-- (NSString *)layoutPathInMainBundle:(NSString *)layoutName {
-    return [NSBundle.mainBundle pathForResource:layoutName ofType:@"xml"];
+- (BIContentChangeObserver *)contentChangeObserveForPath:(NSString *)path {
+    return [_layoutInflater.buildersCache contentChangedObserver:path];
+}
+
+- (NSString *)layoutPath:(NSString *)layoutName {
+    return [_layoutInflater layoutPath:layoutName];
 }
 
 - (BIInflatedViewContainer *)reloadSuperview:(UIView *)superview path:(NSString *)path notify:(OnViewInflated)notify {
-    for (UIView *view in superview.subviews) {
-        if (view.bi_isPartOfLayout) {
-            [view removeFromSuperview];
-        }
-    }
-    BIInflatedViewContainer *newView = [_layoutInflater inflateFilePath:path superview:superview];
-    if (notify != nil) {
-        notify(newView);
-    }
-    [newView clearRootToAvoidMemoryLeaks];
-    return newView;
+    return [_layoutInflater reloadSuperview:superview path:path notify:notify];
 }
+
+
 @end

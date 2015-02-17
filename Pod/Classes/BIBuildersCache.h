@@ -13,4 +13,6 @@ typedef BIViewHierarchyBuilder *(^CachedBuilderFactory)(BIViewHierarchyBuilder *
 - (BIContentChangeObserver *)contentChangedObserver:(NSString *)inBundlePath;
 
 - (void)invalidateFilePath:(NSString *)inBundlePath withNewContent:(NSData *)content;
+
+- (void)addChangeSource:(NSString *)inBundlePath contentChangeObserver:(NSString *)rootInBundlePath;
 @end

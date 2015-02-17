@@ -20,10 +20,13 @@
 		6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
+		65BB24D752B0C9FE86C32EE9 /* Include_specs.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BB22EEA1B5DD2C7E933BAA /* Include_specs.m */; };
 		65BB2552CE67195862A3CC45 /* LayoutInflater_specs.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BB2DD94228E9203AFCAC3E /* LayoutInflater_specs.m */; };
 		65BB25982354972BEE6BBE50 /* Constraints_specs.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BB2295CF84EEB59CA2EAAA /* Constraints_specs.m */; };
 		65BB26C53C0939D527FF8672 /* TableSampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BB20E9087135377B50EAD1 /* TableSampleViewController.m */; };
+		65BB2713D538C5AB9285E5D7 /* TestIncludeSingle.xml in Resources */ = {isa = PBXBuildFile; fileRef = 65BB253A56FF856060C084B6 /* TestIncludeSingle.xml */; };
 		65BB27957D45B86EF2812766 /* TableSampleCellContent_2.xml in Resources */ = {isa = PBXBuildFile; fileRef = 65BB2AB68C82DDB674D35711 /* TableSampleCellContent_2.xml */; };
+		65BB27CDF9807C86109106CA /* TestIncludeSingle.xml in Resources */ = {isa = PBXBuildFile; fileRef = 65BB253A56FF856060C084B6 /* TestIncludeSingle.xml */; };
 		65BB27E01950A4036769318B /* Examples.xml in Resources */ = {isa = PBXBuildFile; fileRef = 65BB2EEBB6AA87AF43F59AF0 /* Examples.xml */; };
 		65BB29FB50371E86884C9267 /* TestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BB2BABAD6998B7CADD688C /* TestHelper.m */; };
 		65BB2AA0C63F66AFAEB8B290 /* IdAttribute_specs.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BB27DA1669420A576B131E /* IdAttribute_specs.m */; };
@@ -73,7 +76,9 @@
 		65BB20E9087135377B50EAD1 /* TableSampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TableSampleViewController.m; path = TableSample/TableSampleViewController.m; sourceTree = "<group>"; };
 		65BB212CDDA51648EC3F134D /* ExamplesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExamplesViewController.h; sourceTree = "<group>"; };
 		65BB2295CF84EEB59CA2EAAA /* Constraints_specs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constraints_specs.m; sourceTree = "<group>"; };
+		65BB22EEA1B5DD2C7E933BAA /* Include_specs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Include_specs.m; sourceTree = "<group>"; };
 		65BB252676F93392844CFCA7 /* TableSampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TableSampleViewController.h; path = TableSample/TableSampleViewController.h; sourceTree = "<group>"; };
+		65BB253A56FF856060C084B6 /* TestIncludeSingle.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TestIncludeSingle.xml; sourceTree = "<group>"; };
 		65BB257FB5DFCF76D0A3938C /* ExamplesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamplesViewController.m; sourceTree = "<group>"; };
 		65BB25EDDED472CB87E32FF1 /* ButtonsAndLabelsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonsAndLabelsViewController.m; sourceTree = "<group>"; };
 		65BB264FA32AA08D7114A7CC /* TableSampleCellContent_0.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TableSampleCellContent_0.xml; sourceTree = "<group>"; };
@@ -199,6 +204,8 @@
 				65BB27DA1669420A576B131E /* IdAttribute_specs.m */,
 				65BB2BABAD6998B7CADD688C /* TestHelper.m */,
 				65BB2295CF84EEB59CA2EAAA /* Constraints_specs.m */,
+				65BB22EEA1B5DD2C7E933BAA /* Include_specs.m */,
+				65BB253A56FF856060C084B6 /* TestIncludeSingle.xml */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -348,6 +355,7 @@
 				65BB2B1A479EC8A8C4D589D6 /* TableSampleCellContent_0.xml in Resources */,
 				65BB2FF259E69967C18DC04B /* TableSampleCellContent_1.xml in Resources */,
 				65BB27957D45B86EF2812766 /* TableSampleCellContent_2.xml in Resources */,
+				65BB2713D538C5AB9285E5D7 /* TestIncludeSingle.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,6 +364,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */,
+				65BB27CDF9807C86109106CA /* TestIncludeSingle.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,6 +455,7 @@
 				65BB2AA0C63F66AFAEB8B290 /* IdAttribute_specs.m in Sources */,
 				65BB29FB50371E86884C9267 /* TestHelper.m in Sources */,
 				65BB25982354972BEE6BBE50 /* Constraints_specs.m in Sources */,
+				65BB24D752B0C9FE86C32EE9 /* Include_specs.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -5,6 +5,8 @@
 @class BIBuildersCache;
 @protocol BIInflatedViewHelper;
 
+typedef void (^OnViewInflated)(id <BIInflatedViewHelper>);
+
 @interface BILayoutInflater : NSObject
 + (instancetype)defaultInflater;
 
@@ -15,4 +17,8 @@
 - (BIViewHierarchyBuilder *)inflateFilePath:(NSString *)filePath superview:(UIView *)superview content:(NSData *)content;
 
 - (BIBuildersCache *)buildersCache;
+
+- (NSString *)layoutPath:(NSString *)layoutName;
+
+- (BIInflatedViewContainer *)reloadSuperview:(UIView *)view path:(NSString *)path notify:(OnViewInflated)notify;
 @end

@@ -99,6 +99,9 @@
 		64C431796C5168B49EA5964F /* EXPDoubleTuple.m in Sources */ = {isa = PBXBuildFile; fileRef = 52AA6DC1A629FD4CCC374FD4 /* EXPDoubleTuple.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		64ED252982755B258D09D34B /* SpectaTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C0115008E33282A69D04241 /* SpectaTypes.h */; };
 		6539F047F1A2B8F2DB90AEB5 /* BIButtonHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE238E5A7FF50CFCFB5C2FA /* BIButtonHandler.m */; };
+		65BB231309035AEF8CEEE30D /* BIIncludeHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 65BB2E4BE953C10F2FBBFEC4 /* BIIncludeHandler.h */; };
+		65BB2B5D3D597F3A1F09665D /* BIIncludeHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BB2DBEDE601359A9C9CEBE /* BIIncludeHandler.m */; };
+		65BB2D0DD4E2D325B943C9EA /* BILayoutLoader+BIIncludeAssistance.h in Headers */ = {isa = PBXBuildFile; fileRef = 65BB27C13A4CB3EF38C24202 /* BILayoutLoader+BIIncludeAssistance.h */; };
 		672F075562FB22FBA30F3E79 /* EXPMatchers+endWith.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B53D3412FB001236EAE17A8 /* EXPMatchers+endWith.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		67D1E5F6A0E6678388E07A78 /* BIContentChangeObservable.h in Headers */ = {isa = PBXBuildFile; fileRef = 40B7313743D8579B0A6F6798 /* BIContentChangeObservable.h */; };
 		67D7E6E62D448E3170A0D92B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FDB5B5BEA59FA6AEA6CB358 /* Foundation.framework */; };
@@ -360,6 +363,9 @@
 		63026039FEB5AFB063887A61 /* BIHandlersConfigurationCache.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BIHandlersConfigurationCache.m; sourceTree = "<group>"; };
 		63366C2F57EF4158F923ED91 /* EXPMatchers+beFalsy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "EXPMatchers+beFalsy.m"; path = "src/matchers/EXPMatchers+beFalsy.m"; sourceTree = "<group>"; };
 		6494CD315862F4CF32B99B48 /* EXPDoubleTuple.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = EXPDoubleTuple.h; path = src/EXPDoubleTuple.h; sourceTree = "<group>"; };
+		65BB27C13A4CB3EF38C24202 /* BILayoutLoader+BIIncludeAssistance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BILayoutLoader+BIIncludeAssistance.h"; sourceTree = "<group>"; };
+		65BB2DBEDE601359A9C9CEBE /* BIIncludeHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIIncludeHandler.m; sourceTree = "<group>"; };
+		65BB2E4BE953C10F2FBBFEC4 /* BIIncludeHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIIncludeHandler.h; sourceTree = "<group>"; };
 		67F9793B047BC520403397D0 /* EXPMatchers+beSupersetOf.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "EXPMatchers+beSupersetOf.m"; path = "src/matchers/EXPMatchers+beSupersetOf.m"; sourceTree = "<group>"; };
 		69804EFA55ED41D89DE8D4D0 /* EXPMatchers+beIdenticalTo.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "EXPMatchers+beIdenticalTo.h"; path = "src/matchers/EXPMatchers+beIdenticalTo.h"; sourceTree = "<group>"; };
 		6C331B1900661A166F68184B /* UIView+Finders.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIView+Finders.h"; sourceTree = "<group>"; };
@@ -673,6 +679,8 @@
 				C92201E03FCABE90A56F0F19 /* BISimpleViewHandler.m */,
 				AFD51675BA6F5CCB8CC92EC9 /* BITitleForStateHandler.h */,
 				B97A33ABDBF2C1D4E6B47F88 /* BITitleForStateHandler.m */,
+				65BB2DBEDE601359A9C9CEBE /* BIIncludeHandler.m */,
+				65BB2E4BE953C10F2FBBFEC4 /* BIIncludeHandler.h */,
 			);
 			name = Handlers;
 			path = Handlers;
@@ -810,6 +818,7 @@
 				4E7F9679BDEDD79E42BD39CF /* UIView+Finders.m */,
 				36663FB8BCFEC28D7BF1BEDE /* xlmetamacros.h */,
 				59B5B6CD00F4441B13CBE1F3 /* Handlers */,
+				65BB27C13A4CB3EF38C24202 /* BILayoutLoader+BIIncludeAssistance.h */,
 			);
 			name = Classes;
 			path = Classes;
@@ -1022,6 +1031,8 @@
 				B7A9499F6A432F254C2196C8 /* UIView+BIViewExtensions.h in Headers */,
 				64B36928F793A6D2B1F716F0 /* UIView+Finders.h in Headers */,
 				4AA2C34506DFA33D84551ECE /* xlmetamacros.h in Headers */,
+				65BB231309035AEF8CEEE30D /* BIIncludeHandler.h in Headers */,
+				65BB2D0DD4E2D325B943C9EA /* BILayoutLoader+BIIncludeAssistance.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1282,6 +1293,7 @@
 				4F9A0F36E15001B1D8F4F191 /* UIView+BIAttributes.m in Sources */,
 				939CA1337CD9B34FCF9D301E /* UIView+BIViewExtensions.m in Sources */,
 				9BE8D5ECB550D893B2D3C8B2 /* UIView+Finders.m in Sources */,
+				65BB2B5D3D597F3A1F09665D /* BIIncludeHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

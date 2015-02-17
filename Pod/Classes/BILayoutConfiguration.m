@@ -9,6 +9,7 @@
 #import "BIConstraintHandler.h"
 #import "BIImageAttributeHandler.h"
 #import "BIBuildersCache.h"
+#import "BIIncludeHandler.h"
 
 
 @implementation BILayoutConfiguration {
@@ -52,6 +53,7 @@ static BILayoutConfiguration *DefaultConfiguration;
     [self registerElementHandler:[BIButtonHandler new]];
     [self registerElementHandler:[BIConstraintHandler new]];
     [self registerElementHandler:[BISimpleViewHandler new]];
+    [self registerElementHandler:[BIIncludeHandler new]];
 }
 
 - (void)registerElementHandler:(id <BIBuilderHandler>)handler {

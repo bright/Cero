@@ -2,7 +2,7 @@
 #import "BIEXTScope.h"
 
 @interface BIContentChangeObserver ()
-@property(nonatomic, strong) id <BIContentChangeObservable> observable;
+@property(nonatomic, strong) NSMutableArray *observables;
 @end
 
 @implementation BIContentChangeObserver {
@@ -16,14 +16,22 @@
     self = [super init];
     if (self) {
         _handlers = [NSMapTable weakToStrongObjectsMapTable];
-        self.observable = observable;
+        _observables = [NSMutableArray new];
+        [self addObservable:observable];
+    }
+    return self;
+}
+
+- (void)addObservable:(id <BIContentChangeObservable>)observable {
+    NSAssert(observable != nil, @"Observable must not be null");
+    if (![_observables containsObject:observable]) {
+        [_observables addObject:observable];
         @weakify(self);
-        self.observable.onContentChange = ^(NSString *path, NSData *content) {
+        observable.onContentChange = ^(NSString *path, NSData *content) {
             @strongify(self);
             [self notifyHandlers:path content:content];
         };
     }
-    return self;
 }
 
 - (void)notifyHandlers:(NSString *)path content:(NSData *)content {

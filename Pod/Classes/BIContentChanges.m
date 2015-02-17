@@ -7,12 +7,14 @@
 @implementation BIContentChanges {
 
     NSMutableDictionary *_observers;
+    NSMapTable *_fileWatchers;
 }
 
 - (instancetype)init {
     self = [super init];
     if (self) {
         _observers = NSMutableDictionary.new;
+        _fileWatchers = [NSMapTable strongToWeakObjectsMapTable];
     }
 
     return self;
@@ -24,7 +26,7 @@
     if (resultObserver == nil) {
         NSString *diskPath = [self findDiskPath:inBundlePath rootProjectPath:rootProjectPath];
         if (diskPath.length > 0) {
-            BIFileWatcher *watcher = [BIFileWatcher fileWatcher:diskPath];
+            id <BIContentChangeObservable> watcher = [self fileContentWatcher:diskPath];
             BIContentChangeObserver *observer = [BIContentChangeObserver observer:watcher];
             observer.inBundlePath = inBundlePath;
             @weakify(self);
@@ -38,6 +40,22 @@
         }
     }
     return resultObserver;
+}
+
+- (void)addChangeSource:(NSString *)inBundlePath contentChangeObserver:(NSString *)rootInBundlePath rootProjectPath:(NSString *)rootProjectPath {
+    BIContentChangeObserver *contentChangeObserver = [self contentChangedObserver:rootInBundlePath rootProjectPath:rootProjectPath];
+    NSString *diskPath = [self findDiskPath:inBundlePath rootProjectPath:rootProjectPath];
+    [contentChangeObserver addObservable:[self fileContentWatcher:diskPath]];
+}
+
+- (id <BIContentChangeObservable>)fileContentWatcher:(NSString *)diskPath {
+    NSAssert(diskPath != nil, @"Disk path must not be nil");
+    BIFileWatcher *watcher = [_fileWatchers objectForKey:diskPath];
+    if (watcher == nil) {
+        watcher = [BIFileWatcher fileWatcher:diskPath];
+        [_fileWatchers setObject:watcher forKey:diskPath];
+    }
+    return watcher;
 }
 
 - (NSString *)findDiskPath:(NSString *)inBundlePath rootProjectPath:(NSString *)rootProjectPath {

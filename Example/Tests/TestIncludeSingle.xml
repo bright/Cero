@@ -1,0 +1,4 @@
+<UIView id="firstIncludedChild">
+    <UIView id="secondIncludedChild"/>
+</UIView>
+
