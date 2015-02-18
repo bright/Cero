@@ -6,7 +6,7 @@
 [![Platform](https://img.shields.io/cocoapods/p/Cero.svg?style=flat)](http://cocoadocs.org/docsets/Cero)
 
 
-#### Cero allows you to build your view hierarchy in clean xml layout that refresh whenever you save them.
+#### Cero allows you to build your view hierarchy in clean xml layout that will reload instantly when it changes.
 
 [![Demo](http://img.youtube.com/vi/NHEU3Q-9JPo/0.jpg)](http://www.youtube.com/watch?v=NHEU3Q-9JPo)
 
@@ -18,14 +18,14 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 
 ## Installation
 
-Cero is available through [CocoaPods](http://cocoapods.org). To install
+Cero will soon be available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
     pod "Cero"
 
 ## Author
 
-Piotr Mionskowski, piotr.mionskowski@gmail.com
+Bright Inventions
 
 ## License
 
