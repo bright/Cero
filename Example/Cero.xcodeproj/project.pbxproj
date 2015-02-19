@@ -20,7 +20,11 @@
 		6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
+		65BB208F2731F0A3060C4C8B /* TestIncludeChild.xml in Resources */ = {isa = PBXBuildFile; fileRef = 65BB2A85BBD048A3CCE84364 /* TestIncludeChild.xml */; };
+		65BB223B955F14D5A3FC623D /* TestIncludeChild.xml in Resources */ = {isa = PBXBuildFile; fileRef = 65BB2A85BBD048A3CCE84364 /* TestIncludeChild.xml */; };
+		65BB246F84445E9C67AA2F27 /* TestIncludeParent.xml in Resources */ = {isa = PBXBuildFile; fileRef = 65BB2462F1C8148628D73228 /* TestIncludeParent.xml */; };
 		65BB24D752B0C9FE86C32EE9 /* Include_specs.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BB22EEA1B5DD2C7E933BAA /* Include_specs.m */; };
+		65BB2515D4BF40CDFCBCDD6F /* TestIncludeParent.xml in Resources */ = {isa = PBXBuildFile; fileRef = 65BB2462F1C8148628D73228 /* TestIncludeParent.xml */; };
 		65BB2552CE67195862A3CC45 /* LayoutInflater_specs.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BB2DD94228E9203AFCAC3E /* LayoutInflater_specs.m */; };
 		65BB25982354972BEE6BBE50 /* Constraints_specs.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BB2295CF84EEB59CA2EAAA /* Constraints_specs.m */; };
 		65BB26C53C0939D527FF8672 /* TableSampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BB20E9087135377B50EAD1 /* TableSampleViewController.m */; };
@@ -80,6 +84,7 @@
 		65BB212CDDA51648EC3F134D /* ExamplesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExamplesViewController.h; sourceTree = "<group>"; };
 		65BB2295CF84EEB59CA2EAAA /* Constraints_specs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constraints_specs.m; sourceTree = "<group>"; };
 		65BB22EEA1B5DD2C7E933BAA /* Include_specs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Include_specs.m; sourceTree = "<group>"; };
+		65BB2462F1C8148628D73228 /* TestIncludeParent.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TestIncludeParent.xml; sourceTree = "<group>"; };
 		65BB252676F93392844CFCA7 /* TableSampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TableSampleViewController.h; path = TableSample/TableSampleViewController.h; sourceTree = "<group>"; };
 		65BB253A56FF856060C084B6 /* TestIncludeSingle.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TestIncludeSingle.xml; sourceTree = "<group>"; };
 		65BB257FB5DFCF76D0A3938C /* ExamplesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamplesViewController.m; sourceTree = "<group>"; };
@@ -89,6 +94,7 @@
 		65BB271D16C0EC61C9A7AF2F /* bright.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bright.png; sourceTree = "<group>"; };
 		65BB27DA1669420A576B131E /* IdAttribute_specs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdAttribute_specs.m; sourceTree = "<group>"; };
 		65BB282CB15285E472E82F4E /* TableSampleCellContent_1.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TableSampleCellContent_1.xml; sourceTree = "<group>"; };
+		65BB2A85BBD048A3CCE84364 /* TestIncludeChild.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TestIncludeChild.xml; sourceTree = "<group>"; };
 		65BB2AB68C82DDB674D35711 /* TableSampleCellContent_2.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TableSampleCellContent_2.xml; sourceTree = "<group>"; };
 		65BB2BABAD6998B7CADD688C /* TestHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestHelper.m; sourceTree = "<group>"; };
 		65BB2DD94228E9203AFCAC3E /* LayoutInflater_specs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LayoutInflater_specs.m; sourceTree = "<group>"; };
@@ -210,6 +216,8 @@
 				65BB22EEA1B5DD2C7E933BAA /* Include_specs.m */,
 				65BB253A56FF856060C084B6 /* TestIncludeSingle.xml */,
 				65BB20EB93D02FE2D4A8E0BF /* TestIncludeMerge.xml */,
+				65BB2462F1C8148628D73228 /* TestIncludeParent.xml */,
+				65BB2A85BBD048A3CCE84364 /* TestIncludeChild.xml */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -361,6 +369,8 @@
 				65BB27957D45B86EF2812766 /* TableSampleCellContent_2.xml in Resources */,
 				65BB2713D538C5AB9285E5D7 /* TestIncludeSingle.xml in Resources */,
 				65BB2B2F6AA6E7E871D3C294 /* TestIncludeMerge.xml in Resources */,
+				65BB2515D4BF40CDFCBCDD6F /* TestIncludeParent.xml in Resources */,
+				65BB223B955F14D5A3FC623D /* TestIncludeChild.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -371,6 +381,8 @@
 				6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */,
 				65BB27CDF9807C86109106CA /* TestIncludeSingle.xml in Resources */,
 				65BB2F0210F676FA6F83AE48 /* TestIncludeMerge.xml in Resources */,
+				65BB246F84445E9C67AA2F27 /* TestIncludeParent.xml in Resources */,
+				65BB208F2731F0A3060C4C8B /* TestIncludeChild.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

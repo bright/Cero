@@ -1,0 +1,4 @@
+<UIView id="firstIncludedChild">
+    <include layout="TestIncludeChild"/>
+</UIView>
+

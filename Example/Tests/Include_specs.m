@@ -55,5 +55,19 @@ SpecBegin(Include_specs)
             });
         });
 
+        context(@"including nested layouts", ^{
+            beforeEach(^{
+                parent = testInflate(@"<UIView id='parent'>\n"
+                        "<include layout='TestIncludeParent' />\n"
+                        "</UIView>");
+            });
+            it(@"should properly build views included at first level", ^{
+                expect(parent.firstIncludedChild).toNot.beNil();
+            });
+            it(@"should properly build views included at second level", ^{
+                expect(parent.secondIncludedChild).toNot.beNil();
+            });
+        });
+
     });
 SpecEnd
