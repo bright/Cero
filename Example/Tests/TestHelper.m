@@ -7,6 +7,7 @@
 
 id <BIInflatedViewHelper> testInflate(NSString *xml){
     BILayoutConfiguration *config = BILayoutConfiguration.new;
+    [config setRootProjectPathFrom:__FILE__];
     [config setup];
     BILayoutInflater *inflater = [BILayoutInflater inflaterWithConfiguration:config];
     NSData *data = [xml dataUsingEncoding:NSUTF8StringEncoding];

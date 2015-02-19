@@ -10,11 +10,11 @@
 
 @interface BIInflatedViewContainer ()
 @property(nonatomic, strong) UIView *root;
+@property(nonatomic, strong) NSMapTable *byIdsCache;
+@property(nonatomic, strong) NSMutableDictionary *sourceCache;
 @end
 
 @implementation BIInflatedViewContainer {
-    NSMapTable *_byIdsCache;
-    NSMutableDictionary *_sourceCache;
     BIIdCacheDelegatedFinder *_delegatedTarget;
 }
 + (instancetype)container:(UIView *)root {
@@ -57,6 +57,22 @@
     }
 }
 
+- (BOOL)tryAddingElementsFrom:(BIInflatedViewContainer *)container error:(NSError **)error {
+    NSMapTable *otherIdsCache = container.byIdsCache;
+    NSMutableDictionary *otherSourceCache = container.sourceCache;
+    for (NSString *id in otherIdsCache.keyEnumerator) {
+        NSObject *element = [otherIdsCache objectForKey:id];
+        if (element != nil) {
+            BISourceReference *sourceReference = otherSourceCache[id];
+            if (![self tryAddingElement:element withId:id fromSource:sourceReference error:error]) {
+                return NO;
+            }
+        }
+    }
+    return YES;
+}
+
+
 - (id)forwardingTargetForSelector:(SEL)aSelector {
     NSString *propertyName = NSStringFromSelector(aSelector);
     UIView *view = [self findElementById:propertyName];
@@ -65,7 +81,6 @@
     }
     return [super forwardingTargetForSelector:aSelector];
 }
-
 
 - (void)setSuperviewAsCurrent {
     UIView *parent = self.current.superview;

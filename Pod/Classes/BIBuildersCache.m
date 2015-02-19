@@ -30,7 +30,10 @@
     }
     BIViewHierarchyBuilder *cachedBuilder = _cache[inBundlePath];
     if (cachedBuilder == nil) {
-        cachedBuilder = _cache[inBundlePath] = builderFactory(fileContent);
+        cachedBuilder = builderFactory(fileContent);
+        if (cachedBuilder != nil) {
+            _cache[inBundlePath] = cachedBuilder;
+        }
     } else {
         cachedBuilder = _cache[inBundlePath] = cachedFactory(cachedBuilder);
     }

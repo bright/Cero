@@ -1,6 +1,6 @@
 @class UIView;
 @class BIViewHierarchyBuilder;
-@class BIParserDelegate;
+@class BILayoutParser;
 @protocol BIBuilderHandler;
 @class BIInflatedViewContainer;
 @class BILayoutConfiguration;

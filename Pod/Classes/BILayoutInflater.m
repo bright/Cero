@@ -1,7 +1,7 @@
 #import <Cero/BILayoutConfiguration.h>
 #import <Cero/BILayoutLoader.h>
 #import "BILayoutInflater.h"
-#import "BIParserDelegate.h"
+#import "BILayoutParser.h"
 #import "BIViewHierarchyBuilder.h"
 #import "BIInflatedViewContainer.h"
 #import "BISourceReference.h"
@@ -12,7 +12,6 @@
 
 
 @implementation BILayoutInflater {
-
     id <BIHandlersConfiguration> _handlersCache;
 }
 
@@ -45,28 +44,30 @@
 }
 
 - (BIViewHierarchyBuilder *)inflateFilePath:(NSString *)filePath superview:(UIView *)superview content:(NSData *)content {
-    BIParserDelegate *parserDelegate = [BIParserDelegate new];
-    BIViewHierarchyBuilder *newBuilder = [BIViewHierarchyBuilder builder:_handlersCache];
-    newBuilder.rootInBundlePath = filePath;
-    newBuilder.layoutInflater = self;
-    parserDelegate.onEnterNode = ^(BILayoutElement *element) {
-        [newBuilder onEnterNode:element];
-    };
-    parserDelegate.onLeaveNode = ^(BILayoutElement *element) {
-        [newBuilder onLeaveNode:element];
-    };
-    parserDelegate.onParsingCompleted = ^{
+    BIViewHierarchyBuilder *newBuilder;
+    BILayoutParser *layoutParser = [BILayoutParser parserFor:content];
+    if ([layoutParser parse]) {
+        newBuilder = [BIViewHierarchyBuilder builder:_handlersCache];
+        newBuilder.rootInBundlePath = filePath;
+        newBuilder.layoutInflater = self;
+
+        [newBuilder startWithSuperView:superview];
+        NSString *contentAsString = [[NSString alloc] initWithData:content encoding:NSUTF8StringEncoding];
+        newBuilder.sourceReference = [BISourceReference reference:filePath andContent:contentAsString];
+
+        layoutParser.onEnterNode = ^(BILayoutElement *element) {
+            [newBuilder onEnterNode:element];
+        };
+        layoutParser.onLeaveNode = ^(BILayoutElement *element) {
+            [newBuilder onLeaveNode:element];
+        };
+        [layoutParser traverseElements];
         [newBuilder onReady];
-    };
-    [newBuilder startWithSuperView:superview];
-    NSString *contentAsString = [[NSString alloc] initWithData:content encoding:NSUTF8StringEncoding];
-    newBuilder.sourceReference = [BISourceReference reference:filePath andContent:contentAsString];
-    NSXMLParser *parser = [[NSXMLParser alloc] initWithData:content];
-    parser.delegate = parserDelegate;
-    [parser parse];
-    if (parser.parserError != nil) {
-        NSLog(@"Error: %@", parser.parserError);
+        return newBuilder;
+    } else {
+        NSLog(@"Failed to parse %@ with error: %@", filePath, layoutParser.error);
     }
+
     return newBuilder;
 }
 

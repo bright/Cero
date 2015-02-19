@@ -17,4 +17,6 @@
 - (void)setCurrentAsSubview:(UIView *)view;
 
 - (void)clearRootToAvoidMemoryLeaks;
+
+- (BOOL)tryAddingElementsFrom:(BIInflatedViewContainer *)container error:(NSError **)error;
 @end

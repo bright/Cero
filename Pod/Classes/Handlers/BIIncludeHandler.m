@@ -3,7 +3,6 @@
 #import "BILayoutElement.h"
 #import "BIViewHierarchyBuilder.h"
 #import "BISourceReference.h"
-#import "BILayoutLoader+BIIncludeAssistance.h"
 #import "BIInflatedViewContainer.h"
 #import "BIEXTScope.h"
 #import "BIBuildersCache.h"
@@ -19,15 +18,20 @@
     NSString *childLayout = element.attributes[@"layout"];
     BISourceReference *sourceReference = [builder.sourceReference subReferenceFromLine:element.startLineNumber andColumn:element.startColumnNumber];
     if (childLayout.length > 0) {
-        BILayoutInflater *loader = builder.layoutInflater;
-        NSString *inBundlePath = [loader layoutPath:childLayout];
+        BILayoutInflater *inflater = builder.layoutInflater;
+        NSString *inBundlePath = [inflater layoutPath:childLayout];
         if (inBundlePath.length > 0) {
-            @weakify(loader);
+            @weakify(inflater);
             [builder addBuildStep:^(BIInflatedViewContainer *container) {
-                @strongify(loader);
-                [loader reloadSuperview:container.current path:inBundlePath notify:nil];
+                @strongify(inflater);
+                BIInflatedViewContainer *inflatedViewContainer = [inflater inflateFilePath:inBundlePath superview:container.current];
+                NSError *error;
+                if (![container tryAddingElementsFrom:inflatedViewContainer error:&error]) {
+                    //TODO log error
+                }
+
             }];
-            [loader.buildersCache addChangeSource:inBundlePath contentChangeObserver:builder.rootInBundlePath];
+            [inflater.buildersCache addChangeSource:inBundlePath contentChangeObserver:builder.rootInBundlePath];
         } else {
             NSLog(@"ERROR: Included file not found %@", sourceReference.sourceDescription);
         }

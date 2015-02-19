@@ -19,7 +19,7 @@ SpecBegin(Include_specs)
         context(@"including file with root", ^{
             beforeEach(^{
                 parent = testInflate(@"<UIView>\n"
-                        "<UIView id='beforeInclud'></UIView>\n"
+                        "<UIView id='beforeInclude'></UIView>\n"
                         "<include layout='TestIncludeSingle' />\n"
                         "<UIView id='afterInclude'></UIView>\n"
                         "</UIView>");

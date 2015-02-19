@@ -45,7 +45,9 @@
 - (void)addChangeSource:(NSString *)inBundlePath contentChangeObserver:(NSString *)rootInBundlePath rootProjectPath:(NSString *)rootProjectPath {
     BIContentChangeObserver *contentChangeObserver = [self contentChangedObserver:rootInBundlePath rootProjectPath:rootProjectPath];
     NSString *diskPath = [self findDiskPath:inBundlePath rootProjectPath:rootProjectPath];
-    [contentChangeObserver addObservable:[self fileContentWatcher:diskPath]];
+    if (diskPath != nil) {
+        [contentChangeObserver addObservable:[self fileContentWatcher:diskPath]];
+    }
 }
 
 - (id <BIContentChangeObservable>)fileContentWatcher:(NSString *)diskPath {
