@@ -4,13 +4,15 @@
 @protocol TestInclude <BIInflatedViewHelper>
 - (UIView *)firstIncludedChild;
 
-- (UIView *)seondIncludedChild;
+- (UIView *)secondIncludedChild;
 @end
 
 @protocol ParentWithInclude <TestInclude>
 - (UIView *)beforeInclude;
 
 - (UIView *)afterInclude;
+
+- (UIView *)parent;
 @end
 
 SpecBegin(Include_specs)
@@ -31,8 +33,26 @@ SpecBegin(Include_specs)
 
             it(@"should properly build included views", ^{
                 expect(parent.firstIncludedChild).toNot.beNil();
+                expect(parent.secondIncludedChild).toNot.beNil();
+            });
+        });
+
+        context(@"including file with merge root", ^{
+            beforeEach(^{
+                parent = testInflate(@"<UIView id='parent'>\n"
+                        "<include layout='TestIncludeMerge' />\n"
+                        "</UIView>");
             });
 
+            it(@"should properly build included views", ^{
+                expect(parent.firstIncludedChild).toNot.beNil();
+                expect(parent.secondIncludedChild).toNot.beNil();
+            });
+
+            it(@"should make included views chidlren of parent view", ^{
+                expect(parent.parent.subviews).to.contain(parent.firstIncludedChild);
+                expect(parent.parent.subviews).to.contain(parent.secondIncludedChild);
+            });
         });
 
     });

@@ -1,0 +1,4 @@
+<merge>
+    <UIView id="firstIncludedChild"/>
+    <UIView id="secondIncludedChild"/>
+</merge>

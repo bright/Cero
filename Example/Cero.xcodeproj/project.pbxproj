@@ -31,8 +31,10 @@
 		65BB29FB50371E86884C9267 /* TestHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BB2BABAD6998B7CADD688C /* TestHelper.m */; };
 		65BB2AA0C63F66AFAEB8B290 /* IdAttribute_specs.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BB27DA1669420A576B131E /* IdAttribute_specs.m */; };
 		65BB2B1A479EC8A8C4D589D6 /* TableSampleCellContent_0.xml in Resources */ = {isa = PBXBuildFile; fileRef = 65BB264FA32AA08D7114A7CC /* TableSampleCellContent_0.xml */; };
+		65BB2B2F6AA6E7E871D3C294 /* TestIncludeMerge.xml in Resources */ = {isa = PBXBuildFile; fileRef = 65BB20EB93D02FE2D4A8E0BF /* TestIncludeMerge.xml */; };
 		65BB2DD49C46EC69DDEDBBCC /* ButtonsAndLabels.xml in Resources */ = {isa = PBXBuildFile; fileRef = 65BB26F7D75294D33663CA8E /* ButtonsAndLabels.xml */; };
 		65BB2ED4AA66FEECB005F76F /* bright.png in Resources */ = {isa = PBXBuildFile; fileRef = 65BB271D16C0EC61C9A7AF2F /* bright.png */; };
+		65BB2F0210F676FA6F83AE48 /* TestIncludeMerge.xml in Resources */ = {isa = PBXBuildFile; fileRef = 65BB20EB93D02FE2D4A8E0BF /* TestIncludeMerge.xml */; };
 		65BB2F693EE0D0D5917A623C /* ExamplesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BB257FB5DFCF76D0A3938C /* ExamplesViewController.m */; };
 		65BB2FB1AF70CBA84E56BEB7 /* ButtonsAndLabelsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BB25EDDED472CB87E32FF1 /* ButtonsAndLabelsViewController.m */; };
 		65BB2FF259E69967C18DC04B /* TableSampleCellContent_1.xml in Resources */ = {isa = PBXBuildFile; fileRef = 65BB282CB15285E472E82F4E /* TableSampleCellContent_1.xml */; };
@@ -74,6 +76,7 @@
 		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		65BB20E9087135377B50EAD1 /* TableSampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TableSampleViewController.m; path = TableSample/TableSampleViewController.m; sourceTree = "<group>"; };
+		65BB20EB93D02FE2D4A8E0BF /* TestIncludeMerge.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TestIncludeMerge.xml; sourceTree = "<group>"; };
 		65BB212CDDA51648EC3F134D /* ExamplesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExamplesViewController.h; sourceTree = "<group>"; };
 		65BB2295CF84EEB59CA2EAAA /* Constraints_specs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constraints_specs.m; sourceTree = "<group>"; };
 		65BB22EEA1B5DD2C7E933BAA /* Include_specs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Include_specs.m; sourceTree = "<group>"; };
@@ -206,6 +209,7 @@
 				65BB2295CF84EEB59CA2EAAA /* Constraints_specs.m */,
 				65BB22EEA1B5DD2C7E933BAA /* Include_specs.m */,
 				65BB253A56FF856060C084B6 /* TestIncludeSingle.xml */,
+				65BB20EB93D02FE2D4A8E0BF /* TestIncludeMerge.xml */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -356,6 +360,7 @@
 				65BB2FF259E69967C18DC04B /* TableSampleCellContent_1.xml in Resources */,
 				65BB27957D45B86EF2812766 /* TableSampleCellContent_2.xml in Resources */,
 				65BB2713D538C5AB9285E5D7 /* TestIncludeSingle.xml in Resources */,
+				65BB2B2F6AA6E7E871D3C294 /* TestIncludeMerge.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -365,6 +370,7 @@
 			files = (
 				6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */,
 				65BB27CDF9807C86109106CA /* TestIncludeSingle.xml in Resources */,
+				65BB2F0210F676FA6F83AE48 /* TestIncludeMerge.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
