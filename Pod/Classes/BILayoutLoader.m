@@ -13,9 +13,13 @@
 }
 
 - (instancetype)init {
+    return [self initWithInflater:[BILayoutInflater defaultInflater]];
+}
+
+- (instancetype)initWithInflater:(BILayoutInflater *)inflater {
     self = [super init];
     if (self) {
-        _layoutInflater = [BILayoutInflater defaultInflater];
+        _layoutInflater = inflater;
     }
 
     return self;
@@ -26,7 +30,7 @@
 }
 
 - (void)fillViewOfController:(UIViewController *)controller layout:(NSString *)layoutName loaded:(OnViewInflated)notify {
-    [self fillView:controller.view layout:layoutName andCall:notify];
+    [self fillView:controller.view layout:layoutName loaded:notify];
 }
 
 - (UITableViewCell *)fillTableCellContent:(UITableView *)tableView layout:(NSString *)layoutName loaded:(OnViewInflated)loaded {
@@ -49,7 +53,7 @@
     return cell;
 }
 
-- (BIInflatedViewContainer *)fillView:(UIView *)superview layout:(NSString *)layoutName andCall:(OnViewInflated)notify {
+- (BIInflatedViewContainer *)fillView:(UIView *)superview layout:(NSString *)layoutName loaded:(OnViewInflated)notify {
     NSString *path = [self layoutPath:layoutName];
     BIInflatedViewContainer *newView = [self reloadSuperview:superview path:path notify:notify];
     BIContentChangeObserver *observer = [self contentChangeObserveForPath:path];

@@ -12,7 +12,7 @@ typedef void (^OnViewInflated)(id <BIInflatedViewHelper>);
 
 + (instancetype)inflaterWithConfiguration:(BILayoutConfiguration *)configuration;
 
-- (BIInflatedViewContainer *)inflateFilePath:(NSString *)filePath superview:(UIView *)superview;
+- (BIInflatedViewContainer *)inflateFilePath:(NSString *)inBundlePath superview:(UIView *)superview;
 
 - (BIViewHierarchyBuilder *)inflateFilePath:(NSString *)filePath superview:(UIView *)superview content:(NSData *)content;
 

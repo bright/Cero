@@ -31,10 +31,10 @@
     return self;
 }
 
-- (BIInflatedViewContainer *)inflateFilePath:(NSString *)filePath superview:(UIView *)superview {
-    NSAssert(filePath.length > 0, @"File path to inflate must not be empty");
-    BIViewHierarchyBuilder *builder = [self.buildersCache cachedBuilderFor:filePath onNew:^(NSData *content) {
-        return [self inflateFilePath:filePath superview:superview content:content];
+- (BIInflatedViewContainer *)inflateFilePath:(NSString *)inBundlePath superview:(UIView *)superview {
+    NSAssert(inBundlePath.length > 0, @"File path to inflate must not be empty");
+    BIViewHierarchyBuilder *builder = [self.buildersCache cachedBuilderFor:inBundlePath onNew:^(NSData *content) {
+        return [self inflateFilePath:inBundlePath superview:superview content:content];
     }                                                             onCached:^(BIViewHierarchyBuilder *cachedBuilder) {
         [cachedBuilder startWithSuperView:superview];
         [cachedBuilder runBuildSteps];

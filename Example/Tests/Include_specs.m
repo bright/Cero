@@ -1,4 +1,6 @@
 #import <UIKit/UIKit.h>
+#import <Cero/BIViewHierarchyBuilder.h>
+#import <Cero/BILayoutLoader.h>
 #import "TestHelpers.h"
 
 @protocol TestInclude <BIInflatedViewHelper>
@@ -66,6 +68,32 @@ SpecBegin(Include_specs)
             });
             it(@"should properly build views included at second level", ^{
                 expect(parent.secondIncludedChild).toNot.beNil();
+            });
+        });
+
+        context(@"building included layouts many times", ^{
+            __block UIView *firstLoadView;
+            __block UIView *secondLoadView;
+            __block NSObject <TestInclude> *firstLoad;
+            __block NSObject <TestInclude> *secondLoad;
+            beforeEach(^{
+                BILayoutLoader *loader = testLoader();
+                firstLoad = (id) [loader fillView:nil layout:@"TestIncludeParent" loaded:^(id <BIInflatedViewHelper> o) {
+                    firstLoadView = o.root;
+                }];
+                secondLoad = (id) [loader fillView:nil layout:@"TestIncludeParent" loaded:^(id <BIInflatedViewHelper> o) {
+                    secondLoadView = o.root;
+                }];
+            });
+
+            it(@"should load correctly first time", ^{
+                expect(firstLoad.firstIncludedChild).toNot.beNil();
+                expect(firstLoadView).toNot.beNil();
+            });
+
+            it(@"should load correctly second time", ^{
+                expect(secondLoad.secondIncludedChild).toNot.beNil();
+                expect(secondLoadView).toNot.beNil();
             });
         });
 
