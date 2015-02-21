@@ -23,13 +23,12 @@
 - (BIViewHierarchyBuilder *)cachedBuilderFor:(NSString *)inBundlePath
                                        onNew:(BuilderFactory)builderFactory
                                     onCached:(CachedBuilderFactory)cachedFactory {
-    NSAssert(inBundlePath.length > 0, @"In bundle path may not be nil");
+    NSAssert(inBundlePath.length > 0, @"In bundle path may not be empty");
     NSData *fileContent = [self readFile:inBundlePath];
-    if (inBundlePath.length == 0) {
-        return builderFactory(fileContent);
-    }
+
     BIViewHierarchyBuilder *cachedBuilder = _cache[inBundlePath];
     if (cachedBuilder == nil) {
+        NSLog(@"No cached builer for path %@", inBundlePath.lastPathComponent);
         cachedBuilder = builderFactory(fileContent);
         if (cachedBuilder != nil) {
             _cache[inBundlePath] = cachedBuilder;
@@ -56,6 +55,7 @@
 }
 
 - (void)invalidateFilePath:(NSString *)inBundlePath withNewContent:(NSData *)content {
+    NSLog(@"Invalidating builder for path %@", inBundlePath.lastPathComponent);
     [_cache removeObjectForKey:inBundlePath];
     _oneTimeCacheContent[inBundlePath] = content;
 }
