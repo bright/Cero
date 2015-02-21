@@ -1,6 +1,6 @@
 # Cero
 
-[![CI Status](http://img.shields.io/travis/Piotr Mionskowski/Cero.svg?style=flat)](https://travis-ci.org/Piotr Mionskowski/Cero)
+[![Build Status](https://travis-ci.org/bright/Cero.svg?branch=master)](https://travis-ci.org/bright/Cero)
 [![Version](https://img.shields.io/cocoapods/v/Cero.svg?style=flat)](http://cocoadocs.org/docsets/Cero)
 [![License](https://img.shields.io/cocoapods/l/Cero.svg?style=flat)](http://cocoadocs.org/docsets/Cero)
 [![Platform](https://img.shields.io/cocoapods/p/Cero.svg?style=flat)](http://cocoadocs.org/docsets/Cero)
