@@ -21,7 +21,7 @@
 
 - (void)setBi_isPartOfLayout:(BOOL)bi_isPartOfLayout {
     NSNumber *value = @(bi_isPartOfLayout);
-    objc_setAssociatedObject(self, @selector(bi_cachedViewHelper), value, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self, @selector(bi_isPartOfLayout), value, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 
