@@ -22,7 +22,7 @@ SpecBegin(Include_specs)
         __block NSObject <ParentWithInclude> *parent;
         context(@"including file with root", ^{
             beforeEach(^{
-                parent = testInflate(@"<UIView>\n"
+                parent = (id) testInflate(@"<UIView>\n"
                         "<UIView id='beforeInclude'></UIView>\n"
                         "<include layout='TestIncludeSingle' />\n"
                         "<UIView id='afterInclude'></UIView>\n"
@@ -41,7 +41,7 @@ SpecBegin(Include_specs)
 
         context(@"including file with merge root", ^{
             beforeEach(^{
-                parent = testInflate(@"<UIView id='parent'>\n"
+                parent = (id) testInflate(@"<UIView id='parent'>\n"
                         "<include layout='TestIncludeMerge' />\n"
                         "</UIView>");
             });
@@ -59,7 +59,7 @@ SpecBegin(Include_specs)
 
         context(@"including nested layouts", ^{
             beforeEach(^{
-                parent = testInflate(@"<UIView id='parent'>\n"
+                parent = (id) testInflate(@"<UIView id='parent'>\n"
                         "<include layout='TestIncludeParent' />\n"
                         "</UIView>");
             });
