@@ -46,6 +46,7 @@
     if (existing == nil) {
         [_byIdsCache setObject:element forKey:id];
         _sourceCache[id] = source;
+        NSLog(@"New cache entry for key %@ is %@", id, element);
         return true;
     } else {
         BISourceReference *existingElement = _sourceCache[id];
