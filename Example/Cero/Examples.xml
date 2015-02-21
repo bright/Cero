@@ -14,4 +14,6 @@
         <Constraint on="top" with=":previous.bottom" constant="50"/>
         <titleForState state="UIControlStateNormal" value="Table view"/>
     </UIButton>
+
+    <include layout="BrightLogo"/>
 </UIView>

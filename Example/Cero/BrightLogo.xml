@@ -1,0 +1,5 @@
+<UIImageView image="bright">
+    <Constraint on="bottom" with=":superview" constant="-60"/>
+    <Constraint on="width" with=":superview" multiplier="0.5"/>
+    <Constraint on="height" constant="75"/>
+</UIImageView>

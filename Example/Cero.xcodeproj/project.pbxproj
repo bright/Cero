@@ -23,6 +23,7 @@
 		65BB203EBCE3989491D56FF4 /* TestIncludeParentConstraint.xml in Resources */ = {isa = PBXBuildFile; fileRef = 65BB27819B6085F516E7EB7A /* TestIncludeParentConstraint.xml */; };
 		65BB208F2731F0A3060C4C8B /* TestIncludeChild.xml in Resources */ = {isa = PBXBuildFile; fileRef = 65BB2A85BBD048A3CCE84364 /* TestIncludeChild.xml */; };
 		65BB223B955F14D5A3FC623D /* TestIncludeChild.xml in Resources */ = {isa = PBXBuildFile; fileRef = 65BB2A85BBD048A3CCE84364 /* TestIncludeChild.xml */; };
+		65BB22E351A800AE595383D8 /* BrightLogo.xml in Resources */ = {isa = PBXBuildFile; fileRef = 65BB287AE62CBA4A6C8EE129 /* BrightLogo.xml */; };
 		65BB246F84445E9C67AA2F27 /* TestIncludeParent.xml in Resources */ = {isa = PBXBuildFile; fileRef = 65BB2462F1C8148628D73228 /* TestIncludeParent.xml */; };
 		65BB24D752B0C9FE86C32EE9 /* Include_specs.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BB22EEA1B5DD2C7E933BAA /* Include_specs.m */; };
 		65BB2515D4BF40CDFCBCDD6F /* TestIncludeParent.xml in Resources */ = {isa = PBXBuildFile; fileRef = 65BB2462F1C8148628D73228 /* TestIncludeParent.xml */; };
@@ -100,6 +101,7 @@
 		65BB27819B6085F516E7EB7A /* TestIncludeParentConstraint.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TestIncludeParentConstraint.xml; sourceTree = "<group>"; };
 		65BB27DA1669420A576B131E /* IdAttribute_specs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdAttribute_specs.m; sourceTree = "<group>"; };
 		65BB282CB15285E472E82F4E /* TableSampleCellContent_1.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TableSampleCellContent_1.xml; sourceTree = "<group>"; };
+		65BB287AE62CBA4A6C8EE129 /* BrightLogo.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = BrightLogo.xml; sourceTree = "<group>"; };
 		65BB2A85BBD048A3CCE84364 /* TestIncludeChild.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TestIncludeChild.xml; sourceTree = "<group>"; };
 		65BB2AB68C82DDB674D35711 /* TableSampleCellContent_2.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TableSampleCellContent_2.xml; sourceTree = "<group>"; };
 		65BB2BABAD6998B7CADD688C /* TestHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestHelper.m; sourceTree = "<group>"; };
@@ -194,6 +196,7 @@
 				65BB252676F93392844CFCA7 /* TableSampleViewController.h */,
 				65BB20E9087135377B50EAD1 /* TableSampleViewController.m */,
 				65BB2443098DBA37B1BCC1EF /* TableSample */,
+				65BB287AE62CBA4A6C8EE129 /* BrightLogo.xml */,
 			);
 			path = Cero;
 			sourceTree = "<group>";
@@ -381,6 +384,7 @@
 				65BB223B955F14D5A3FC623D /* TestIncludeChild.xml in Resources */,
 				65BB28D58FA15D99E4E2F610 /* TestIncludeParentConstraint.xml in Resources */,
 				65BB2E3862DA7CB13348ED87 /* TestIncludeChildConstraint.xml in Resources */,
+				65BB22E351A800AE595383D8 /* BrightLogo.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
