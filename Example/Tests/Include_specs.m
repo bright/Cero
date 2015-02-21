@@ -97,5 +97,66 @@ SpecBegin(Include_specs)
             });
         });
 
+
+        context(@"including views with constraints", ^{
+            __block UIView *firstLoadView;
+            __block UIView *secondLoadView;
+            __block NSObject <TestInclude> *firstLoad;
+            __block NSObject <TestInclude> *secondLoad;
+            BILayoutLoader *loader = testLoader();
+            beforeEach(^{
+                UIView *layoutRoot = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1000, 1000)]; //required to make auto layout happy
+                firstLoad = (id) [loader fillView:layoutRoot layout:@"TestIncludeParentConstraint" loaded:^(id <BIInflatedViewHelper> o) {
+                    firstLoadView = o.root.subviews[0];
+                    [layoutRoot setNeedsLayout];
+                    [layoutRoot layoutIfNeeded];
+                }];
+
+            });
+
+            it(@"should build parent constraints properly first time", ^{
+                CGFloat secondIncludeWidth = firstLoad.secondIncludedChild.frame.size.width;
+                expect(secondIncludeWidth).to.equal(50);
+                expect(firstLoadView.frame.size.width).to.equal(secondIncludeWidth);
+            });
+
+            it(@"should build child constraints properly first time", ^{
+                UIView *firstIncludedChild = firstLoad.firstIncludedChild;
+                CGFloat firstIncludedHeight = firstIncludedChild.frame.size.height;
+                expect(firstIncludedHeight).to.equal(200);
+            });
+
+            it(@"should build child constraints referencing parent properly first time", ^{
+                UIView *secondIncludedChild = firstLoad.secondIncludedChild;
+                CGFloat secondIncludedChildHeight = secondIncludedChild.frame.size.height;
+                expect(secondIncludedChildHeight).to.equal(100);
+            });
+
+            context(@"reusing layout loader", ^{
+                beforeEach(^{
+                    UIView *layoutRoot = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1000, 1000)]; //required to make auto layout happy
+                    secondLoad = (id) [loader fillView:layoutRoot layout:@"TestIncludeParentConstraint" loaded:^(id <BIInflatedViewHelper> o) {
+                        secondLoadView = layoutRoot.subviews[0];
+                        [layoutRoot setNeedsLayout];
+                        [layoutRoot layoutIfNeeded];
+                    }];
+                });
+                it(@"should build parent constraints properly second time", ^{
+                    CGFloat secondIncludeWidth = secondLoad.secondIncludedChild.frame.size.width;
+                    expect(secondIncludeWidth).to.equal(50);
+                    expect(firstLoadView.frame.size.width).to.equal(secondIncludeWidth);
+                });
+
+
+                it(@"should build child constraints referencing parent properly second time", ^{
+                    UIView *secondIncludedChild = secondLoad.secondIncludedChild;
+                    CGFloat secondIncludedChildHeight = secondIncludedChild.frame.size.height;
+                    expect(secondIncludedChildHeight).to.equal(100);
+                });
+            });
+
+
+        });
+
     });
 SpecEnd

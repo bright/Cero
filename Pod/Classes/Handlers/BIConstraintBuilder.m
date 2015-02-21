@@ -34,7 +34,6 @@
     UIView *firstItem = self.firstItemFinder(container);
     if (firstItem != nil) {
         for (NSNumber *attributeWrap in self.firstAttributes) {
-            firstItem.translatesAutoresizingMaskIntoConstraints = NO;
             NSLayoutAttribute attribute = (NSLayoutAttribute) attributeWrap.integerValue;
             NSLayoutAttribute otherAttribute = attribute;
             if (self.otherItemAttributes.count == self.firstAttributes.count) {
@@ -50,6 +49,8 @@
                     continue;
                 }
             }
+
+            firstItem.translatesAutoresizingMaskIntoConstraints = NO;
 
             NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:firstItem
                                                                           attribute:attribute

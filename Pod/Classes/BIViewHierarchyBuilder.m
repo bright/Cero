@@ -86,7 +86,7 @@
 }
 
 
-- (void)pushOnReady:(OnBuilderReady)onReady {
+- (void)addOnReady:(OnBuilderReady)onReady {
     if (onReady != nil) {
         OnBuilderReady previous = self.onReadyQueue;
         self.onReadyQueue = ^(BIInflatedViewContainer *container) {
@@ -110,6 +110,13 @@
     for (BuilderStep step in _builderSteps) {
         step(self.container);
     }
+}
+
+- (void)runOnReadyCallbacks {
     self.onReadyQueue(self.container);
+}
+
+- (void)addOnReadyFrom:(BIViewHierarchyBuilder *)builder {
+    [self addOnReady:builder.onReadyQueue];
 }
 @end

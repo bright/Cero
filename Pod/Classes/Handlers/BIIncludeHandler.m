@@ -22,15 +22,19 @@
         NSString *inBundlePath = [inflater layoutPath:childLayout];
         if (inBundlePath.length > 0) {
             @weakify(inflater);
+            __block BIViewHierarchyBuilder *childBuilder;
             [builder addBuildStep:^(BIInflatedViewContainer *container) {
                 @strongify(inflater);
-                BIInflatedViewContainer *inflatedViewContainer = [inflater inflateFilePath:inBundlePath superview:container.current];
+                childBuilder = [inflater inflateBuilder:inBundlePath
+                                              superview:container.current];
+                BIInflatedViewContainer *inflatedViewContainer = childBuilder.container;
                 NSError *error;
                 if (![container tryAddingElementsFrom:inflatedViewContainer error:&error]) {
                     //TODO log error
                 }
-
             }];
+
+            [builder addOnReadyFrom:childBuilder];
             [inflater.buildersCache addChangeSource:inBundlePath contentChangeObserver:builder.rootInBundlePath];
         } else {
             NSLog(@"ERROR: Included file not found %@", sourceReference.sourceDescription);

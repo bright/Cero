@@ -32,15 +32,22 @@
 }
 
 - (BIInflatedViewContainer *)inflateFilePath:(NSString *)inBundlePath superview:(UIView *)superview {
-    NSAssert(inBundlePath.length > 0, @"File path to inflate must not be empty");
-    BIViewHierarchyBuilder *builder = [self.buildersCache cachedBuilderFor:inBundlePath onNew:^(NSData *content) {
-        return [self inflateFilePath:inBundlePath superview:superview content:content];
-    }                                                             onCached:^(BIViewHierarchyBuilder *cachedBuilder) {
-        [cachedBuilder startWithSuperView:superview];
-        [cachedBuilder runBuildSteps];
-        return cachedBuilder;
-    }];
+    BIViewHierarchyBuilder *builder = [self inflateBuilder:inBundlePath superview:superview];
+    [builder runOnReadyCallbacks];
     return builder.container;
+}
+
+- (BIViewHierarchyBuilder *)inflateBuilder:(NSString *)inBundlePath superview:(UIView *)superview {
+    NSAssert(inBundlePath.length > 0, @"File path to inflate must not be empty");
+    BIViewHierarchyBuilder *builder = [self.buildersCache cachedBuilderFor:inBundlePath
+                                                                     onNew:^(NSData *content) {
+                                                                         return [self inflateFilePath:inBundlePath superview:superview content:content];
+                                                                     } onCached:^(BIViewHierarchyBuilder *cachedBuilder) {
+                [cachedBuilder startWithSuperView:superview];
+                [cachedBuilder runBuildSteps];
+                return cachedBuilder;
+            }];
+    return builder;
 }
 
 - (BIViewHierarchyBuilder *)inflateFilePath:(NSString *)filePath superview:(UIView *)superview content:(NSData *)content {
@@ -62,7 +69,6 @@
             [newBuilder onLeaveNode:element];
         };
         [layoutParser traverseElements];
-        [newBuilder onReady];
         return newBuilder;
     } else {
         NSLog(@"Failed to parse %@ with error: %@", filePath, layoutParser.error);

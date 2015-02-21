@@ -26,19 +26,21 @@ typedef void(^BuilderStep)(BIInflatedViewContainer *container);
 
 + (instancetype)builder:(id <BIHandlersConfiguration>)configuration;
 
-- (void)onReady;
-
 - (void)onEnterNode:(BILayoutElement *)node;
 
 - (void)onLeaveNode:(BILayoutElement *)node;
 
 - (UIView *)current;
 
-- (void)pushOnReady:(OnBuilderReady)onReady;
+- (void)addOnReady:(OnBuilderReady)onReady;
 
 - (void)addBuildStep:(BuilderStep)step;
 
 - (void)startWithSuperView:(UIView *)view;
 
 - (void)runBuildSteps;
+
+- (void)runOnReadyCallbacks;
+
+- (void)addOnReadyFrom:(BIViewHierarchyBuilder *)builder;
 @end

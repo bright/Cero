@@ -47,7 +47,7 @@
 }
 
 - (void)registerInstallWhenBuilderReady:(BIViewHierarchyBuilder *)builder attributes:(NSMutableDictionary *)attributes constraintBuilder:(BIIConstraintBuilder *)constraintBuilder {
-    [builder pushOnReady:^(BIInflatedViewContainer *container) {
+    [builder addOnReady:^(BIInflatedViewContainer *container) {
         NSError *installError;
         NSArray *constraints = [constraintBuilder tryInstall:container error:&installError];
         if (installError == nil && constraints.count > 0) {
@@ -55,15 +55,15 @@
             if (idAttributeValue.length > 0) {
                 NSError *error;
                 if (constraints.count == 1) {
-                    [builder.container tryAddingElement:constraints[0]
-                                                 withId:idAttributeValue
-                                             fromSource:constraintBuilder.sourceReference
-                                                  error:&error];
+                    [container tryAddingElement:constraints[0]
+                                         withId:idAttributeValue
+                                     fromSource:constraintBuilder.sourceReference
+                                          error:&error];
                 } else {
-                    [builder.container tryAddingElement:constraints
-                                                 withId:idAttributeValue
-                                             fromSource:constraintBuilder.sourceReference
-                                                  error:&error];
+                    [container tryAddingElement:constraints
+                                         withId:idAttributeValue
+                                     fromSource:constraintBuilder.sourceReference
+                                          error:&error];
                 }
             }
         } else {

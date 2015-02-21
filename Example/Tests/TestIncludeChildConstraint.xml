@@ -1,0 +1,5 @@
+<UIView id="secondIncludedChild">
+    <Constraint on="width" constant="50"/>
+    <Constraint on="height" with="#firstIncludedChild" multiplier="0.5"/>
+</UIView>
+

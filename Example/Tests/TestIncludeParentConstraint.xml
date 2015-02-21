@@ -1,0 +1,6 @@
+<UIView id="firstIncludedChild">
+    <Constraint on="height" constant="200"/>
+    <Constraint on="width" with="#secondIncludedChild"/>
+    <include layout="TestIncludeChildConstraint"/>
+</UIView>
+
