@@ -34,7 +34,7 @@
                 }
             }];
 
-            [builder addOnReadyFrom:childBuilder];
+            [builder addOnReadyStepsFrom:childBuilder];
             [inflater.buildersCache addChangeSource:inBundlePath contentChangeObserver:builder.rootInBundlePath];
         } else {
             NSLog(@"ERROR: Included file not found %@", sourceReference.sourceDescription);

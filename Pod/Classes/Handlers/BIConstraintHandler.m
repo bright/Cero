@@ -47,7 +47,7 @@
 }
 
 - (void)registerInstallWhenBuilderReady:(BIViewHierarchyBuilder *)builder attributes:(NSMutableDictionary *)attributes constraintBuilder:(BIIConstraintBuilder *)constraintBuilder {
-    [builder addOnReady:^(BIInflatedViewContainer *container) {
+    [builder addOnReadyStep:^(BIInflatedViewContainer *container) {
         NSError *installError;
         NSArray *constraints = [constraintBuilder tryInstall:container error:&installError];
         if (installError == nil && constraints.count > 0) {

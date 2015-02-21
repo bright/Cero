@@ -32,7 +32,7 @@ typedef void(^BuilderStep)(BIInflatedViewContainer *container);
 
 - (UIView *)current;
 
-- (void)addOnReady:(OnBuilderReady)onReady;
+- (void)addOnReadyStep:(OnBuilderReady)onReady;
 
 - (void)addBuildStep:(BuilderStep)step;
 
@@ -40,7 +40,7 @@ typedef void(^BuilderStep)(BIInflatedViewContainer *container);
 
 - (void)runBuildSteps;
 
-- (void)runOnReadyCallbacks;
+- (void)runOnReadySteps;
 
-- (void)addOnReadyFrom:(BIViewHierarchyBuilder *)builder;
+- (void)addOnReadyStepsFrom:(BIViewHierarchyBuilder *)builder;
 @end

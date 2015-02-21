@@ -16,7 +16,7 @@ typedef void (^OnViewInflated)(id <BIInflatedViewHelper>);
 
 - (BIViewHierarchyBuilder *)inflateBuilder:(NSString *)inBundlePath superview:(UIView *)superview;
 
-- (BIViewHierarchyBuilder *)inflateFilePath:(NSString *)filePath superview:(UIView *)superview content:(NSData *)content;
+- (BIViewHierarchyBuilder *)inflateFilePathUntilReady:(NSString *)filePath superview:(UIView *)superview content:(NSData *)content;
 
 - (BIBuildersCache *)buildersCache;
 
