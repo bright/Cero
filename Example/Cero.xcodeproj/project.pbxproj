@@ -154,6 +154,7 @@
 				6003F58B195388D20070C39A /* Products */,
 				73449FAB0AC669B8606FC1F9 /* Pods */,
 				65BB2E115DE72D40FBEF6F92 /* Sample1 */,
+				65BB27E2CB3CE14C90910CA1,
 			);
 			sourceTree = "<group>";
 		};

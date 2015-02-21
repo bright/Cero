@@ -117,6 +117,8 @@
 		63CB0B130777A86E24A76628 /* EXPMatchers+beSubclassOf.h in Headers */ = {isa = PBXBuildFile; fileRef = 43A46C448401AD01D0C7673E /* EXPMatchers+beSubclassOf.h */; };
 		63F45CAFFBE7232A7969A6C8 /* xlmetamacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 6D119816A1B6B700666F38B5 /* xlmetamacros.h */; };
 		647A20F299FB78D6C8247FE4 /* SpectaDSL.m in Sources */ = {isa = PBXBuildFile; fileRef = B7FD39DD420E8712D067CF55 /* SpectaDSL.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		65BB20797A9D7AAFCAE6259B /* BILog.h in Headers */ = {isa = PBXBuildFile; fileRef = 65BB256BBBF350111B1FCE84 /* BILog.h */; };
+		65BB21C482D7670F4A2E3EBC /* BIBenchmark.h in Headers */ = {isa = PBXBuildFile; fileRef = 65BB2F3FDED524A8749F0051 /* BIBenchmark.h */; };
 		693BA31E4F7CC07C01454C3C /* BIButtonHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 839D6C50CFFDE48FB7AE3393 /* BIButtonHandler.m */; };
 		693CF398F3E74D3D09C3606F /* BIAttributeHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 8F6B3A7A7C72DD8EED753F67 /* BIAttributeHandler.h */; };
 		69E12EC0DE14D7D91FB5D2B9 /* EXPMatchers+beInstanceOf.h in Headers */ = {isa = PBXBuildFile; fileRef = 792B1A9D583DD4697D753B52 /* EXPMatchers+beInstanceOf.h */; };
@@ -364,6 +366,8 @@
 		64D03DEEF87A80CE30657A08 /* Pods-Cero-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Cero-dummy.m"; sourceTree = "<group>"; };
 		65408280879C06AB3B371BC1 /* EXPBackwardCompatibility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = EXPBackwardCompatibility.m; path = src/EXPBackwardCompatibility.m; sourceTree = "<group>"; };
 		65627AE4DD3B68A9572908B2 /* BIContentChanges.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BIContentChanges.m; sourceTree = "<group>"; };
+		65BB256BBBF350111B1FCE84 /* BILog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BILog.h; sourceTree = "<group>"; };
+		65BB2F3FDED524A8749F0051 /* BIBenchmark.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIBenchmark.h; sourceTree = "<group>"; };
 		66618426FCA1760350E33519 /* Pods-Tests-Expecta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Tests-Expecta.xcconfig"; sourceTree = "<group>"; };
 		67E54C3BC294BCA99D46685D /* BISimpleAttributeHandler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BISimpleAttributeHandler.h; sourceTree = "<group>"; };
 		693C97EAC6F4E6E70FA5A544 /* BIInflatedViewContainer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BIInflatedViewContainer.h; sourceTree = "<group>"; };
@@ -859,6 +863,8 @@
 				84724AABD730E5BF8C7E6151 /* UIView+Finders.m */,
 				6D119816A1B6B700666F38B5 /* xlmetamacros.h */,
 				45A46A918E27DA0E522A0B79 /* Handlers */,
+				65BB2F3FDED524A8749F0051 /* BIBenchmark.h */,
+				65BB256BBBF350111B1FCE84 /* BILog.h */,
 			);
 			name = Classes;
 			path = Classes;
@@ -1052,6 +1058,8 @@
 				2798FC090D4B862334DD5940 /* UIView+BIViewExtensions.h in Headers */,
 				E85EAB1E891C22CEBB90B597 /* UIView+Finders.h in Headers */,
 				2DC801AF4AB9AF50F209F803 /* xlmetamacros.h in Headers */,
+				65BB21C482D7670F4A2E3EBC /* BIBenchmark.h in Headers */,
+				65BB20797A9D7AAFCAE6259B /* BILog.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
