@@ -1,6 +1,7 @@
 #import "BILayoutParser.h"
 #import "BILayoutElement.h"
 #import "BILayoutElementTreeNode.h"
+#import "BILog.h"
 
 
 @interface BILayoutParser () <NSXMLParserDelegate>
@@ -57,11 +58,11 @@ didStartElement:(NSString *)elementName
 }
 
 - (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError {
-    NSLog(@"[ERROR] - BIParserDelegate - %@", parseError);
+    BILog(@"[ERROR] - BIParserDelegate - %@", parseError);
 }
 
 - (void)parser:(NSXMLParser *)parser validationErrorOccurred:(NSError *)validationError {
-    NSLog(@"[WARN] - BIParserDelegate - %@", validationError);
+    BILog(@"[WARN] - BIParserDelegate - %@", validationError);
 }
 
 - (void)parserDidStartDocument:(NSXMLParser *)parser {

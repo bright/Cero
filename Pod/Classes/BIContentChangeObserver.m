@@ -1,5 +1,6 @@
 #import "BIContentChangeObserver.h"
 #import "BIEXTScope.h"
+#import "BILog.h"
 
 @interface BIContentChangeObserver ()
 @property(nonatomic, strong) NSMutableArray *needsReloadObservable;
@@ -38,7 +39,7 @@
             if (handler != nil) {
                 handler();
             } else {
-                NSLog(@"ERROR: Nil handler detected in %@", self);
+                BILog(@"ERROR: Nil handler detected in %@", self);
             }
         }
     }
@@ -51,7 +52,7 @@
             if (handler != nil) {
                 handler(path, content);
             } else {
-                NSLog(@"ERROR: Nil handler detected in %@", self);
+                BILog(@"ERROR: Nil handler detected in %@", self);
             }
         }
 

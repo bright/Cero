@@ -9,7 +9,10 @@
 #import "BIHandlersConfiguration.h"
 #import "BILayoutElement.h"
 #import "UIView+BIAttributes.h"
+#import "BIBenchmark.h"
 
+#undef BILogDebug
+#define BILogDebug(...)
 
 @implementation BILayoutInflater {
     id <BIHandlersConfiguration> _handlersCache;
@@ -33,20 +36,20 @@
 
 - (BIInflatedViewContainer *)inflateFilePath:(NSString *)inBundlePath superview:(UIView *)superview {
     BIViewHierarchyBuilder *builder = [self inflateBuilder:inBundlePath superview:superview];
-    NSLog(@"Will run ready steps for path %@", inBundlePath.lastPathComponent);
+    BILogDebug(@"Will run ready steps for path %@", inBundlePath.lastPathComponent);
     [builder runOnReadySteps];
     return builder.container;
 }
 
 - (BIViewHierarchyBuilder *)inflateBuilder:(NSString *)inBundlePath superview:(UIView *)superview {
     NSAssert(inBundlePath.length > 0, @"File path to inflate must not be empty");
-    NSLog(@"Will inflate builder for path %@", inBundlePath.lastPathComponent);
+    BILogDebug(@"Will inflate builder for path %@", inBundlePath.lastPathComponent);
     BIViewHierarchyBuilder *builder = [self.buildersCache cachedBuilderFor:inBundlePath
                                                                      onNew:^(NSData *content) {
-                                                                         NSLog(@"Creating new builder for path %@", inBundlePath.lastPathComponent);
+                                                                         BILogDebug(@"Creating new builder for path %@", inBundlePath.lastPathComponent);
                                                                          return [self inflateFilePathUntilReady:inBundlePath superview:superview content:content];
                                                                      } onCached:^(BIViewHierarchyBuilder *cachedBuilder) {
-                NSLog(@"Using cached builder for path %@", inBundlePath);
+                BILogDebug(@"Using cached builder for path %@", inBundlePath);
                 [cachedBuilder startWithSuperView:superview];
                 [cachedBuilder runBuildSteps];
                 return cachedBuilder;
@@ -75,7 +78,7 @@
         [layoutParser traverseElements];
         return newBuilder;
     } else {
-        NSLog(@"Failed to parse %@ with error: %@", filePath, layoutParser.error);
+        BILogError(@"Failed to parse %@ with error: %@", filePath, layoutParser.error);
     }
 
     return newBuilder;
@@ -90,14 +93,17 @@
 }
 
 - (BIInflatedViewContainer *)reloadSuperview:(UIView *)superview path:(NSString *)path notify:(OnViewInflated)notify {
+    __block BIInflatedViewContainer *viewContainer;
+    BIBench([@"Inflating view " stringByAppendingString:path.lastPathComponent],
     for (UIView *view in superview.subviews) {
         if (view.bi_isPartOfLayout) {
             [view removeFromSuperview];
         } else {
-            NSLog(@"A view is not part of layout %@", view);
+            BILogWarn(@"A view is not part of layout %@", view);
         }
     }
-    BIInflatedViewContainer *viewContainer = [self inflateFilePath:path superview:superview];
+            viewContainer = [self inflateFilePath:path superview:superview];
+    );
     if (notify != nil) {
         notify(viewContainer);
     }

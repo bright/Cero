@@ -7,6 +7,7 @@
 #import "BIEXTScope.h"
 #import "BIBuildersCache.h"
 #import "BILayoutInflater.h"
+#import "BILog.h"
 
 @implementation BIIncludeHandler
 - (BOOL)canHandle:(BILayoutElement *)element inBuilder:(BIViewHierarchyBuilder *)builder {
@@ -41,10 +42,10 @@
             [cache addReloadSource:inBundlePath
              contentChangeObserver:builder.rootInBundlePath];
         } else {
-            NSLog(@"ERROR: Included file not found %@", sourceReference.sourceDescription);
+            BILog(@"ERROR: Included file not found %@", sourceReference.sourceDescription);
         }
     } else {
-        NSLog(@"ERROR: Empty layout attribute of include element %@", sourceReference.sourceDescription);
+        BILog(@"ERROR: Empty layout attribute of include element %@", sourceReference.sourceDescription);
     }
 
     element.handledAllAttributes = YES;

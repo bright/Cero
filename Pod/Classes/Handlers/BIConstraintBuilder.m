@@ -3,6 +3,7 @@
 #import "BIEXTScope.h"
 #import "BISourceReference.h"
 #import "UIView+Finders.h"
+#import "BILog.h"
 
 @interface BIIConstraintBuilder ()
 @property(nonatomic, copy) ViewFinder firstItemFinder;
@@ -45,7 +46,7 @@
                 otherItem = self.otherItemFinder(container);
                 if (otherItem == nil || ![otherItem isKindOfClass:UIView.class]) {
                     //TODO Error handling
-                    NSLog(@"Could not find other item view %@", _sourceReference.sourceDescription);
+                    BILog(@"Could not find other item view %@", _sourceReference.sourceDescription);
                     continue;
                 }
             }
@@ -66,7 +67,7 @@
 
             UIView *constraintRoot = [firstItem bi_commonSuperviewForConstraint:otherItem];
             if (constraintRoot == nil) {
-                NSLog(@"ERROR: Can't find common superview for %@ and %@", firstItem, otherItem);
+                BILog(@"ERROR: Can't find common superview for %@ and %@", firstItem, otherItem);
             } else {
                 [constraintRoot addConstraint:constraint];
                 [constraints addObject:constraint];
@@ -74,7 +75,7 @@
             index += 1;
         }
     } else {
-        NSLog(@"Error first item for constraint not found: %@", _sourceReference.sourceDescription);
+        BILog(@"Error first item for constraint not found: %@", _sourceReference.sourceDescription);
     }
     return constraints;
 }
@@ -221,7 +222,7 @@
             if (attribute != NSLayoutAttributeNotAnAttribute) {
                 [attributes addObject:@(attribute)];
             } else {
-                NSLog(@"ERROR: No layout attribute found for name '%@'", component);
+                BILog(@"ERROR: No layout attribute found for name '%@'", component);
             }
         }
     }
@@ -372,7 +373,7 @@ static NSDictionary *stringToPriorityMap;
             if (priorityValue >= 0 && priorityValue <= UILayoutPriorityRequired) {
                 self.priority = @(priorityValue);
             } else {
-                NSLog(@"Invalid priority value %@ (values must be between 0 and 1000)", priority);
+                BILog(@"Invalid priority value %@ (values must be between 0 and 1000)", priority);
             }
         }
     }

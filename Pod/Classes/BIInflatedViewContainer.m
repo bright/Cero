@@ -3,6 +3,10 @@
 #import "NSError+BIErrors.h"
 #import "BISourceReference.h"
 #import "UIView+BIAttributes.h"
+#import "BILog.h"
+
+#undef BILogDebug
+#define BILogDebug(...)
 
 @interface BIIdCacheDelegatedFinder : NSObject
 - (instancetype)initWithCache:(NSMapTable *)viewsCache;
@@ -46,13 +50,13 @@
     if (existing == nil) {
         [_byIdsCache setObject:element forKey:id];
         _sourceCache[id] = source;
-        NSLog(@"New cache entry for key %@ is %@", id, element);
+        BILogDebug(@"New cache entry for key %@ is %@", id, element);
         return true;
     } else {
         BISourceReference *existingElement = _sourceCache[id];
         NSError *duplicateIdError = [NSError bi_error:@"Duplicate id found"
                                                reason:[NSString stringWithFormat:@"An id '%@' is used at \n%@\n\nand at\n\n%@", id, existingElement.sourceDescription, source.sourceDescription]];
-        NSLog(@"BILayoutError: %@", duplicateIdError);
+        BILogDebug(@"BILayoutError: %@", duplicateIdError);
         *error = duplicateIdError;
         return false;
     }
@@ -85,7 +89,7 @@
 
 - (void)setSuperviewAsCurrent {
     UIView *parent = self.current.superview;
-    NSLog(@"Moving to %@ from %@", parent, self.current);
+    BILogDebug(@"Moving to %@ from %@", parent, self.current);
     self.current = parent;
 }
 
@@ -95,7 +99,7 @@
         self.root = view;
     }
     UIView *parent = self.current;
-    NSLog(@"Adding %@ as child of %@", view, parent);
+    BILogDebug(@"Adding %@ as child of %@", view, parent);
     [parent addSubview:view];
     view.bi_isPartOfLayout = YES;
     self.current = view;

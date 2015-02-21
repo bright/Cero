@@ -6,6 +6,10 @@
 #import "BIInflatedViewContainer.h"
 #import "BIHandlersConfiguration.h"
 #import "BIEXTScope.h"
+#import "BILog.h"
+
+#undef BILogDebug
+#define BILogDebug(...)
 
 
 @interface BIViewHierarchyBuilder ()
@@ -115,7 +119,7 @@
 
 - (void)runBuildSteps {
     BIInflatedViewContainer *container = self.container;
-    NSLog(@"Will run %@ build steps", @(_builderSteps.count));
+    BILogDebug(@"Will run %@ build steps", @(_builderSteps.count));
     for (BuilderStep step in _builderSteps) {
         step(container);
     }

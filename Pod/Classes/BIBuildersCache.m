@@ -2,6 +2,10 @@
 #import "BIViewHierarchyBuilder.h"
 #import "BIContentChanges.h"
 #import "BIContentChangeObserver.h"
+#import "BILog.h"
+
+#undef BILogDebug
+#define BILogDebug(...)
 
 @implementation BIBuildersCache {
     NSMutableDictionary *_cache;
@@ -28,7 +32,7 @@
 
     BIViewHierarchyBuilder *cachedBuilder = _cache[inBundlePath];
     if (cachedBuilder == nil) {
-        NSLog(@"No cached builer for path %@", inBundlePath.lastPathComponent);
+        BILogDebug(@"No cached builer for path %@", inBundlePath.lastPathComponent);
         cachedBuilder = builderFactory(fileContent);
         if (cachedBuilder != nil) {
             _cache[inBundlePath] = cachedBuilder;
@@ -59,7 +63,7 @@
 }
 
 - (void)invalidateFilePath:(NSString *)inBundlePath withNewContent:(NSData *)content {
-    NSLog(@"Invalidating builder for path %@", inBundlePath.lastPathComponent);
+    BILogInfo(@"Invalidating builder for path %@", inBundlePath.lastPathComponent);
     BIViewHierarchyBuilder *builder = _cache[inBundlePath];
     [_cache removeObjectForKey:inBundlePath];
     [builder invalidate];

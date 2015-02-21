@@ -4,6 +4,7 @@
 #import "BISourceReference.h"
 #import "BIInflatedViewContainer.h"
 #import "BIConstraintBuilder.h"
+#import "BILog.h"
 
 @implementation BIConstraintHandler {
 }
@@ -14,7 +15,7 @@
 - (void)handleEnter:(BILayoutElement *)element inBuilder:(BIViewHierarchyBuilder *)builder {
     BISourceReference *reference = [builder.sourceReference subReferenceFromLine:element.startLineNumber andColumn:element.startColumnNumber];
     if (builder.current == nil) {
-        NSLog(@"WARN: Constraint not under view %@", reference);
+        BILog(@"WARN: Constraint not under view %@", reference);
         return;
     }
     NSMutableDictionary *attributes = element.attributes;
@@ -41,7 +42,7 @@
     if ([constraintBuilder validForCompletion:&validationError]) {
         [self registerInstallWhenBuilderReady:builder attributes:attributes constraintBuilder:constraintBuilder];
     } else {
-        NSLog(@"ERROR Constraint cannot be build: %@", validationError);
+        BILog(@"ERROR Constraint cannot be build: %@", validationError);
     }
     element.handledAllAttributes = YES;
 }
@@ -67,7 +68,7 @@
                 }
             }
         } else {
-            NSLog(@"Failed to isntall constraint: %@", installError);
+            BILog(@"Failed to isntall constraint: %@", installError);
         }
     }];
 }

@@ -8,6 +8,7 @@
 #pragma clang diagnostic pop
 
 #import "NSObject+KVCExtensions.h"
+#import "BILog.h"
 
 
 @implementation BISimpleAttributeHandler
@@ -23,7 +24,7 @@
             [container.current setValue:value forKeyPath:attribute];
         }];
     } else {
-        NSLog(@"Element %@ does not support attribute %@ with value %@", element.name, attribute,value );
+        BILog(@"Element %@ does not support attribute %@ with value %@", element.name, attribute, value);
     }
 }
 

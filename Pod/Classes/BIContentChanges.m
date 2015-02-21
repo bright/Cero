@@ -3,6 +3,7 @@
 #import "BIFileWatcher.h"
 #import "BIEXTScope.h"
 #import "BIBuildersCache.h"
+#import "BILog.h"
 
 @implementation BIContentChanges {
 
@@ -36,7 +37,7 @@
             }                          boundTo:self.cache];
             resultObserver = _observers[inBundlePath] = observer;
         } else {
-            NSLog(@"WARN: Disk path not found for file %@ (root path: %@)", inBundlePath, rootProjectPath);
+            BILog(@"WARN: Disk path not found for file %@ (root path: %@)", inBundlePath, rootProjectPath);
         }
     }
     return resultObserver;
