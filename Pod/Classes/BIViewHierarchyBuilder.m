@@ -34,10 +34,6 @@
     return self;
 }
 
-- (void)onReady {
-    self.onReadyQueue(self.container);
-}
-
 - (void)onEnterNode:(BILayoutElement *)node {
     id <BIBuilderHandler> elementHandler = nil;
     for (elementHandler in [self elementHandlers]) {
@@ -107,8 +103,10 @@
 }
 
 - (void)runBuildSteps {
+    BIInflatedViewContainer *container = self.container;
+    NSLog(@"Will run %@ build steps", @(_builderSteps.count));
     for (BuilderStep step in _builderSteps) {
-        step(self.container);
+        step(container);
     }
 }
 
