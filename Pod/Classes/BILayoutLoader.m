@@ -42,10 +42,10 @@
         cell.bi_cachedViewHelper = container;
         BIContentChangeObserver *observer = [self contentChangeObserveForPath:path];
         @weakify(tableView);
-        [observer addHandler:^{
+        [observer addNeedsReloadHandler:^{
             @strongify(tableView);
             [tableView reloadData];
-        }            boundTo:tableView];
+        }                       boundTo:tableView];
     } else {
         loaded(cell.bi_cachedViewHelper);
     }
@@ -58,12 +58,12 @@
     BIInflatedViewContainer *newView = [self reloadSuperview:superview path:path notify:notify];
     BIContentChangeObserver *observer = [self contentChangeObserveForPath:path];
     @weakify(self, superview);
-    [observer addHandler:^{
+    [observer addNeedsReloadHandler:^{
         @strongify(self, superview);
         [self reloadSuperview:superview
                          path:path
                        notify:notify];
-    }            boundTo:superview];
+    }                       boundTo:superview];
     return newView;
 }
 
