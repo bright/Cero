@@ -98,7 +98,7 @@
 
 - (void)addBuildStep:(BuilderStep)step {
     BIInflatedViewContainer *container = self.container;
-    if (step != nil && ![_builderSteps containsObject:step]) {
+    if (step != nil) {
         step(container);
         [_builderSteps addObject:step];
     }
