@@ -11,8 +11,9 @@
 }
 
 - (void)handle:(NSString *)attribute ofElement:(BILayoutElement *)element inBuilder:(BIViewHierarchyBuilder *)builder {
-    UIImage *image = [UIImage imageNamed:element.attributes[attribute]];
+    NSString *imageName = element.attributes[attribute];
     [builder addBuildStep:^(BIInflatedViewContainer *container) {
+        UIImage *image = [UIImage imageNamed:imageName];
         UIImageView *current = (UIImageView *) container.current;
         current.image = image;
         CGRect rect = current.frame;
