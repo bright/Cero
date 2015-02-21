@@ -1,5 +1,6 @@
 language: objective-c
 podfile: Example/Podfile
 xcode_workspace: Example/Cero.xcworkspace
+xcode_sdk: iphonesimulator
 xcode_scheme: CeroTests
 xcode_configuration: Release
