@@ -14,7 +14,6 @@
 		6003F598195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F596195388D20070C39A /* InfoPlist.strings */; };
 		6003F59A195388D20070C39A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F599195388D20070C39A /* main.m */; };
 		6003F59E195388D20070C39A /* BIAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F59D195388D20070C39A /* BIAppDelegate.m */; };
-		6003F5A7195388D20070C39A /* BIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5A6195388D20070C39A /* BIViewController.m */; };
 		6003F5A9195388D20070C39A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5A8195388D20070C39A /* Images.xcassets */; };
 		6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F5AF195388D20070C39A /* XCTest.framework */; };
 		6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
@@ -42,6 +41,7 @@
 		65BB2DD49C46EC69DDEDBBCC /* ButtonsAndLabels.xml in Resources */ = {isa = PBXBuildFile; fileRef = 65BB26F7D75294D33663CA8E /* ButtonsAndLabels.xml */; };
 		65BB2E3862DA7CB13348ED87 /* TestIncludeChildConstraint.xml in Resources */ = {isa = PBXBuildFile; fileRef = 65BB2588965F01FE20830FBA /* TestIncludeChildConstraint.xml */; };
 		65BB2E53971158CBB894D6C1 /* TestIncludeChildConstraint.xml in Resources */ = {isa = PBXBuildFile; fileRef = 65BB2588965F01FE20830FBA /* TestIncludeChildConstraint.xml */; };
+		65BB2E63F4D9267438255099 /* BIExamplesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BB2A003E7D7B89A13AC611 /* BIExamplesView.m */; };
 		65BB2ED4AA66FEECB005F76F /* bright.png in Resources */ = {isa = PBXBuildFile; fileRef = 65BB271D16C0EC61C9A7AF2F /* bright.png */; };
 		65BB2F0210F676FA6F83AE48 /* TestIncludeMerge.xml in Resources */ = {isa = PBXBuildFile; fileRef = 65BB20EB93D02FE2D4A8E0BF /* TestIncludeMerge.xml */; };
 		65BB2F693EE0D0D5917A623C /* ExamplesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BB257FB5DFCF76D0A3938C /* ExamplesViewController.m */; };
@@ -75,8 +75,6 @@
 		6003F59D195388D20070C39A /* BIAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BIAppDelegate.m; sourceTree = "<group>"; };
 		6003F5A0195388D20070C39A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		6003F5A3195388D20070C39A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
-		6003F5A5195388D20070C39A /* BIViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BIViewController.h; sourceTree = "<group>"; };
-		6003F5A6195388D20070C39A /* BIViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BIViewController.m; sourceTree = "<group>"; };
 		6003F5A8195388D20070C39A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		6003F5AE195388D20070C39A /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F5AF195388D20070C39A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -87,6 +85,7 @@
 		65BB20E9087135377B50EAD1 /* TableSampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TableSampleViewController.m; path = TableSample/TableSampleViewController.m; sourceTree = "<group>"; };
 		65BB20EB93D02FE2D4A8E0BF /* TestIncludeMerge.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TestIncludeMerge.xml; sourceTree = "<group>"; };
 		65BB212CDDA51648EC3F134D /* ExamplesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExamplesViewController.h; sourceTree = "<group>"; };
+		65BB219B9DB591C9AA260050 /* BIExamplesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIExamplesView.h; sourceTree = "<group>"; };
 		65BB2295CF84EEB59CA2EAAA /* Constraints_specs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constraints_specs.m; sourceTree = "<group>"; };
 		65BB22EEA1B5DD2C7E933BAA /* Include_specs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Include_specs.m; sourceTree = "<group>"; };
 		65BB2462F1C8148628D73228 /* TestIncludeParent.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TestIncludeParent.xml; sourceTree = "<group>"; };
@@ -102,6 +101,7 @@
 		65BB27DA1669420A576B131E /* IdAttribute_specs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdAttribute_specs.m; sourceTree = "<group>"; };
 		65BB282CB15285E472E82F4E /* TableSampleCellContent_1.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TableSampleCellContent_1.xml; sourceTree = "<group>"; };
 		65BB287AE62CBA4A6C8EE129 /* BrightLogo.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = BrightLogo.xml; sourceTree = "<group>"; };
+		65BB2A003E7D7B89A13AC611 /* BIExamplesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIExamplesView.m; sourceTree = "<group>"; };
 		65BB2A85BBD048A3CCE84364 /* TestIncludeChild.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TestIncludeChild.xml; sourceTree = "<group>"; };
 		65BB2AB68C82DDB674D35711 /* TableSampleCellContent_2.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TableSampleCellContent_2.xml; sourceTree = "<group>"; };
 		65BB2BABAD6998B7CADD688C /* TestHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestHelper.m; sourceTree = "<group>"; };
@@ -186,8 +186,6 @@
 				6003F59D195388D20070C39A /* BIAppDelegate.m */,
 				6003F59F195388D20070C39A /* Main_iPhone.storyboard */,
 				6003F5A2195388D20070C39A /* Main_iPad.storyboard */,
-				6003F5A5195388D20070C39A /* BIViewController.h */,
-				6003F5A6195388D20070C39A /* BIViewController.m */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
 				65BB257FB5DFCF76D0A3938C /* ExamplesViewController.m */,
@@ -197,6 +195,8 @@
 				65BB20E9087135377B50EAD1 /* TableSampleViewController.m */,
 				65BB2443098DBA37B1BCC1EF /* TableSample */,
 				65BB287AE62CBA4A6C8EE129 /* BrightLogo.xml */,
+				65BB2A003E7D7B89A13AC611 /* BIExamplesView.m */,
+				65BB219B9DB591C9AA260050 /* BIExamplesView.h */,
 			);
 			path = Cero;
 			sourceTree = "<group>";
@@ -473,11 +473,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				6003F59E195388D20070C39A /* BIAppDelegate.m in Sources */,
-				6003F5A7195388D20070C39A /* BIViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 				65BB2FB1AF70CBA84E56BEB7 /* ButtonsAndLabelsViewController.m in Sources */,
 				65BB2F693EE0D0D5917A623C /* ExamplesViewController.m in Sources */,
 				65BB26C53C0939D527FF8672 /* TableSampleViewController.m in Sources */,
+				65BB2E63F4D9267438255099 /* BIExamplesView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

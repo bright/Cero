@@ -1,0 +1,2 @@
+@interface BIExamplesView : UIView
+@end
