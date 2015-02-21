@@ -85,6 +85,7 @@
 
 - (void)setSuperviewAsCurrent {
     UIView *parent = self.current.superview;
+    NSLog(@"Moving to %@ from %@", parent, self.current);
     self.current = parent;
 }
 
@@ -94,6 +95,7 @@
         self.root = view;
     }
     UIView *parent = self.current;
+    NSLog(@"Adding %@ as child of %@", view, parent);
     [parent addSubview:view];
     view.bi_isPartOfLayout = YES;
     self.current = view;
