@@ -5,18 +5,19 @@
 #import "BIAttributeHandler.h"
 #import "BIInflatedViewContainer.h"
 #import "BIHandlersConfiguration.h"
+#import "BIEXTScope.h"
 
 
 @interface BIViewHierarchyBuilder ()
-
-@property(nonatomic, copy) OnBuilderReady onReadyQueue;
-
+@property(nonatomic, readonly) OnBuilderReady onReadySteps;
 @end
 
 @implementation BIViewHierarchyBuilder {
     BIInflatedViewContainer *_container;
     id <BIHandlersConfiguration> _configuration;
     NSMutableArray *_builderSteps;
+    NSMutableArray *_builderReadySteps;
+    NSMutableArray *_invalidateHandlers;
 }
 
 + (instancetype)builder:(id <BIHandlersConfiguration>)configuration {
@@ -27,9 +28,14 @@
     self = [super init];
     if (self) {
         _builderSteps = NSMutableArray.new;
-        self.onReadyQueue = ^(BIInflatedViewContainer *_) {
-        };
+        _builderReadySteps = NSMutableArray.new;
+        _invalidateHandlers = NSMutableArray.new;
         _configuration = configuration;
+        @weakify(self);
+        _onReadySteps = ^(BIInflatedViewContainer *container) {
+            @strongify(self);
+            [self runOnReadySteps:container];
+        };
     }
     return self;
 }
@@ -82,19 +88,24 @@
 }
 
 
-- (void)addOnReadyStep:(OnBuilderReady)onReady {
-    if (onReady != nil) {
-        OnBuilderReady previous = self.onReadyQueue;
-        self.onReadyQueue = ^(BIInflatedViewContainer *container) {
-            previous(container);
-            onReady(container);
-        };
+- (BOOL)addOnReadyStep:(OnBuilderReady)onReady {
+    if (onReady != nil && ![_builderReadySteps containsObject:onReady]) {
+        [_builderReadySteps addObject:onReady];
+        return YES;
     }
+    return NO;
 }
 
 - (void)addBuildStep:(BuilderStep)step {
-    step(self.container);
-    [_builderSteps addObject:step];
+    BIInflatedViewContainer *container = self.container;
+    if (step != nil && ![_builderSteps containsObject:step]) {
+        step(container);
+        [_builderSteps addObject:step];
+    }
+}
+
+- (void)addInvalidateHandler:(OnBuilderInvalidate)builderInvalidate {
+    [_invalidateHandlers addObject:builderInvalidate];
 }
 
 - (void)startWithSuperView:(UIView *)view {
@@ -111,10 +122,38 @@
 }
 
 - (void)runOnReadySteps {
-    self.onReadyQueue(self.container);
+    [self runOnReadySteps:self.container];
+}
+
+- (void)runOnReadySteps:(BIInflatedViewContainer *)container {
+    for (OnBuilderReady onReady in _builderReadySteps) {
+        if (onReady != nil) {
+            onReady(container);
+        }
+    }
 }
 
 - (void)addOnReadyStepsFrom:(BIViewHierarchyBuilder *)builder {
-    [self addOnReadyStep:builder.onReadyQueue];
+    OnBuilderReady ready = builder.onReadySteps;
+    if ([self addOnReadyStep:ready]) {
+        @weakify(self, ready);
+        [builder addInvalidateHandler:^{
+            @strongify(self, ready);
+            [self removeOnReadyStep:ready];
+        }];
+    }
+}
+
+- (void)removeOnReadyStep:(OnBuilderReady)pFunction {
+    [_builderReadySteps removeObject:pFunction];
+}
+
+- (void)invalidate {
+    for (OnBuilderInvalidate step in _invalidateHandlers) {
+        if (step != nil) {
+            step();
+        }
+    }
+    _invalidateHandlers = nil;
 }
 @end

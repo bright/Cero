@@ -89,14 +89,16 @@ didStartElement:(NSString *)elementName
 - (void)enterNode:(BILayoutElementTreeNode *)node {
     NSAssert(node != nil, @"Can't enter nil node");
     if (node != nil) {
-        if (self.onEnterNode != nil) {
-            self.onEnterNode(node.element);
+        void (^onEnterNode)(BILayoutElement *) = self.onEnterNode;
+        if (onEnterNode != nil) {
+            onEnterNode(node.element);
         }
         for (BILayoutElementTreeNode *childNode in node.children) {
             [self enterNode:childNode];
         }
-        if (self.onLeaveNode != nil) {
-            self.onLeaveNode(node.element);
+        void (^onLeaveNode)(BILayoutElement *) = self.onLeaveNode;
+        if (onLeaveNode != nil) {
+            onLeaveNode(node.element);
         }
     }
 }

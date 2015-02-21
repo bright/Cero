@@ -93,6 +93,8 @@
     for (UIView *view in superview.subviews) {
         if (view.bi_isPartOfLayout) {
             [view removeFromSuperview];
+        } else {
+            NSLog(@"A view is not part of layout %@", view);
         }
     }
     BIInflatedViewContainer *viewContainer = [self inflateFilePath:path superview:superview];

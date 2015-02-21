@@ -9,5 +9,5 @@
 
 - (BIFileWatcher *)fileContentWatcher:(NSString *)diskPath;
 
-- (void)addChangeSource:(NSString *)inBundlePath contentChangeObserver:(NSString *)rootInBundlePath rootProjectPath:(NSString *)rootProjectPath;
+- (void)addNeedsReloadSource:(NSString *)inBundlePath toContentChangeObserver:(NSString *)rootInBundlePath rootProjectPath:(NSString *)rootProjectPath;
 @end

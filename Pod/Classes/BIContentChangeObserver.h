@@ -20,4 +20,6 @@ typedef void (^OnContentChangedAction)();
 - (void)notifyContentChangedHandlers:(NSString *)path content:(NSData *)content;
 
 - (void)notifyNeedsReloadHandlers;
+
+- (void)addNeedsReloadSource:(BIContentChangeObserver *)needsReloadSource;
 @end

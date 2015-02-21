@@ -12,6 +12,8 @@
 
 typedef void(^OnBuilderReady)(BIInflatedViewContainer *container);
 
+typedef void(^OnBuilderInvalidate)();
+
 typedef void(^BuilderStep)(BIInflatedViewContainer *container);
 
 @interface BIViewHierarchyBuilder : NSObject
@@ -32,7 +34,7 @@ typedef void(^BuilderStep)(BIInflatedViewContainer *container);
 
 - (UIView *)current;
 
-- (void)addOnReadyStep:(OnBuilderReady)onReady;
+- (BOOL)addOnReadyStep:(OnBuilderReady)onReady;
 
 - (void)addBuildStep:(BuilderStep)step;
 
@@ -43,4 +45,6 @@ typedef void(^BuilderStep)(BIInflatedViewContainer *container);
 - (void)runOnReadySteps;
 
 - (void)addOnReadyStepsFrom:(BIViewHierarchyBuilder *)builder;
+
+- (void)invalidate;
 @end

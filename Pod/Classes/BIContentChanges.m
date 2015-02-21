@@ -42,12 +42,10 @@
     return resultObserver;
 }
 
-- (void)addChangeSource:(NSString *)inBundlePath contentChangeObserver:(NSString *)rootInBundlePath rootProjectPath:(NSString *)rootProjectPath {
+- (void)addNeedsReloadSource:(NSString *)inBundlePath toContentChangeObserver:(NSString *)rootInBundlePath rootProjectPath:(NSString *)rootProjectPath {
     BIContentChangeObserver *contentChangeObserver = [self contentChangedObserver:rootInBundlePath rootProjectPath:rootProjectPath];
-    NSString *diskPath = [self findDiskPath:inBundlePath rootProjectPath:rootProjectPath];
-    if (diskPath != nil) {
-        [contentChangeObserver addNeedsReloadObservable:[self fileContentWatcher:diskPath]];
-    }
+    BIContentChangeObserver *reloadSource = [self contentChangedObserver:inBundlePath rootProjectPath:rootProjectPath];
+    [contentChangeObserver addNeedsReloadSource:reloadSource];
 }
 
 - (id <BIContentChangeObservable>)fileContentWatcher:(NSString *)diskPath {

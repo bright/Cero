@@ -60,6 +60,7 @@
 
 - (void)addNeedsReloadObservable:(id <BIContentChangeObservable>)observable {
     NSAssert(observable != nil, @"Observable must not be null");
+    NSAssert(observable.onContentChange == nil, @"onContent change must be nil");
     if (![_needsReloadObservable containsObject:observable]) {
         [_needsReloadObservable addObject:observable];
         @weakify(self);
@@ -78,5 +79,13 @@
 - (void)addNeedsReloadHandler:(OnContentChangedAction)handler boundTo:(id)boundObject {
     OnContentChangedAction handlerCopy = [handler copy];
     [_needReloadAfterChangeHandlers setObject:handlerCopy forKey:boundObject];
+}
+
+- (void)addNeedsReloadSource:(BIContentChangeObserver *)needsReloadSource {
+    @weakify(self);
+    [needsReloadSource addNeedsReloadHandler:^{
+        @strongify(self);
+        [self notifyNeedsReloadHandlers];
+    }                                boundTo:self];
 }
 @end

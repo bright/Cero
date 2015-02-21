@@ -21,10 +21,10 @@
         BILayoutInflater *inflater = builder.layoutInflater;
         NSString *inBundlePath = [inflater layoutPath:childLayout];
         if (inBundlePath.length > 0) {
-            @weakify(inflater);
+            @weakify(inflater, builder);
             __block BIViewHierarchyBuilder *childBuilder;
             [builder addBuildStep:^(BIInflatedViewContainer *container) {
-                @strongify(inflater);
+                @strongify(inflater, builder);
                 childBuilder = [inflater inflateBuilder:inBundlePath
                                               superview:container.current];
                 BIInflatedViewContainer *inflatedViewContainer = childBuilder.container;
@@ -32,10 +32,14 @@
                 if (![container tryAddingElementsFrom:inflatedViewContainer error:&error]) {
                     //TODO log error
                 }
+                [builder addOnReadyStepsFrom:childBuilder];
             }];
 
-            [builder addOnReadyStepsFrom:childBuilder];
-            [inflater.buildersCache addChangeSource:inBundlePath contentChangeObserver:builder.rootInBundlePath];
+            BIBuildersCache *cache = inflater.buildersCache;
+            [cache setupInvalidateOnContentChange:inBundlePath];
+
+            [cache addReloadSource:inBundlePath
+             contentChangeObserver:builder.rootInBundlePath];
         } else {
             NSLog(@"ERROR: Included file not found %@", sourceReference.sourceDescription);
         }

@@ -54,13 +54,19 @@
     return [_watchers contentChangedObserver:inBundlePath rootProjectPath:_rootProjectPath];
 }
 
+- (void)setupInvalidateOnContentChange:(NSString *)inBundlePath {
+    [_watchers contentChangedObserver:inBundlePath rootProjectPath:_rootProjectPath];
+}
+
 - (void)invalidateFilePath:(NSString *)inBundlePath withNewContent:(NSData *)content {
     NSLog(@"Invalidating builder for path %@", inBundlePath.lastPathComponent);
+    BIViewHierarchyBuilder *builder = _cache[inBundlePath];
     [_cache removeObjectForKey:inBundlePath];
+    [builder invalidate];
     _oneTimeCacheContent[inBundlePath] = content;
 }
 
-- (void)addChangeSource:(NSString *)inBundlePath contentChangeObserver:(NSString *)rootInBundlePath {
-    [_watchers addChangeSource:inBundlePath contentChangeObserver:rootInBundlePath rootProjectPath:_rootProjectPath];
+- (void)addReloadSource:(NSString *)inBundlePath contentChangeObserver:(NSString *)rootInBundlePath {
+    [_watchers addNeedsReloadSource:inBundlePath toContentChangeObserver:rootInBundlePath rootProjectPath:_rootProjectPath];
 }
 @end
