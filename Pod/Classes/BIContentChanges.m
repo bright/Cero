@@ -46,7 +46,7 @@
     BIContentChangeObserver *contentChangeObserver = [self contentChangedObserver:rootInBundlePath rootProjectPath:rootProjectPath];
     NSString *diskPath = [self findDiskPath:inBundlePath rootProjectPath:rootProjectPath];
     if (diskPath != nil) {
-        [contentChangeObserver addObservable:[self fileContentWatcher:diskPath]];
+        [contentChangeObserver addNeedsReloadObservable:[self fileContentWatcher:diskPath]];
     }
 }
 
