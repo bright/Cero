@@ -43,36 +43,6 @@ SpecBegin(BILayoutInflaterSpec)
                     expect(view.left).to.equal(20);
                 });
             });
-            context(@"building button with title for state", ^{
-                __block UIButton *button;
-                beforeEach(^{
-                    button = (UIButton *) testInflateView(@"<UIButton>"
-                            "<titleForState state=\"UIControlStateNormal\" value=\"Normal\" />"
-                            "<titleForState state=\"UIControlStateSelected\" value=\"Selected\" />"
-                            "<titleForState state=\"UIControlStateDisabled\" value=\"Disabled\" />"
-                            "<titleForState state=\"UIControlStateHighlighted\" value=\"Highlighed\" />"
-                            "<titleForState state=\"UIControlStateApplication\" value=\"Application\" />"
-                            "</UIButton>");
-                });
-                it(@"should build button properly", ^{
-                    expect(button).toNot.beNil();
-                });
-                it(@"should set button title for normal state", ^{
-                    expect([button titleForState:UIControlStateNormal]).to.equal(@"Normal");
-                });
-                it(@"should set button title for selected state", ^{
-                    expect([button titleForState:UIControlStateSelected]).to.equal(@"Selected");
-                });
-                it(@"should set button title for higlighted state", ^{
-                    expect([button titleForState:UIControlStateHighlighted]).to.equal(@"Highlighed");
-                });
-                it(@"should set button title for disabled state", ^{
-                    expect([button titleForState:UIControlStateDisabled]).to.equal(@"Disabled");
-                });
-                it(@"should set button title for application state", ^{
-                    expect([button titleForState:UIControlStateApplication]).to.equal(@"Application");
-                });
-            });
         });
 
         context(@"having a view hierarchy to build", ^{

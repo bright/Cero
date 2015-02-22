@@ -8,7 +8,7 @@
 @implementation BITitleForStateHandler {
 }
 - (BOOL)canHandle:(BILayoutElement *)element inBuilder:(BIViewHierarchyBuilder *)builder {
-    return [element.name isEqualToString:@"titleForState"]
+    return [element.name isEqualToString:@"title"]
             && [builder.current respondsToSelector:@selector(setTitle:forState:)];
 }
 
@@ -21,7 +21,10 @@
             @"UIControlStateApplication" : @(UIControlStateApplication),
     };
 
-    NSString *stateValue = element.attributes[@"state"];
+    NSString *stateValue = element.attributes[@"forState"];
+    if (stateValue.length == 0) {
+        stateValue = @"UIControlStateNormal";
+    }
     NSString *title = element.attributes[@"value"];
     for(NSString *stateName in stateStringToStateEnum){
         if ([stateValue isEqualToString:stateName]) {
