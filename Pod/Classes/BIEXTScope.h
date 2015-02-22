@@ -83,7 +83,7 @@ return [foo isEqual:obj] || [bar isEqual:obj];
 #define strongify(...) \
     ext_keywordify \
     _Pragma("clang diagnostic push") \
-    _Pragma("clang diagnostic ignored \"-Wshadow\"") \
+    _Pragma("clang diagnostic ignored \"-Wunused-variable\"") \
     metamacro_foreach(ext_strongify_,, __VA_ARGS__) \
     _Pragma("clang diagnostic pop")
 

@@ -3,6 +3,8 @@
 #import "BILayoutElement.h"
 #import "BIViewHierarchyBuilder.h"
 #import "BIInflatedViewContainer.h"
+#import "BIEnumsRegistry.h"
+#import "BIEnum.h"
 
 
 @implementation BITitleForStateHandler {
@@ -13,29 +15,17 @@
 }
 
 - (void)handleEnter:(BILayoutElement *)element inBuilder:(BIViewHierarchyBuilder *)builder {
-    NSDictionary *stateStringToStateEnum = @{
-            @"UIControlStateNormal" : @(UIControlStateNormal),
-            @"UIControlStateSelected" : @(UIControlStateSelected),
-            @"UIControlStateHighlighted" : @(UIControlStateHighlighted),
-            @"UIControlStateDisabled" : @(UIControlStateDisabled),
-            @"UIControlStateApplication" : @(UIControlStateApplication),
-    };
 
     NSString *stateValue = element.attributes[@"forState"];
-    if (stateValue.length == 0) {
-        stateValue = @"UIControlStateNormal";
-    }
     NSString *title = element.attributes[@"value"];
-    for(NSString *stateName in stateStringToStateEnum){
-        if ([stateValue isEqualToString:stateName]) {
-            NSNumber * state = stateStringToStateEnum[stateName];
-            [builder addBuildStep:^(BIInflatedViewContainer *container) {
-                UIButton *button = (UIButton *) container.current;
-                [button setTitle:title forState:(UIControlState) state.unsignedIntegerValue];
-            }];
-        }
-    }
-    [element.attributes removeObjectsForKeys:@[@"value", @"state"]];
+    BIEnum *anEnum = BIEnumFor(UIControlState);
+    NSNumber *state = [anEnum valueFor:stateValue orDefault:@(UIControlStateNormal)];
+    UIControlState controlState = (UIControlState) state.unsignedIntegerValue;
+    [builder addBuildStep:^(BIInflatedViewContainer *container) {
+        UIButton *button = (UIButton *) container.current;
+        [button setTitle:title forState:controlState];
+    }];
+    element.handledAllAttributes = YES;
 }
 
 - (void)handleLeave:(BILayoutElement *)element inBuilder:(BIViewHierarchyBuilder *)builder {

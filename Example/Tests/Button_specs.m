@@ -32,17 +32,8 @@ SpecBegin(Button_specs)
             });
         });
 
-        context(@"button with title", ^{
-            beforeEach(^{
-                button = inflate(@"<UIButton>"
-                        "<title forState=\"UIControlStateNormal\" value=\"Normal\" />"
-                        "<title forState=\"UIControlStateSelected\" value=\"Selected\" />"
-                        "<title forState=\"UIControlStateDisabled\" value=\"Disabled\" />"
-                        "<title forState=\"UIControlStateHighlighted\" value=\"Highlighed\" />"
-                        "<title forState=\"UIControlStateApplication\" value=\"Application\" />"
-                        "</UIButton>");
-            });
 
+        sharedExamplesFor(@"button state title", ^(NSDictionary *data) {
             it(@"should set button title for normal state", ^{
                 expect([button titleForState:UIControlStateNormal]).to.equal(@"Normal");
             });
@@ -58,6 +49,35 @@ SpecBegin(Button_specs)
             it(@"should set button title for application state", ^{
                 expect([button titleForState:UIControlStateApplication]).to.equal(@"Application");
             });
+        });
+
+        context(@"button with title", ^{
+            beforeEach(^{
+                button = inflate(@"<UIButton>"
+                        "<title forState=\"UIControlStateNormal\" value=\"Normal\" />"
+                        "<title forState=\"UIControlStateSelected\" value=\"Selected\" />"
+                        "<title forState=\"UIControlStateDisabled\" value=\"Disabled\" />"
+                        "<title forState=\"UIControlStateHighlighted\" value=\"Highlighed\" />"
+                        "<title forState=\"UIControlStateApplication\" value=\"Application\" />"
+                        "</UIButton>");
+            });
+
+            itBehavesLike(@"button state title", nil);
+        });
+
+        context(@"button with title short form", ^{
+            beforeEach(^{
+                button = inflate(@"<UIButton>"
+                        "<title forState=\"normal\" value=\"Normal\" />"
+                        "<title forState=\"selected\" value=\"Selected\" />"
+                        "<title forState=\"disabled\" value=\"Disabled\" />"
+                        "<title forState=\"highlighted\" value=\"Highlighed\" />"
+                        "<title forState=\"application\" value=\"Application\" />"
+                        "</UIButton>");
+            });
+
+            itBehavesLike(@"button state title", nil);
+
         });
     });
 
