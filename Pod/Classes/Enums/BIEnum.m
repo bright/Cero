@@ -33,6 +33,9 @@
 }
 
 - (NSNumber *)valueFor:(NSString *)key orDefault:(NSNumber *)defaultValue {
+    if (key.length == 0) {
+        return defaultValue;
+    }
     NSString *normalizedKey = key.lowercaseString;
     NSNumber *existing = _values[normalizedKey];
     if (existing == nil) {
