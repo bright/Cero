@@ -1,9 +1,5 @@
-<UIImageView image="bright">
-
-    <Constraint on="bottom" with=":superview" constant="-75"/>
-
+<UIImageView image="bright" contentMode="scaleAspectFit">
+<Constraint on="bottom" with=":superview" constant="-75"/>
     <Constraint on="width" with=":superview" multiplier="0.5"/>
     <Constraint on="centerX" with=":superview"/>
-
-    <Constraint on="height" constant="75"/>
 </UIImageView>
