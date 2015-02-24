@@ -10,6 +10,7 @@
 #import "BIImageAttributeHandler.h"
 #import "BIBuildersCache.h"
 #import "BIIncludeHandler.h"
+#import "BIViewContentModeHandler.h"
 
 
 @implementation BILayoutConfiguration {
@@ -48,6 +49,7 @@ static BILayoutConfiguration *DefaultConfiguration;
     [self registerAttributeHandler:[BIImageAttributeHandler new]];
     [self registerAttributeHandler:[BIColorAttributeHandler new]];
     [self registerAttributeHandler:[BIIdAttributeHandler new]];
+    [self registerAttributeHandler:[BIViewContentModeHandler new]];
     [self registerAttributeHandler:[BISimpleAttributeHandler new]];
     [self registerElementHandler:[BITitleForStateHandler new]];
     [self registerElementHandler:[BIButtonHandler new]];

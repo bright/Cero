@@ -1,0 +1,1 @@
+../../../../../Pod/Classes/Enums/BIViewContentModeEnum.h
