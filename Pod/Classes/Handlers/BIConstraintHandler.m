@@ -22,6 +22,7 @@
     NSString *on = attributes[@"on"];
 
     //we can't reference current item directly here, instead we'll wait until the step is executed
+    //todo those register when ready blocks are flaky - we should use priorities on build steps instead
     __block UIView *firstItem;
     [builder addBuildStep:^(BIInflatedViewContainer *container) {
         firstItem = container.current;

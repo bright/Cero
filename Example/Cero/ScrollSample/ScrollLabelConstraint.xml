@@ -1,0 +1,5 @@
+<merge>
+    <Constraint on="top" with=":previous.bottom" constant="40"/>
+    <Constraint on="width" with=":superview" constant="-20"/>
+    <Constraint on="centerx" with=":superview"/>
+</merge>
