@@ -1,0 +1,2 @@
+@interface ScrollSampleViewController : UIViewController
+@end

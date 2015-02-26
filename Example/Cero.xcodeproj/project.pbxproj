@@ -23,6 +23,8 @@
 		65BB208F2731F0A3060C4C8B /* TestIncludeChild.xml in Resources */ = {isa = PBXBuildFile; fileRef = 65BB2A85BBD048A3CCE84364 /* TestIncludeChild.xml */; };
 		65BB223B955F14D5A3FC623D /* TestIncludeChild.xml in Resources */ = {isa = PBXBuildFile; fileRef = 65BB2A85BBD048A3CCE84364 /* TestIncludeChild.xml */; };
 		65BB22E351A800AE595383D8 /* BrightLogo.xml in Resources */ = {isa = PBXBuildFile; fileRef = 65BB287AE62CBA4A6C8EE129 /* BrightLogo.xml */; };
+		65BB23070956B2F6845901EB /* ScrollSampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BB27C740DCF7840B7C1AF8 /* ScrollSampleViewController.m */; };
+		65BB23327B72604B6AFB7B80 /* ScrollSample.xml in Resources */ = {isa = PBXBuildFile; fileRef = 65BB29D37DAD46CB32D76BE1 /* ScrollSample.xml */; };
 		65BB246F84445E9C67AA2F27 /* TestIncludeParent.xml in Resources */ = {isa = PBXBuildFile; fileRef = 65BB2462F1C8148628D73228 /* TestIncludeParent.xml */; };
 		65BB24D752B0C9FE86C32EE9 /* Include_specs.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BB22EEA1B5DD2C7E933BAA /* Include_specs.m */; };
 		65BB2515D4BF40CDFCBCDD6F /* TestIncludeParent.xml in Resources */ = {isa = PBXBuildFile; fileRef = 65BB2462F1C8148628D73228 /* TestIncludeParent.xml */; };
@@ -98,13 +100,16 @@
 		65BB26F7D75294D33663CA8E /* ButtonsAndLabels.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ButtonsAndLabels.xml; sourceTree = "<group>"; };
 		65BB271D16C0EC61C9A7AF2F /* bright.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bright.png; sourceTree = "<group>"; };
 		65BB27819B6085F516E7EB7A /* TestIncludeParentConstraint.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TestIncludeParentConstraint.xml; sourceTree = "<group>"; };
+		65BB27C740DCF7840B7C1AF8 /* ScrollSampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScrollSampleViewController.m; path = Cero/ScrollSample/ScrollSampleViewController.m; sourceTree = "<group>"; };
 		65BB27DA1669420A576B131E /* IdAttribute_specs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdAttribute_specs.m; sourceTree = "<group>"; };
 		65BB282CB15285E472E82F4E /* TableSampleCellContent_1.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TableSampleCellContent_1.xml; sourceTree = "<group>"; };
 		65BB287AE62CBA4A6C8EE129 /* BrightLogo.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = BrightLogo.xml; sourceTree = "<group>"; };
+		65BB29D37DAD46CB32D76BE1 /* ScrollSample.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ScrollSample.xml; path = Cero/ScrollSample/ScrollSample.xml; sourceTree = "<group>"; };
 		65BB2A003E7D7B89A13AC611 /* BIExamplesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIExamplesView.m; sourceTree = "<group>"; };
 		65BB2A85BBD048A3CCE84364 /* TestIncludeChild.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TestIncludeChild.xml; sourceTree = "<group>"; };
 		65BB2AB68C82DDB674D35711 /* TableSampleCellContent_2.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TableSampleCellContent_2.xml; sourceTree = "<group>"; };
 		65BB2BABAD6998B7CADD688C /* TestHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestHelper.m; sourceTree = "<group>"; };
+		65BB2D7B46AAC5DD398869C7 /* ScrollSampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScrollSampleViewController.h; path = Cero/ScrollSample/ScrollSampleViewController.h; sourceTree = "<group>"; };
 		65BB2DD94228E9203AFCAC3E /* LayoutInflater_specs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LayoutInflater_specs.m; sourceTree = "<group>"; };
 		65BB2EEBB6AA87AF43F59AF0 /* Examples.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Examples.xml; sourceTree = "<group>"; };
 		65BB2F631E68CC5800F091F2 /* TestHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestHelpers.h; sourceTree = "<group>"; };
@@ -154,6 +159,9 @@
 				6003F58B195388D20070C39A /* Products */,
 				73449FAB0AC669B8606FC1F9 /* Pods */,
 				65BB2E115DE72D40FBEF6F92 /* Sample1 */,
+				65BB29D37DAD46CB32D76BE1 /* ScrollSample.xml */,
+				65BB2D7B46AAC5DD398869C7 /* ScrollSampleViewController.h */,
+				65BB27C740DCF7840B7C1AF8 /* ScrollSampleViewController.m */,
 			);
 			sourceTree = "<group>";
 		};
@@ -384,6 +392,7 @@
 				65BB28D58FA15D99E4E2F610 /* TestIncludeParentConstraint.xml in Resources */,
 				65BB2E3862DA7CB13348ED87 /* TestIncludeChildConstraint.xml in Resources */,
 				65BB22E351A800AE595383D8 /* BrightLogo.xml in Resources */,
+				65BB23327B72604B6AFB7B80 /* ScrollSample.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -477,6 +486,7 @@
 				65BB2F693EE0D0D5917A623C /* ExamplesViewController.m in Sources */,
 				65BB26C53C0939D527FF8672 /* TableSampleViewController.m in Sources */,
 				65BB2E63F4D9267438255099 /* BIExamplesView.m in Sources */,
+				65BB23070956B2F6845901EB /* ScrollSampleViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

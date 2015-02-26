@@ -15,6 +15,12 @@
         <title forState="UIControlStateNormal" value="Table view"/>
     </UIButton>
 
+    <UIButton backgroundColor="#dddda0" id="scrollSample">
+        <Constraint on="width, centerX" with=":previous"/>
+        <Constraint on="top" with=":previous.bottom" constant="50"/>
+        <title forState="UIControlStateNormal" value="Scroll view"/>
+    </UIButton>
+
 
     <include layout="BrightLogo"/>
 </BIExamplesView>

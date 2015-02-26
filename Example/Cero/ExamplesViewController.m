@@ -3,11 +3,14 @@
 #import "BIEXTScope.h"
 #import "ButtonsAndLabelsViewController.h"
 #import "TableSampleViewController.h"
+#import "ScrollSampleViewController.h"
 
 @protocol Examples <BIInflatedViewHelper>
 - (UIButton *)buttonsAndLabels;
 
 - (UIButton *)tableSample;
+
+- (UIButton *)scrollSample;
 @end
 
 @implementation ExamplesViewController {
@@ -36,6 +39,7 @@
 - (void)setupView:(NSObject <Examples> *)viewHelper {
     [viewHelper.buttonsAndLabels addTarget:self action:@selector(openButtonsAndLabels) forControlEvents:UIControlEventTouchUpInside];
     [viewHelper.tableSample addTarget:self action:@selector(openTableSample) forControlEvents:UIControlEventTouchUpInside];
+    [viewHelper.scrollSample addTarget:self action:@selector(openScrollSample) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)openTableSample {
@@ -44,6 +48,10 @@
 
 - (void)openButtonsAndLabels {
     [self.navigationController pushViewController:ButtonsAndLabelsViewController.new animated:YES];
+}
+
+- (void)openScrollSample {
+    [self.navigationController pushViewController:ScrollSampleViewController.new animated:YES];
 }
 
 @end

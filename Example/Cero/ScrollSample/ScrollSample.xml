@@ -1,0 +1,68 @@
+<UIView>
+    <Constraint on="width, height" with=":superview"/>
+    <Constraint on="topmargin" with=":topLayoutGuide.bottom"/>
+
+    <UILabel text="Below is a scroll view">
+        <Constraint on="topMargin" with=":superview" constant="40"/>
+        <Constraint on="width" with=":superview" constant="-20"/>
+        <Constraint on="centerx" with=":superview"/>
+    </UILabel>
+
+    <UIScrollView backgroundColor="#00fff0">
+        <Constraint on="top" with=":previous.bottom" constant="20"/>
+        <Constraint on="bottom" with=":superview" constant="-200"/>
+        <Constraint on="width" with=":superview" constant="-20"/>
+        <Constraint on="centerx" with=":superview"/>
+
+
+        <UILabel text="First label">
+            <Constraint on="top" with=":superview" constant="40"/>
+            <Constraint on="width" with=":superview" constant="-20"/>
+            <Constraint on="centerx" with=":superview"/>
+        </UILabel>
+
+        <UILabel text="Second label">
+            <Constraint on="top" with=":previous.bottom" constant="40"/>
+            <Constraint on="width" with=":superview" constant="-20"/>
+            <Constraint on="centerx" with=":superview"/>
+        </UILabel>
+
+        <UILabel text="Third label">
+            <Constraint on="top" with=":previous.bottom" constant="40"/>
+            <Constraint on="width" with=":superview" constant="-20"/>
+            <Constraint on="centerx" with=":superview"/>
+        </UILabel>
+
+        <UILabel text="Forth label">
+            <Constraint on="top" with=":previous.bottom" constant="40"/>
+            <Constraint on="width" with=":superview" constant="-20"/>
+            <Constraint on="centerx" with=":superview"/>
+        </UILabel>
+
+        <UILabel text="Fifth label">
+            <Constraint on="top" with=":previous.bottom" constant="40"/>
+            <Constraint on="width" with=":superview" constant="-20"/>
+            <Constraint on="centerx" with=":superview"/>
+        </UILabel>
+
+        <UILabel text="Sixth label">
+            <Constraint on="top" with=":previous.bottom" constant="40"/>
+            <Constraint on="width" with=":superview" constant="-20"/>
+            <Constraint on="centerx" with=":superview"/>
+        </UILabel>
+
+        <UILabel text="Seventh label">
+            <Constraint on="top" with=":previous.bottom" constant="40"/>
+            <Constraint on="width" with=":superview" constant="-20"/>
+            <Constraint on="centerx" with=":superview"/>
+        </UILabel>
+
+        <UIView>
+            <Constraint on="top" with=":previous.bottom" constant="10"/>
+            <Constraint on="bottom" with=":superview.bottom"/>
+        </UIView>
+
+    </UIScrollView>
+
+    <include layout="BrightLogo"/>
+</UIView>
