@@ -203,11 +203,9 @@
 }
 
 - (enum NSLayoutRelation)parseRelation:(NSString *)relation {
-    [self initRelationMap];
-    return (NSLayoutRelation) [self parse:relation
-                             defaultValue:@(NSLayoutRelationEqual)
-                                   prefix:@"NSLayoutRelation"
-                                 valueMap:stringToRelationMap].integerValue;
+    BIEnum *relationEnum = BIEnumFor(NSLayoutRelation);
+    NSNumber *relationNumber = [relationEnum valueFor:relation orDefault:@(NSLayoutRelationEqual)];
+    return (enum NSLayoutRelation) relationNumber.integerValue;
 }
 
 - (void)constraintOn:(NSString *)on {
@@ -265,23 +263,6 @@
         self.firstItemFinder = view;
     }
     return self;
-}
-
-static NSDictionary *stringToRelationMap;
-
-- (void)initRelationMap {
-    static dispatch_once_t init;
-    dispatch_once(&init, ^{
-        stringToRelationMap = @{
-                @"nslayoutrelationequal" : @(NSLayoutRelationEqual),
-                @"eq" : @(NSLayoutRelationEqual),
-                @"nslayoutrelationgreaterthanorequal" : @(NSLayoutRelationGreaterThanOrEqual),
-                @"gt" : @(NSLayoutRelationGreaterThanOrEqual),
-                @"more" : @(NSLayoutRelationGreaterThanOrEqual),
-                @"nslayoutrelationlessthanorequal" : @(NSLayoutRelationLessThanOrEqual),
-                @"less" : @(NSLayoutRelationLessThanOrEqual),
-        };
-    });
 }
 
 static NSDictionary *stringToPriorityMap;
