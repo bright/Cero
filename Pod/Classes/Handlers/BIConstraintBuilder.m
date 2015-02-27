@@ -265,40 +265,18 @@
     return self;
 }
 
-static NSDictionary *stringToPriorityMap;
-
-- (void)initPriorityMap {
-    static dispatch_once_t init;
-    dispatch_once(&init, ^{
-        stringToPriorityMap = @{
-                @"uilayoutpriorityrequired" : @(UILayoutPriorityRequired),
-                @"required" : @(UILayoutPriorityRequired),
-                @"uilayoutprioritydefaulthigh" : @(UILayoutPriorityDefaultHigh),
-                @"high" : @(UILayoutPriorityDefaultHigh),
-                @"uilayoutprioritydefaultlow" : @(UILayoutPriorityDefaultLow),
-                @"low" : @(UILayoutPriorityDefaultHigh),
-                @"uilayoutpriorityfittingsizelevel" : @(UILayoutPriorityFittingSizeLevel),
-                @"fittingsizelevel" : @(UILayoutPriorityDefaultHigh),
-
-        };
-    });
-}
-
 - (void)withPriority:(NSString *)priority {
     if (priority.length > 0) {
-        [self initPriorityMap];
-        NSNumber *uiLayoutPriority = [self parse:priority
-                                    defaultValue:nil
-                                          prefix:@"UILayoutPriority"
-                                        valueMap:stringToPriorityMap];
+        BIEnum *priorityEnum = BIEnumFor(UILayoutPriority);
+        NSNumber *uiLayoutPriority = [priorityEnum valueFor:priority orDefault:nil];
         if (uiLayoutPriority != nil) {
             self.priority = uiLayoutPriority;
         } else {
             float priorityValue = priority.floatValue;
-            if (priorityValue >= 0 && priorityValue <= UILayoutPriorityRequired) {
+            if (priorityValue > 0 && priorityValue <= UILayoutPriorityRequired) {
                 self.priority = @(priorityValue);
             } else {
-                BILog(@"Invalid priority value %@ (values must be between 0 and 1000)", priority);
+                BILog(@"Invalid priority value %@ (values must be greater than 0 and at most 1000)", priority);
             }
         }
     }
