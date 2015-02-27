@@ -4,6 +4,8 @@
 #import "BISourceReference.h"
 #import "UIView+Finders.h"
 #import "BILog.h"
+#import "BIEnumsRegistry.h"
+#import "BIEnum.h"
 
 @interface BIIConstraintBuilder ()
 @property(nonatomic, copy) ViewFinder firstItemFinder;
@@ -213,12 +215,14 @@
 }
 
 - (NSArray *)parseAttributes:(NSString *)on {
+    BIEnum *layoutAttributeEnum = BIEnumFor(NSLayoutAttribute);
     NSArray *components = [on componentsSeparatedByString:@","];
     NSMutableArray *attributes = NSMutableArray.new;
     for (NSString *component in components) {
         NSString *componentTrimmed = [component stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         if (componentTrimmed.length > 0) {
-            NSLayoutAttribute attribute = [self attributeFromString:componentTrimmed];
+            NSLayoutAttribute attribute = (NSLayoutAttribute) [layoutAttributeEnum valueFor:componentTrimmed
+                                                                                  orDefault:@(NSLayoutAttributeNotAnAttribute)].integerValue;
             if (attribute != NSLayoutAttributeNotAnAttribute) {
                 [attributes addObject:@(attribute)];
             } else {
@@ -229,14 +233,6 @@
     return attributes;
 }
 
-
-- (NSLayoutAttribute)attributeFromString:(NSString *)component {
-    [self initAttributeMap];
-    return (NSLayoutAttribute) [self parse:component
-                              defaultValue:@(NSLayoutAttributeNotAnAttribute)
-                                    prefix:@"NSLayoutAttribute"
-                                  valueMap:stringToAttributeMap].integerValue;
-}
 
 - (NSNumber *)parse:(NSString *)rawValue defaultValue:(NSNumber *)defaultValue prefix:(NSString *)prefix valueMap:(NSDictionary *)sourceMap {
     NSString *longName = rawValue;
@@ -269,58 +265,6 @@
         self.firstItemFinder = view;
     }
     return self;
-}
-
-static NSDictionary *stringToAttributeMap;
-
-- (void)initAttributeMap {
-    static dispatch_once_t initAttributeMap;
-    dispatch_once(&initAttributeMap, ^{
-        stringToAttributeMap = @{
-                @"nslayoutattributeleft" : @(NSLayoutAttributeLeft),
-                @"left" : @(NSLayoutAttributeLeft),
-                @"nslayoutattributeright" : @(NSLayoutAttributeRight),
-                @"right" : @(NSLayoutAttributeRight),
-                @"nslayoutattributetop" : @(NSLayoutAttributeTop),
-                @"top" : @(NSLayoutAttributeTop),
-                @"nslayoutattributebottom" : @(NSLayoutAttributeBottom),
-                @"bottom" : @(NSLayoutAttributeBottom),
-                @"nslayoutattributeleading" : @(NSLayoutAttributeLeading),
-                @"leading" : @(NSLayoutAttributeLeading),
-                @"nslayoutattributetrailing" : @(NSLayoutAttributeTrailing),
-                @"trailing" : @(NSLayoutAttributeTrailing),
-                @"nslayoutattributewidth" : @(NSLayoutAttributeWidth),
-                @"width" : @(NSLayoutAttributeWidth),
-                @"nslayoutattributeheight" : @(NSLayoutAttributeHeight),
-                @"height" : @(NSLayoutAttributeHeight),
-                @"nslayoutattributecenterx" : @(NSLayoutAttributeCenterX),
-                @"centerx" : @(NSLayoutAttributeCenterX),
-                @"nslayoutattributecentery" : @(NSLayoutAttributeCenterY),
-                @"centery" : @(NSLayoutAttributeCenterY),
-                @"nslayoutattributebaseline" : @(NSLayoutAttributeBaseline),
-                @"baseline" : @(NSLayoutAttributeBaseline),
-                @"nslayoutattributelastbaseline" : @(NSLayoutAttributeLastBaseline),
-                @"lastbaseline" : @(NSLayoutAttributeLastBaseline),
-                @"nslayoutattributefirstbaseline" : @(NSLayoutAttributeFirstBaseline ),
-                @"firstbaseline" : @(NSLayoutAttributeFirstBaseline ),
-                @"nslayoutattributeleftmargin" : @(NSLayoutAttributeLeftMargin ),
-                @"leftmargin" : @(NSLayoutAttributeLeftMargin ),
-                @"nslayoutattributerightmargin" : @(NSLayoutAttributeRightMargin ),
-                @"rightmargin" : @(NSLayoutAttributeRightMargin ),
-                @"nslayoutattributetopmargin" : @(NSLayoutAttributeTopMargin ),
-                @"topmargin" : @(NSLayoutAttributeTopMargin ),
-                @"nslayoutattributebottommargin" : @(NSLayoutAttributeBottomMargin ),
-                @"bottommargin" : @(NSLayoutAttributeBottomMargin ),
-                @"nslayoutattributeleadingmargin" : @(NSLayoutAttributeLeadingMargin ),
-                @"leadingmargin" : @(NSLayoutAttributeLeadingMargin ),
-                @"nslayoutattributetrailingmargin" : @(NSLayoutAttributeTrailingMargin ),
-                @"trailingmargin" : @(NSLayoutAttributeTrailingMargin ),
-                @"nslayoutattributecenterxwithinmargins" : @(NSLayoutAttributeCenterXWithinMargins),
-                @"centerxwithinmargins" : @(NSLayoutAttributeCenterXWithinMargins),
-                @"nslayoutattributecenterywithinmargins" : @(NSLayoutAttributeCenterYWithinMargins),
-                @"centerywithinmargins" : @(NSLayoutAttributeCenterYWithinMargins)
-        };
-    });
 }
 
 static NSDictionary *stringToRelationMap;
