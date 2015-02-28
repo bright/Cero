@@ -8,7 +8,6 @@
 #import "BIEnum.h"
 
 @interface BIIConstraintBuilder ()
-@property(nonatomic, copy) ViewFinder firstItemFinder;
 @property(nonatomic, strong) NSArray *firstAttributes;
 @property(nonatomic) enum NSLayoutRelation relation;
 
@@ -27,6 +26,20 @@
 
 @implementation BIIConstraintBuilder
 
+- (instancetype)copy {
+    BIIConstraintBuilder *builder = [self.class builder];
+    builder.firstItemFinder = self.firstItemFinder;
+    builder.firstAttributes = self.firstAttributes.copy;
+    builder.relation = self.relation;
+    builder.otherItemFinder = self.otherItemFinder;
+    builder.otherItemAttributes = self.otherItemAttributes.copy;
+    builder.multiplier = self.multiplier;
+    builder.constant = self.constant;
+    builder.sourceReference = self.sourceReference;
+    builder.priority = self.priority;
+    return builder;
+}
+
 - (void)withSourceReference:(BISourceReference *)reference {
     self.sourceReference = reference;
 }
@@ -34,7 +47,7 @@
 - (NSArray *)tryInstall:(BIInflatedViewContainer *)container error:(NSError **)error {
     NSUInteger index = 0;
     NSMutableArray *constraints = NSMutableArray.new;
-    UIView *firstItem = self.firstItemFinder(container);
+    UIView *firstItem = self.firstItemFinder(container, self);
     if (firstItem != nil) {
         for (NSNumber *attributeWrap in self.firstAttributes) {
             NSLayoutAttribute attribute = (NSLayoutAttribute) attributeWrap.integerValue;
@@ -45,7 +58,7 @@
             }
             UIView *otherItem = nil;
             if (self.otherItemFinder != nil) {
-                otherItem = self.otherItemFinder(container);
+                otherItem = self.otherItemFinder(container, self);
                 if (otherItem == nil || ![otherItem isKindOfClass:UIView.class]) {
                     //TODO Error handling
                     BILog(@"Could not find other item view %@", _sourceReference.sourceDescription);
@@ -132,42 +145,42 @@
     if ([pseudoSelector characterAtIndex:0] == '#') {
         NSString *viewId = [pseudoSelector substringFromIndex:1];
         if (viewId.length > 0) {
-            return ^(BIInflatedViewContainer *container) {
+            return ^(BIInflatedViewContainer *container, id _) {
                 return [container findViewById:viewId];
             };
         }
     }
     if ([pseudoSelector isEqualToString:@":topLayoutGuide"]) {
         @weakify(self);
-        return ^UIView *(BIInflatedViewContainer *container) {
+        return ^UIView *(BIInflatedViewContainer *container, BIIConstraintBuilder *builder) {
             @strongify(self);
-            UIView *view = self.firstItemFinder(container);
+            UIView *view = builder.firstItemFinder(container, builder);
             UIViewController *controller = view.bi_firstViewController;
             return (id) controller.topLayoutGuide;
         };
     }
     if ([pseudoSelector isEqualToString:@":bottomLayoutGuide"]) {
         @weakify(self);
-        return ^UIView *(BIInflatedViewContainer *container) {
+        return ^UIView *(BIInflatedViewContainer *container, BIIConstraintBuilder *builder) {
             @strongify(self);
-            UIView *view = self.firstItemFinder(container);
+            UIView *view = builder.firstItemFinder(container, builder);
             UIViewController *controller = view.bi_firstViewController;
             return (id) controller.topLayoutGuide;
         };
     }
     if ([pseudoSelector isEqualToString:@":superview"]) {
         @weakify(self);
-        return ^(BIInflatedViewContainer *container) {
+        return ^(BIInflatedViewContainer *container, BIIConstraintBuilder *builder) {
             @strongify(self);
-            UIView *view = self.firstItemFinder(container);
+            UIView *view = builder.firstItemFinder(container, builder);
             return view.superview;
         };
     }
     if ([pseudoSelector isEqualToString:@":previous"]) {
         @weakify(self);
-        return ^(BIInflatedViewContainer *container) {
+        return ^(BIInflatedViewContainer *container, BIIConstraintBuilder *builder) {
             @strongify(self);
-            UIView *firstItem = self.firstItemFinder(container);
+            UIView *firstItem = builder.firstItemFinder(container, builder);
             NSArray *siblings = firstItem.superview.subviews;
             NSUInteger indexOfFirstItem = [siblings indexOfObject:firstItem];
             if (indexOfFirstItem > 0) {
@@ -179,9 +192,9 @@
     }
     if ([pseudoSelector isEqualToString:@":next"]) {
         @weakify(self);
-        return ^(BIInflatedViewContainer *container) {
+        return ^(BIInflatedViewContainer *container, BIIConstraintBuilder *builder) {
             @strongify(self);
-            UIView *firstItem = self.firstItemFinder(container);
+            UIView *firstItem = builder.firstItemFinder(container, builder);
             NSArray *siblings = firstItem.superview.subviews;
             NSUInteger indexOfFirstItem = [siblings indexOfObject:firstItem];
             if (indexOfFirstItem < siblings.count - 1) {
@@ -252,17 +265,8 @@
 }
 
 
-+ (instancetype)builderFor:(ViewFinder)viewFinder {
-    return [[self alloc] initWithView:viewFinder];
-}
-
-- (instancetype)initWithView:(ViewFinder)view {
-    self = [self init];
-    if (self) {
-        NSAssert(view != nil, @"View finder must not be nil");
-        self.firstItemFinder = view;
-    }
-    return self;
++ (instancetype)builder {
+    return [self new];
 }
 
 - (void)withPriority:(NSString *)priority {
@@ -281,4 +285,6 @@
         }
     }
 }
+
+
 @end

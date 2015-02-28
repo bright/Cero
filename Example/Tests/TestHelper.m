@@ -22,8 +22,8 @@ id <BIInflatedViewHelper> testInflateConfigPath(NSString *xml, BILayoutConfigura
     BILayoutInflater *inflater = [BILayoutInflater inflaterWithConfiguration:config];
     NSData *data = [xml dataUsingEncoding:NSUTF8StringEncoding];
     BIViewHierarchyBuilder *builder = [inflater inflateFilePathUntilReady:pathOrFake superview:nil content:data];
-    [builder runOnReadySteps];
     BIInflatedViewContainer *container = builder.container;
+    [container runOnReadySteps];
     return container;
 }
 
@@ -31,8 +31,8 @@ id <BIInflatedViewHelper> testInflateConfig(NSString *xml, BILayoutConfiguration
     return testInflateConfigPath(xml, config, @"ignore");
 }
 
-UIView *testInflateView(NSString *xml){
-    id<BIInflatedViewHelper> container = testInflate(xml);
+UIView *testInflateView(NSString *xml) {
+    id <BIInflatedViewHelper> container = testInflate(xml);
     return container.root;
 }
 

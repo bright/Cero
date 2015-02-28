@@ -1,9 +1,9 @@
 #import <Cero/BILayoutInflater.h>
+#import <Cero/BIInflatedViewContainer.h>
 #import "BIIncludeHandler.h"
 #import "BILayoutElement.h"
 #import "BIViewHierarchyBuilder.h"
 #import "BISourceReference.h"
-#import "BIInflatedViewContainer.h"
 #import "BIEXTScope.h"
 #import "BIBuildersCache.h"
 #import "BILayoutInflater.h"
@@ -23,9 +23,9 @@
         NSString *inBundlePath = [inflater layoutPath:childLayout];
         if (inBundlePath.length > 0) {
             @weakify(inflater, builder);
-            __block BIViewHierarchyBuilder *childBuilder;
             [builder addBuildStep:^(BIInflatedViewContainer *container) {
                 @strongify(inflater, builder);
+                BIViewHierarchyBuilder *childBuilder;
                 childBuilder = [inflater inflateBuilder:inBundlePath
                                               superview:container.current];
                 BIInflatedViewContainer *inflatedViewContainer = childBuilder.container;
@@ -33,7 +33,7 @@
                 if (![container tryAddingElementsFrom:inflatedViewContainer error:&error]) {
                     //TODO log error
                 }
-                [builder addOnReadyStepsFrom:childBuilder];
+                [container addOnReadyStepsFrom:inflatedViewContainer];
             }];
 
             BIBuildersCache *cache = inflater.buildersCache;

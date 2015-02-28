@@ -5,7 +5,6 @@
 #import "BIAttributeHandler.h"
 #import "BIInflatedViewContainer.h"
 #import "BIHandlersConfiguration.h"
-#import "BIEXTScope.h"
 #import "BILog.h"
 
 #undef BILogDebug
@@ -13,14 +12,14 @@
 
 
 @interface BIViewHierarchyBuilder ()
-@property(nonatomic, readonly) OnBuilderReady onReadySteps;
+
 @end
 
 @implementation BIViewHierarchyBuilder {
     BIInflatedViewContainer *_container;
     id <BIHandlersConfiguration> _configuration;
     NSMutableArray *_builderSteps;
-    NSMutableArray *_builderReadySteps;
+
     NSMutableArray *_invalidateHandlers;
 }
 
@@ -32,14 +31,9 @@
     self = [super init];
     if (self) {
         _builderSteps = NSMutableArray.new;
-        _builderReadySteps = NSMutableArray.new;
         _invalidateHandlers = NSMutableArray.new;
         _configuration = configuration;
-        @weakify(self);
-        _onReadySteps = ^(BIInflatedViewContainer *container) {
-            @strongify(self);
-            [self runOnReadySteps:container];
-        };
+
     }
     return self;
 }
@@ -92,13 +86,6 @@
 }
 
 
-- (BOOL)addOnReadyStep:(OnBuilderReady)onReady {
-    if (onReady != nil && ![_builderReadySteps containsObject:onReady]) {
-        [_builderReadySteps addObject:onReady];
-        return YES;
-    }
-    return NO;
-}
 
 - (void)addBuildStep:(BuilderStep)step {
     BIInflatedViewContainer *container = self.container;
@@ -106,10 +93,6 @@
         step(container);
         [_builderSteps addObject:step];
     }
-}
-
-- (void)addInvalidateHandler:(OnBuilderInvalidate)builderInvalidate {
-    [_invalidateHandlers addObject:builderInvalidate];
 }
 
 - (void)startWithSuperView:(UIView *)view {
@@ -125,32 +108,6 @@
     }
 }
 
-- (void)runOnReadySteps {
-    [self runOnReadySteps:self.container];
-}
-
-- (void)runOnReadySteps:(BIInflatedViewContainer *)container {
-    for (OnBuilderReady onReady in _builderReadySteps) {
-        if (onReady != nil) {
-            onReady(container);
-        }
-    }
-}
-
-- (void)addOnReadyStepsFrom:(BIViewHierarchyBuilder *)builder {
-    OnBuilderReady ready = builder.onReadySteps;
-    if ([self addOnReadyStep:ready]) {
-        @weakify(self, ready);
-        [builder addInvalidateHandler:^{
-            @strongify(self, ready);
-            [self removeOnReadyStep:ready];
-        }];
-    }
-}
-
-- (void)removeOnReadyStep:(OnBuilderReady)pFunction {
-    [_builderReadySteps removeObject:pFunction];
-}
 
 - (void)invalidate {
     for (OnBuilderInvalidate step in _invalidateHandlers) {

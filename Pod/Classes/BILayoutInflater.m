@@ -37,7 +37,7 @@
 - (BIInflatedViewContainer *)inflateFilePath:(NSString *)inBundlePath superview:(UIView *)superview {
     BIViewHierarchyBuilder *builder = [self inflateBuilder:inBundlePath superview:superview];
     BILogDebug(@"Will run ready steps for path %@", inBundlePath.lastPathComponent);
-    [builder runOnReadySteps];
+    [builder.container runOnReadySteps];
     return builder.container;
 }
 

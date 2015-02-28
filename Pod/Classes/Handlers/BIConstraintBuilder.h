@@ -1,11 +1,13 @@
 @class BIInflatedViewContainer;
 @class BISourceReference;
+@class BIIConstraintBuilder;
 
-typedef UIView *(^ViewFinder)(BIInflatedViewContainer *container);
+typedef UIView *(^ViewFinder)(BIInflatedViewContainer *container, BIIConstraintBuilder *builder);
 
 @interface BIIConstraintBuilder : NSObject
+@property(nonatomic, copy) ViewFinder firstItemFinder;
 
-+ (instancetype)builderFor:(ViewFinder)viewFinder;
++ (instancetype)builder;
 
 - (void)constraintOn:(NSString *)on;
 
@@ -26,4 +28,6 @@ typedef UIView *(^ViewFinder)(BIInflatedViewContainer *container);
 - (BISourceReference *)sourceReference;
 
 - (void)withPriority:(NSString *)priority;
+
+- (instancetype)copy;
 @end

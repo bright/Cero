@@ -34,17 +34,11 @@ typedef void(^BuilderStep)(BIInflatedViewContainer *container);
 
 - (UIView *)current;
 
-- (BOOL)addOnReadyStep:(OnBuilderReady)onReady;
-
 - (void)addBuildStep:(BuilderStep)step;
 
 - (void)startWithSuperView:(UIView *)view;
 
 - (void)runBuildSteps;
-
-- (void)runOnReadySteps;
-
-- (void)addOnReadyStepsFrom:(BIViewHierarchyBuilder *)builder;
 
 - (void)invalidate;
 @end

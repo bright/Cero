@@ -1,10 +1,11 @@
 #import <objc/runtime.h>
-#import "BIInflatedViewContainer.h"
+#import <Cero/BIInflatedViewContainer.h>
 #import "NSError+BIErrors.h"
 #import "BISourceReference.h"
 #import "UIView+BIAttributes.h"
 #import "BILog.h"
 #import "BIIdCacheDelegatedFinder.h"
+#import "BIEXTScope.h"
 
 #undef BILogDebug
 #define BILogDebug(...)
@@ -14,10 +15,12 @@
 @property(nonatomic, strong) UIView *root;
 @property(nonatomic, strong) NSMapTable *byIdsCache;
 @property(nonatomic, strong) NSMutableDictionary *sourceCache;
+@property(nonatomic, readonly) OnBuilderReady onReadySteps;
 @end
 
 @implementation BIInflatedViewContainer {
     BIIdCacheDelegatedFinder *_delegatedTarget;
+    NSMutableArray *_builderReadySteps;
 }
 + (instancetype)container:(UIView *)root {
     return [[self alloc] initWithRoot:root];
@@ -26,10 +29,16 @@
 - (instancetype)initWithRoot:(UIView *)view {
     self = [super init];
     if (self) {
+        self.root = view;
+        _builderReadySteps = NSMutableArray.new;
         _byIdsCache = [NSMapTable strongToWeakObjectsMapTable];
         _sourceCache = NSMutableDictionary.new;
-        self.root = view;
         _delegatedTarget = [[BIIdCacheDelegatedFinder alloc] initWithCache:_byIdsCache];
+        @weakify(self);
+        _onReadySteps = ^(BIInflatedViewContainer *container) {
+            @strongify(self);
+            [self runOnReadySteps:container];
+        };
     }
     return self;
 }
@@ -59,6 +68,34 @@
         return false;
     }
 }
+
+- (BOOL)addOnReadyStep:(OnBuilderReady)onReady {
+    if (onReady != nil && ![_builderReadySteps containsObject:onReady]) {
+        [_builderReadySteps addObject:onReady];
+        return YES;
+    }
+    return NO;
+}
+
+- (void)runOnReadySteps {
+    [self runOnReadySteps:self];
+}
+
+- (void)runOnReadySteps:(BIInflatedViewContainer *)container {
+    for (OnBuilderReady onReady in _builderReadySteps) {
+        if (onReady != nil) {
+            onReady(container);
+        }
+    }
+}
+
+- (void)addOnReadyStepsFrom:(BIInflatedViewContainer *)container {
+    OnBuilderReady ready = container.onReadySteps;
+    if (![self addOnReadyStep:ready]) {
+        BILogDebug(@"Did not add ready step");
+    }
+}
+
 
 - (BOOL)tryAddingElementsFrom:(BIInflatedViewContainer *)container error:(NSError **)error {
     NSMapTable *otherIdsCache = container.byIdsCache;
