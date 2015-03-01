@@ -19,14 +19,14 @@
     NSString *childLayout = element.attributes[@"layout"];
     BISourceReference *sourceReference = [builder.sourceReference subReferenceFromLine:element.startLineNumber andColumn:element.startColumnNumber];
     if (childLayout.length > 0) {
-        BILayoutInflater *inflater = builder.layoutInflater;
-        NSString *inBundlePath = [inflater layoutPath:childLayout];
+        NSString *inBundlePath = [builder.layoutInflater layoutPath:childLayout];
         if (inBundlePath.length > 0) {
-            @weakify(inflater, builder);
+            @weakify(builder);
             [builder addBuildStep:^(BIInflatedViewContainer *container) {
-                @strongify(inflater, builder);
+                @strongify(builder);
                 BIViewHierarchyBuilder *childBuilder;
-                childBuilder = [inflater inflateBuilder:inBundlePath
+                BILogDebug(@"Include handler step will inflate path %@", inBundlePath.lastPathComponent);
+                childBuilder = [builder.layoutInflater inflateBuilder:inBundlePath
                                               superview:container.current];
                 BIInflatedViewContainer *inflatedViewContainer = childBuilder.container;
                 NSError *error;
@@ -36,7 +36,7 @@
                 [container addOnReadyStepsFrom:inflatedViewContainer];
             }];
 
-            BIBuildersCache *cache = inflater.buildersCache;
+            BIBuildersCache *cache = builder.layoutInflater.buildersCache;
             [cache setupInvalidateOnContentChange:inBundlePath];
 
             [cache addReloadSource:inBundlePath

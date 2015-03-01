@@ -72,12 +72,8 @@
     }
 }
 
-- (BOOL)addOnReadyStep:(OnBuilderReady)onReady {
-    if (onReady != nil && ![_builderReadySteps containsObject:onReady]) {
-        [_builderReadySteps addObject:onReady];
-        return YES;
-    }
-    return NO;
+- (void)addOnReadyStep:(OnBuilderReady)onReady {
+    [_builderReadySteps addObject:onReady];
 }
 
 - (void)runOnReadySteps {
@@ -94,9 +90,7 @@
 
 - (void)addOnReadyStepsFrom:(BIInflatedViewContainer *)container {
     OnBuilderReady ready = container.onReadySteps;
-    if (![self addOnReadyStep:ready]) {
-        BILogDebug(@"Did not add ready step");
-    }
+    [self addOnReadyStep:ready];
 }
 
 

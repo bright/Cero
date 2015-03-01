@@ -11,8 +11,8 @@
 #import "UIView+BIAttributes.h"
 #import "BIBenchmark.h"
 
-#undef BILogDebug
-#define BILogDebug(...)
+//#undef BILogDebug
+//#define BILogDebug(...)
 
 @implementation BILayoutInflater {
     id <BIHandlersConfiguration> _handlersCache;
@@ -50,6 +50,7 @@
                                                                          return [self inflateFilePathUntilReady:inBundlePath superview:superview content:content];
                                                                      } onCached:^(BIViewHierarchyBuilder *cachedBuilder) {
                 BILogDebug(@"Using cached builder for path %@", inBundlePath);
+                cachedBuilder.layoutInflater = self;
                 [cachedBuilder startWithSuperView:superview];
                 [cachedBuilder runBuildSteps];
                 return cachedBuilder;

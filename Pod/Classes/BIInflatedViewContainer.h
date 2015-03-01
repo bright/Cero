@@ -13,7 +13,7 @@ typedef void(^OnBuilderReady)(BIInflatedViewContainer *container);
 
 + (instancetype)container:(UIView *)root;
 
-- (BOOL)addOnReadyStep:(OnBuilderReady)onReady;
+- (void)addOnReadyStep:(OnBuilderReady)onReady;
 
 - (void)addOnReadyStepsFrom:(BIInflatedViewContainer *)container;
 
