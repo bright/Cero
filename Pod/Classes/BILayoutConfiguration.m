@@ -12,6 +12,7 @@
 #import "BIIncludeHandler.h"
 #import "BIViewContentModeHandler.h"
 #import "BITextAlignmentHandler.h"
+#import "BIFontAttributeHandler.h"
 
 
 @implementation BILayoutConfiguration {
@@ -48,6 +49,7 @@ static BILayoutConfiguration *DefaultConfiguration;
 - (void)setup {
     _buildersCache.rootProjectPath = self.rootProjectPath;
     [self registerAttributeHandler:[BITextAlignmentHandler new]];
+    [self registerAttributeHandler:[BIFontAttributeHandler new]];
     [self registerAttributeHandler:[BIImageAttributeHandler new]];
     [self registerAttributeHandler:[BIColorAttributeHandler new]];
     [self registerAttributeHandler:[BIIdAttributeHandler new]];

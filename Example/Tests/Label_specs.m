@@ -25,6 +25,17 @@ SpecBegin(Label_specs)
             expect(label.textAlignment).to.equal(NSTextAlignmentCenter);
         });
 
+        it(@"should set text font attribute properly", ^{
+            UIFont *font = [UIFont fontWithName:@"Arial" size:17];
+            label = inflate(@"<UILabel font='Arial' />");
+            expect(label.font).to.equal(font);
+        });
+        it(@"should set text font with size attribute properly", ^{
+            UIFont *font = [UIFont fontWithName:@"Avenir" size:13];
+            label = inflate(@"<UILabel font='Avenir(13)' />");
+            expect(label.font).to.equal(font);
+        });
+
     });
 
 SpecEnd
