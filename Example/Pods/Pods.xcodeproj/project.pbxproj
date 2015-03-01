@@ -140,6 +140,8 @@
 		653042FED53DF18A2A9873E8 /* BIButtonHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = A43E8B817A17C2EBD724D04C /* BIButtonHandler.m */; };
 		6539A36424A50CE5ACCE872E /* Pods-Tests-Specta-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1AE34F3C5535A3E32BB22565 /* Pods-Tests-Specta-dummy.m */; };
 		657CB1F4E9FF4C23D5B00072 /* EXPMatchers+beInstanceOf.h in Headers */ = {isa = PBXBuildFile; fileRef = 31B16D6B52EEC44FD7238236 /* EXPMatchers+beInstanceOf.h */; };
+		65BB27214DA13FA998A3BE92 /* BIBaselineAdjustmentEnum.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BB29611EF8F65742203BA0 /* BIBaselineAdjustmentEnum.m */; };
+		65BB2A27B61CD71B6CA51802 /* BIBaselineAdjustmentEnum.h in Headers */ = {isa = PBXBuildFile; fileRef = 65BB22F2F08EAC31D81A7E20 /* BIBaselineAdjustmentEnum.h */; };
 		6678D1BC9ED961FC4D2A2856 /* EXPMatcherHelpers.h in Headers */ = {isa = PBXBuildFile; fileRef = D6495CBBCA2F1562AAD76544 /* EXPMatcherHelpers.h */; };
 		6748D0B0A85A317E2A2CAE40 /* BISimpleAttributeHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = C9ECED50A0089D524986FAD7 /* BISimpleAttributeHandler.h */; };
 		6788B2E27849174C5D469B67 /* BIIncludeHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 59733DEA709C38CFAC14ECB9 /* BIIncludeHandler.h */; };
@@ -446,6 +448,8 @@
 		6124F46A9DFA7C38A972F432 /* BITextAlignmentEnum.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BITextAlignmentEnum.h; sourceTree = "<group>"; };
 		61B63B092145B07E9DAB3D3B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		654270198A244A012D70AA93 /* BIContentChanges.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BIContentChanges.h; sourceTree = "<group>"; };
+		65BB22F2F08EAC31D81A7E20 /* BIBaselineAdjustmentEnum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIBaselineAdjustmentEnum.h; sourceTree = "<group>"; };
+		65BB29611EF8F65742203BA0 /* BIBaselineAdjustmentEnum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIBaselineAdjustmentEnum.m; sourceTree = "<group>"; };
 		67BEE4B0A59B9B249FDCEDC6 /* Pods-Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Tests-resources.sh"; sourceTree = "<group>"; };
 		67DA4E214CC3C158C25A73FC /* Pods-Tests-Specta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Tests-Specta.xcconfig"; sourceTree = "<group>"; };
 		67E725D20AA4137756DF8806 /* BIBuilderHandler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BIBuilderHandler.h; sourceTree = "<group>"; };
@@ -1043,6 +1047,8 @@
 				7097E85A8E378904F9D8739B /* BIViewContentModeEnum.h */,
 				D8D2FCA976E80A0B092AB521 /* BIViewContentModeEnum.m */,
 				88AB8258D1B18391D1E7C2BA /* UIFontTextStyle.h */,
+				65BB29611EF8F65742203BA0 /* BIBaselineAdjustmentEnum.m */,
+				65BB22F2F08EAC31D81A7E20 /* BIBaselineAdjustmentEnum.h */,
 			);
 			name = Enums;
 			path = Enums;
@@ -1111,6 +1117,7 @@
 				40EC51D0D549DBDA4AC285C1 /* UIView+BIViewExtensions.h in Headers */,
 				8D465735B9301C3643DE86B3 /* UIView+Finders.h in Headers */,
 				05A84076B79A2942AB64356C /* xlmetamacros.h in Headers */,
+				65BB2A27B61CD71B6CA51802 /* BIBaselineAdjustmentEnum.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1467,6 +1474,7 @@
 				057D09731C87955E9791A6EE /* UIView+BIAttributes.m in Sources */,
 				4A1EB06816F0581D8C289FFC /* UIView+BIViewExtensions.m in Sources */,
 				BDC8199EB211E5829DA6A6B4 /* UIView+Finders.m in Sources */,
+				65BB27214DA13FA998A3BE92 /* BIBaselineAdjustmentEnum.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
