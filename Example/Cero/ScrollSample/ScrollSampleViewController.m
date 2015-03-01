@@ -21,7 +21,7 @@
 - (void)loadView {
     [super loadView];
     @weakify(self);
-    [_watcher fillViewOfController:self layout:@"ScrollSample" loaded:^(NSObject <BIInflatedViewHelper> *view) {
+    [_watcher fillViewOfController:self layout:@"ScrollSampleBad" loaded:^(NSObject <BIInflatedViewHelper> *view) {
     }];
 }
 

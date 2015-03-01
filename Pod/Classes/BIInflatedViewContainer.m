@@ -5,7 +5,6 @@
 #import "UIView+BIAttributes.h"
 #import "BILog.h"
 #import "BIIdCacheDelegatedFinder.h"
-#import "BIEXTScope.h"
 
 #undef BILogDebug
 #define BILogDebug(...)
@@ -30,14 +29,18 @@
     self = [super init];
     if (self) {
         self.root = view;
-        _builderReadySteps = NSMutableArray.new;
+        NSArray *steps;
+        steps = _builderReadySteps = NSMutableArray.new;
         _byIdsCache = [NSMapTable strongToWeakObjectsMapTable];
         _sourceCache = NSMutableDictionary.new;
         _delegatedTarget = [[BIIdCacheDelegatedFinder alloc] initWithCache:_byIdsCache];
-        @weakify(self);
+        //retain steps but not the whole container
         _onReadySteps = ^(BIInflatedViewContainer *container) {
-            @strongify(self);
-            [self runOnReadySteps:container];
+            for (OnBuilderReady step in steps) {
+                if (step != nil) {
+                    step(container);
+                }
+            }
         };
     }
     return self;
