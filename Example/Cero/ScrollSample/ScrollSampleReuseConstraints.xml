@@ -21,16 +21,16 @@
             <Constraint on="centerx" with=":superview"/>
         </UILabel>
 
-        <UILabel text="Second label">
-            <include layout="ScrollLabelConstraint"/>
+        <UILabel text="Second label" textAlignment="justified">
+        <include layout="ScrollLabelConstraint"/>
         </UILabel>
 
-        <UILabel text="Third label">
-            <include layout="ScrollLabelConstraint"/>
+        <UILabel text="Third label" textAlignment="center">
+        <include layout="ScrollLabelConstraint"/>
         </UILabel>
 
-        <UILabel text="Forth label">
-            <include layout="ScrollLabelConstraint"/>
+        <UILabel text="Forth label" textAlignment="right">
+        <include layout="ScrollLabelConstraint"/>
         </UILabel>
 
         <UILabel text="Fifth label">
