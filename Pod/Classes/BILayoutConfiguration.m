@@ -15,6 +15,7 @@
 #import "BIFontAttributeHandler.h"
 #import "BIFontTextStyleAttributeHandler.h"
 #import "BILineBreakModeAttributeHandler.h"
+#import "BIBaselineAdjustmentAttributeHandler.h"
 
 
 @implementation BILayoutConfiguration {
@@ -54,6 +55,7 @@ static BILayoutConfiguration *DefaultConfiguration;
     [self registerAttributeHandler:[BITextAlignmentHandler new]];
     [self registerAttributeHandler:[BIFontAttributeHandler new]];
     [self registerAttributeHandler:[BIFontTextStyleAttributeHandler new]];
+    [self registerAttributeHandler:[BIBaselineAdjustmentAttributeHandler new]];
     [self registerAttributeHandler:[BIImageAttributeHandler new]];
     [self registerAttributeHandler:[BIColorAttributeHandler new]];
     [self registerAttributeHandler:[BIIdAttributeHandler new]];

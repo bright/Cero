@@ -47,6 +47,11 @@ SpecBegin(Label_specs)
             expect(label.lineBreakMode).to.equal(NSLineBreakByClipping);
         });
 
+        it(@"should set baseline adjustement properly", ^{
+            label = inflate(@"<UILabel baselineAdjustment='AlignCenters' />");
+            expect(label.baselineAdjustment).to.equal(UIBaselineAdjustmentAlignCenters);
+        });
+
     });
 
 SpecEnd
