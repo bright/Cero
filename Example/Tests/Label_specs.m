@@ -42,6 +42,11 @@ SpecBegin(Label_specs)
             expect(label.font).to.equal(headlineFont);
         });
 
+        it(@"should set line break mode properly", ^{
+            label = inflate(@"<UILabel lineBreakMode='byClipping' />");
+            expect(label.lineBreakMode).to.equal(NSLineBreakByClipping);
+        });
+
     });
 
 SpecEnd
