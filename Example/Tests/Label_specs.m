@@ -36,6 +36,12 @@ SpecBegin(Label_specs)
             expect(label.font).to.equal(font);
         });
 
+        it(@"should set font text style properly", ^{
+            UIFont *headlineFont = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
+            label = inflate(@"<UILabel fontTextStyle='Headline' />");
+            expect(label.font).to.equal(headlineFont);
+        });
+
     });
 
 SpecEnd
