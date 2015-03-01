@@ -15,34 +15,34 @@
         <Constraint on="centerx" with=":superview"/>
 
 
-        <UILabel text="First label">
-            <Constraint on="top" with=":superview" constant="40"/>
+        <UILabel text="First label" fontTextStyle="Headline">
+        <Constraint on="top" with=":superview" constant="40"/>
             <Constraint on="width" with=":superview" constant="-20"/>
             <Constraint on="centerx" with=":superview"/>
         </UILabel>
 
-        <UILabel text="Second label" textAlignment="justified">
+        <UILabel text="Second label" textAlignment="justified" fontTextStyle="subheadline">
         <include layout="ScrollLabelConstraint"/>
         </UILabel>
 
-        <UILabel text="Third label" textAlignment="center">
+        <UILabel text="Third label" textAlignment="center" fontTextStyle="caption1">
         <include layout="ScrollLabelConstraint"/>
         </UILabel>
 
-        <UILabel text="Forth label" textAlignment="right">
+        <UILabel text="Forth label" textAlignment="right" fontTextStyle="caption2">
         <include layout="ScrollLabelConstraint"/>
         </UILabel>
 
-        <UILabel text="Fifth label">
-            <include layout="ScrollLabelConstraint"/>
+        <UILabel text="Fifth label" fontTextStyle="body">
+        <include layout="ScrollLabelConstraint"/>
         </UILabel>
 
-        <UILabel text="Sixth label">
-            <include layout="ScrollLabelConstraint"/>
+        <UILabel text="Sixth label" font="Avenir(30)">
+        <include layout="ScrollLabelConstraint"/>
         </UILabel>
 
-        <UILabel text="Seventh label">
-            <include layout="ScrollLabelConstraint"/>
+        <UILabel text="Seventh label" font="Times New Roman(40)">
+        <include layout="ScrollLabelConstraint"/>
         </UILabel>
 
         <UIView>

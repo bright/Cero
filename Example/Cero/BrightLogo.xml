@@ -1,5 +1,13 @@
-<UIImageView image="bright" contentMode="scaleAspectFit">
-<Constraint on="bottom" with=":superview" constant="-75"/>
-    <Constraint on="width" with=":superview" multiplier="0.5"/>
-    <Constraint on="centerX" with=":superview"/>
-</UIImageView>
+<UIView>
+    <Constraint on="bottom,width" with=":superview"/>
+    <UIImageView image="bright" contentMode="scaleAspectFit">
+        <Constraint on="bottom" with=":superview" constant="-75"/>
+        <Constraint on="width" with=":superview" multiplier="0.5"/>
+        <Constraint on="centerX" with=":superview"/>
+    </UIImageView>
+
+    <UILabel text="© 2015 Bright Inventions" fontTextStyle="Footnote">
+        <Constraint on="top" with=":previous.bottom"/>
+        <Constraint on="centerX" with=":superview"/>
+    </UILabel>
+</UIView>
