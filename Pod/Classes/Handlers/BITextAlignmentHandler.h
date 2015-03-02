@@ -1,4 +1,5 @@
 #import "BIAttributeHandler.h"
+#import "BIEnumAttributeHandler.h"
 
-@interface BITextAlignmentHandler : NSObject<BIAttributeHandler>
+@interface BITextAlignmentHandler : BIEnumAttributeHandler
 @end
