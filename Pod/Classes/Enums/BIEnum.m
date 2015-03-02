@@ -35,6 +35,10 @@
     return [self valueFor_:key defaultValue:defaultValue];
 }
 
+- (NSString *)enumTypeName {
+    return _enumTypeName;
+}
+
 
 - (void)defineEnumValue_:(id)value key:(NSString *)key enumTypeName:(NSString *)enumTypeName {
     NSAssert(_values[key] == nil, @"Value already exists for key %@", key);

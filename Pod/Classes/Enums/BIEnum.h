@@ -13,6 +13,8 @@
 - (NSNumber *)valueFor:(NSString *)key orDefault:(NSNumber *)defaultValue;
 
 - (NSString *)stringValueFor:(NSString *)key orDefault:(NSString *)defaultValue;
+
+- (NSString *)enumTypeName;
 @end
 
 #ifndef BIEnumDefine
