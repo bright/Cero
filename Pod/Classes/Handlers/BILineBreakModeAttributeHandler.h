@@ -1,4 +1,5 @@
 #import "BIAttributeHandler.h"
+#import "BIEnumAttributeHandler.h"
 
-@interface BILineBreakModeAttributeHandler : NSObject <BIAttributeHandler>
+@interface BILineBreakModeAttributeHandler : BIEnumAttributeHandler
 @end
