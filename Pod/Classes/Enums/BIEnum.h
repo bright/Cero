@@ -10,7 +10,7 @@
 
 - (void)defineStringEnumValue:(NSString *)value enumValueName:(NSString *)key enumTypeName:(NSString *)enumTypeName;
 
-- (NSNumber *)valueFor:(NSString *)key orDefault:(NSNumber *)defaultValue;
+- (NSNumber *)numberValueFor:(NSString *)key orDefault:(NSNumber *)defaultValue;
 
 - (NSString *)stringValueFor:(NSString *)key orDefault:(NSString *)defaultValue;
 

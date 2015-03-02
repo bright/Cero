@@ -13,7 +13,7 @@
 - (void)handle:(NSString *)attribute ofElement:(BILayoutElement *)element inBuilder:(BIViewHierarchyBuilder *)builder {
     BIEnum *baselineEnum = BIEnumFor(UIBaselineAdjustment);
     NSString *baseLineAsString = element.attributes[attribute];
-    NSNumber *baseLineNumber = [baselineEnum valueFor:baseLineAsString orDefault:nil];
+    NSNumber *baseLineNumber = [baselineEnum numberValueFor:baseLineAsString orDefault:nil];
     if (baseLineNumber != nil) {
         UIBaselineAdjustment adjustment = (UIBaselineAdjustment) baseLineNumber.integerValue;
         [builder addBuildStep:^(BIInflatedViewContainer *container) {

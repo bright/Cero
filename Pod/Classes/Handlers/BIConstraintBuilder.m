@@ -217,7 +217,7 @@
 
 - (enum NSLayoutRelation)parseRelation:(NSString *)relation {
     BIEnum *relationEnum = BIEnumFor(NSLayoutRelation);
-    NSNumber *relationNumber = [relationEnum valueFor:relation orDefault:@(NSLayoutRelationEqual)];
+    NSNumber *relationNumber = [relationEnum numberValueFor:relation orDefault:@(NSLayoutRelationEqual)];
     return (enum NSLayoutRelation) relationNumber.integerValue;
 }
 
@@ -232,8 +232,8 @@
     for (NSString *component in components) {
         NSString *componentTrimmed = [component stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         if (componentTrimmed.length > 0) {
-            NSLayoutAttribute attribute = (NSLayoutAttribute) [layoutAttributeEnum valueFor:componentTrimmed
-                                                                                  orDefault:@(NSLayoutAttributeNotAnAttribute)].integerValue;
+            NSLayoutAttribute attribute = (NSLayoutAttribute) [layoutAttributeEnum numberValueFor:componentTrimmed
+                                                                                        orDefault:@(NSLayoutAttributeNotAnAttribute)].integerValue;
             if (attribute != NSLayoutAttributeNotAnAttribute) {
                 [attributes addObject:@(attribute)];
             } else {
@@ -272,7 +272,7 @@
 - (void)withPriority:(NSString *)priority {
     if (priority.length > 0) {
         BIEnum *priorityEnum = BIEnumFor(UILayoutPriority);
-        NSNumber *uiLayoutPriority = [priorityEnum valueFor:priority orDefault:nil];
+        NSNumber *uiLayoutPriority = [priorityEnum numberValueFor:priority orDefault:nil];
         if (uiLayoutPriority != nil) {
             self.priority = uiLayoutPriority;
         } else {

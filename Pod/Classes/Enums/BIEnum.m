@@ -32,7 +32,7 @@
 }
 
 - (NSString *)stringValueFor:(NSString *)key orDefault:(NSString *)defaultValue {
-    return [self valueFor_:key defaultValue:defaultValue];
+    return [self valueFor:key defaultValue:defaultValue];
 }
 
 - (NSString *)enumTypeName {
@@ -58,11 +58,11 @@
     return [left substringToIndex:index];
 }
 
-- (NSNumber *)valueFor:(NSString *)key orDefault:(NSNumber *)defaultValue {
-    return [self valueFor_:key defaultValue:defaultValue];
+- (NSNumber *)numberValueFor:(NSString *)key orDefault:(NSNumber *)defaultValue {
+    return [self valueFor:key defaultValue:defaultValue];
 }
 
-- (id)valueFor_:(NSString *)key defaultValue:(id)defaultValue {
+- (id)valueFor:(NSString *)key defaultValue:(id)defaultValue {
     if (key.length == 0) {
         return defaultValue;
     }

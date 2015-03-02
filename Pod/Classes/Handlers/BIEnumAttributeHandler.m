@@ -15,7 +15,7 @@
 
 - (void)handle:(NSString *)attribute ofElement:(BILayoutElement *)element inBuilder:(BIViewHierarchyBuilder *)builder {
     NSString *contentModeString = element.attributes[self.attributeName];
-    NSNumber *contentModeNumber = [self.valuesEnum valueFor:contentModeString orDefault:nil];
+    NSNumber *contentModeNumber = [self.valuesEnum numberValueFor:contentModeString orDefault:nil];
     if (contentModeNumber != nil) {
         NSMethodSignature *methodSignature = [builder.current methodSignatureForSelector:self.setter];
         NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSignature];

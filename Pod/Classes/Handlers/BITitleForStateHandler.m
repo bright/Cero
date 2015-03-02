@@ -19,7 +19,7 @@
     NSString *stateValue = element.attributes[@"forState"];
     NSString *title = element.attributes[@"value"];
     BIEnum *anEnum = BIEnumFor(UIControlState);
-    NSNumber *state = [anEnum valueFor:stateValue orDefault:@(UIControlStateNormal)];
+    NSNumber *state = [anEnum numberValueFor:stateValue orDefault:@(UIControlStateNormal)];
     UIControlState controlState = (UIControlState) state.unsignedIntegerValue;
     [builder addBuildStep:^(BIInflatedViewContainer *container) {
         UIButton *button = (UIButton *) container.current;
