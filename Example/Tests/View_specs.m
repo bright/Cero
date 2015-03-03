@@ -12,6 +12,10 @@ SpecBegin(View_specs)
             view = inflate(@"<UIView contentMode='ScaleAspectFit' />");
             expect(view.contentMode).to.equal(UIViewContentModeScaleAspectFit);
         });
+        it(@"should set tint adjustment mode properly", ^{
+            view = inflate(@"<UIView tintAdjustmentMode='Dimmed' />");
+            expect(view.tintAdjustmentMode).to.equal(UIViewTintAdjustmentModeDimmed);
+        });
 
     });
 SpecEnd

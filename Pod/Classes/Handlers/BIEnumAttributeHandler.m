@@ -3,7 +3,7 @@
 #import "BIInflatedViewContainer.h"
 #import "BILayoutElement.h"
 #import "BIViewContentModeHandler.h"
-#import <Cero/BIViewHierarchyBuilder.h>
+#import "BIViewHierarchyBuilder.h"
 
 #define NSInvocationObjectIndex(index) index + 2
 

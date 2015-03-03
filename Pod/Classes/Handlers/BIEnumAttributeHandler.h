@@ -1,4 +1,5 @@
 @class BIEnum;
+@protocol BIAttributeHandler;
 
 @interface BIEnumAttributeHandler : NSObject <BIAttributeHandler>
 @property(nonatomic, copy) NSString *attributeName;
