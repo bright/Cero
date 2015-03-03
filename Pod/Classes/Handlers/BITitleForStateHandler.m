@@ -30,19 +30,33 @@
         }];
     }
 
+    UIColor *titleColor = [self parseColorAttribute:@"titleColor" element:element];
+    if (titleColor != nil) {
+        [builder addBuildStep:^(BIInflatedViewContainer *container) {
+            UIButton *button = (UIButton *) container.current;
+            [button setTitleColor:titleColor forState:controlState];
+        }];
+    }
 
-    NSString *colorString = element.attributes[@"titleColor"];
-    if (colorString.length > 0) {
-        UIColor *color = [BIColorParser parse:colorString];
-        if (color != nil) {
-            [builder addBuildStep:^(BIInflatedViewContainer *container) {
-                UIButton *button = (UIButton *) container.current;
-                [button setTitleColor:color forState:controlState];
-            }];
-        }
+    UIColor *titleShadowColor = [self parseColorAttribute:@"titleShadowColor" element:element];
+    if (titleShadowColor != nil) {
+        [builder addBuildStep:^(BIInflatedViewContainer *container) {
+            UIButton *button = (UIButton *) container.current;
+            [button setTitleShadowColor:titleShadowColor forState:controlState];
+        }];
     }
 
     element.handledAllAttributes = YES;
+}
+
+- (UIColor *)parseColorAttribute:(NSString *)colorAttribute element:(BILayoutElement *)element {
+    UIColor *color;
+    NSString *colorString = element.attributes[colorAttribute];
+    if (colorString.length > 0) {
+        color = [BIColorParser parse:colorString];
+
+    }
+    return color;
 }
 
 - (void)handleLeave:(BILayoutElement *)element inBuilder:(BIViewHierarchyBuilder *)builder {

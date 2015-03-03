@@ -19,10 +19,10 @@ SpecBegin(Button_specs)
             });
         });
 
-        context(@"button with default titlte", ^{
+        context(@"button with default title", ^{
             beforeEach(^{
                 button = inflate(@"<UIButton>"
-                        "<title title='Normal' titleColor='#ff0000' />"
+                        "<title title='Normal' titleColor='#ff0000' titleShadowColor='#00ff00' />"
                         "</UIButton>");
             });
 
@@ -33,6 +33,9 @@ SpecBegin(Button_specs)
 
             it(@"should set button title color for normal state", ^{
                 expect([button titleColorForState:UIControlStateNormal]).to.equal([UIColor redColor]);
+            });
+            it(@"should set button title shadow color for normal state", ^{
+                expect([button titleShadowColorForState:UIControlStateNormal]).to.equal([UIColor greenColor]);
             });
         });
 
