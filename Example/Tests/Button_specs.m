@@ -39,6 +39,22 @@ SpecBegin(Button_specs)
             });
         });
 
+        context(@"button with default image", ^{
+            beforeEach(^{
+                button = inflate(@"<UIButton>"
+                        "<image image='bright' backgroundImage='bright' />"
+                        "</UIButton>");
+            });
+
+            it(@"should set image for normal state", ^{
+                expect([button imageForState:UIControlStateNormal]).to.equal([UIImage imageNamed:@"bright"]);
+            });
+
+            it(@"should set background image for normal state", ^{
+                expect([button backgroundImageForState:UIControlStateNormal]).to.equal([UIImage imageNamed:@"bright"]);
+            });
+        });
+
 
         sharedExamplesFor(@"button state title", ^(NSDictionary *data) {
             it(@"should set button title for normal state", ^{

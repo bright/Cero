@@ -17,6 +17,7 @@
 #import "BILineBreakModeAttributeHandler.h"
 #import "BIBaselineAdjustmentAttributeHandler.h"
 #import "BIViewTintAdjustmentModeHandler.h"
+#import "BIImageForStateHandler.h"
 
 
 @implementation BILayoutConfiguration {
@@ -64,6 +65,7 @@ static BILayoutConfiguration *DefaultConfiguration;
     [self registerAttributeHandler:[BIViewContentModeHandler new]];
     [self registerAttributeHandler:[BISimpleAttributeHandler new]];
     [self registerElementHandler:[BITitleForStateHandler new]];
+    [self registerElementHandler:[BIImageForStateHandler new]];
     [self registerElementHandler:[BIButtonHandler new]];
     [self registerElementHandler:[BIConstraintHandler new]];
     [self registerElementHandler:[BISimpleViewHandler new]];
