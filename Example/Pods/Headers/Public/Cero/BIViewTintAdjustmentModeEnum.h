@@ -1,0 +1,1 @@
+../../../../../Pod/Classes/Enums/BIViewTintAdjustmentModeEnum.h
