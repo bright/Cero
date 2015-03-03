@@ -139,6 +139,8 @@
 		63679DBC0791E88558A51AC6 /* EXPMatchers+haveCountOf.h in Headers */ = {isa = PBXBuildFile; fileRef = 00E06F6E34AC06D7C69F3F87 /* EXPMatchers+haveCountOf.h */; };
 		64155806C2B1C81CB38CD9B0 /* SPTCompiledExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 27C0839A9CA060E74621D44C /* SPTCompiledExample.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		64CBCD21179908279F7EBCEB /* EXPMatchers+beIdenticalTo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8546C0A79C9725F1D88D9E11 /* EXPMatchers+beIdenticalTo.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		65BB2AD53124BFB46ADDCB26 /* BIColorParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BB2687EEE4E43C380BB5A4 /* BIColorParser.m */; };
+		65BB2B60F5D1F1B49E982223 /* BIColorParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 65BB237852A34252E557758D /* BIColorParser.h */; };
 		65F819CC4BA71C2C0ADD9C72 /* BIBaselineAdjustmentAttributeHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = C75083C0CC4A813B5F6DF2ED /* BIBaselineAdjustmentAttributeHandler.h */; };
 		672A64BCCB366ECC8CB832D7 /* EXPMatchers+haveCountOf.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7BFFA1E1F7DAB398AF1136 /* EXPMatchers+haveCountOf.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		679BEBA6D07C53D79377EDB0 /* BILayoutInflater.m in Sources */ = {isa = PBXBuildFile; fileRef = 60D85A5668AE87C0DEFE4C01 /* BILayoutInflater.m */; };
@@ -475,6 +477,8 @@
 		632AB79D3E4837B6D02E550D /* BILayoutInflater.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BILayoutInflater.h; sourceTree = "<group>"; };
 		632D9808BA8DEF41D01082AE /* SPTExample.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SPTExample.h; path = Specta/Specta/SPTExample.h; sourceTree = "<group>"; };
 		65A21F92A3402B7C6D06511F /* BIViewTintAdjustmentModeHandler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BIViewTintAdjustmentModeHandler.h; sourceTree = "<group>"; };
+		65BB237852A34252E557758D /* BIColorParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIColorParser.h; sourceTree = "<group>"; };
+		65BB2687EEE4E43C380BB5A4 /* BIColorParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIColorParser.m; sourceTree = "<group>"; };
 		66E0FF30013BF76C2F495160 /* Pods-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Tests.release.xcconfig"; sourceTree = "<group>"; };
 		675D51977C7E6FD85A6A0ED3 /* EXPMatchers+beInstanceOf.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "EXPMatchers+beInstanceOf.m"; path = "src/matchers/EXPMatchers+beInstanceOf.m"; sourceTree = "<group>"; };
 		68BA36F44C8863A4550912F3 /* BILayoutElement.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BILayoutElement.h; sourceTree = "<group>"; };
@@ -827,6 +831,8 @@
 				8EC18A13D39EBC35F0C6BFF8 /* BIViewContentModeHandler.m */,
 				65A21F92A3402B7C6D06511F /* BIViewTintAdjustmentModeHandler.h */,
 				5965889F6D6285B4BD2AC86E /* BIViewTintAdjustmentModeHandler.m */,
+				65BB2687EEE4E43C380BB5A4 /* BIColorParser.m */,
+				65BB237852A34252E557758D /* BIColorParser.h */,
 			);
 			name = Handlers;
 			path = Handlers;
@@ -1289,6 +1295,7 @@
 				83B8183C7C2D64BAD94E983C /* UIView+BIViewExtensions.h in Headers */,
 				85D9D665D97ADDC733ED38A6 /* UIView+Finders.h in Headers */,
 				FDD72CD706DBE84269F59FE6 /* xlmetamacros.h in Headers */,
+				65BB2B60F5D1F1B49E982223 /* BIColorParser.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1496,6 +1503,7 @@
 				75F0433C3A2128E9B5C5D222 /* UIView+BIAttributes.m in Sources */,
 				0C5942396A3AC9A9CA71977D /* UIView+BIViewExtensions.m in Sources */,
 				209EBF992D6789D4FC36600E /* UIView+Finders.m in Sources */,
+				65BB2AD53124BFB46ADDCB26 /* BIColorParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -22,13 +22,17 @@ SpecBegin(Button_specs)
         context(@"button with default titlte", ^{
             beforeEach(^{
                 button = inflate(@"<UIButton>"
-                        "<title title='Normal' />"
+                        "<title title='Normal' titleColor='#ff0000' />"
                         "</UIButton>");
             });
 
 
             it(@"should set button title for normal state", ^{
                 expect([button titleForState:UIControlStateNormal]).to.equal(@"Normal");
+            });
+
+            it(@"should set button title color for normal state", ^{
+                expect([button titleColorForState:UIControlStateNormal]).to.equal([UIColor redColor]);
             });
         });
 

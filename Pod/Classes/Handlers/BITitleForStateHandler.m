@@ -5,6 +5,7 @@
 #import "BIInflatedViewContainer.h"
 #import "BIEnumsRegistry.h"
 #import "BIEnum.h"
+#import "BIColorParser.h"
 
 
 @implementation BITitleForStateHandler
@@ -22,11 +23,24 @@
     UIControlState controlState = (UIControlState) state.unsignedIntegerValue;
 
     NSString *title = element.attributes[@"title"];
-    [builder addBuildStep:^(BIInflatedViewContainer *container) {
-        UIButton *button = (UIButton *) container.current;
-        [button setTitle:title forState:controlState];
-    }];
+    if (title.length > 0) {
+        [builder addBuildStep:^(BIInflatedViewContainer *container) {
+            UIButton *button = (UIButton *) container.current;
+            [button setTitle:title forState:controlState];
+        }];
+    }
 
+
+    NSString *colorString = element.attributes[@"titleColor"];
+    if (colorString.length > 0) {
+        UIColor *color = [BIColorParser parse:colorString];
+        if (color != nil) {
+            [builder addBuildStep:^(BIInflatedViewContainer *container) {
+                UIButton *button = (UIButton *) container.current;
+                [button setTitleColor:color forState:controlState];
+            }];
+        }
+    }
 
     element.handledAllAttributes = YES;
 }
