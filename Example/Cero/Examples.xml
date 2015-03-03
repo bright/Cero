@@ -6,19 +6,19 @@
         <Constraint on="width" with=":superview" multiplier="0.8"/>
         <Constraint on="centerX" with=":superview"/>
         <Constraint on="topmargin" with=":superview" constant="50"/>
-        <title forState="UIControlStateNormal" value="Buttons and Labels"/>
+        <title forState="UIControlStateNormal" title="Buttons and Labels"/>
     </UIButton>
 
     <UIButton backgroundColor="#dd2a1b" id="tableSample">
         <Constraint on="width, centerX" with=":previous"/>
         <Constraint on="top" with=":previous.bottom" constant="50"/>
-        <title forState="UIControlStateNormal" value="Table view"/>
+        <title forState="UIControlStateNormal" title="Table view"/>
     </UIButton>
 
     <UIButton backgroundColor="#dddda0" id="scrollSample">
         <Constraint on="width, centerX" with=":previous"/>
         <Constraint on="top" with=":previous.bottom" constant="50"/>
-        <title forState="UIControlStateNormal" value="Scroll view"/>
+        <title forState="UIControlStateNormal" title="Scroll view"/>
     </UIButton>
 
 

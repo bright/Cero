@@ -7,8 +7,8 @@
 #import "BIEnum.h"
 
 
-@implementation BITitleForStateHandler {
-}
+@implementation BITitleForStateHandler
+
 - (BOOL)canHandle:(BILayoutElement *)element inBuilder:(BIViewHierarchyBuilder *)builder {
     return [element.name isEqualToString:@"title"]
             && [builder.current respondsToSelector:@selector(setTitle:forState:)];
@@ -17,14 +17,17 @@
 - (void)handleEnter:(BILayoutElement *)element inBuilder:(BIViewHierarchyBuilder *)builder {
 
     NSString *stateValue = element.attributes[@"forState"];
-    NSString *title = element.attributes[@"value"];
     BIEnum *anEnum = BIEnumFor(UIControlState);
     NSNumber *state = [anEnum numberValueFor:stateValue orDefault:@(UIControlStateNormal)];
     UIControlState controlState = (UIControlState) state.unsignedIntegerValue;
+
+    NSString *title = element.attributes[@"title"];
     [builder addBuildStep:^(BIInflatedViewContainer *container) {
         UIButton *button = (UIButton *) container.current;
         [button setTitle:title forState:controlState];
     }];
+
+
     element.handledAllAttributes = YES;
 }
 

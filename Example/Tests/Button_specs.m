@@ -22,7 +22,7 @@ SpecBegin(Button_specs)
         context(@"button with default titlte", ^{
             beforeEach(^{
                 button = inflate(@"<UIButton>"
-                        "<title value='Normal' />"
+                        "<title title='Normal' />"
                         "</UIButton>");
             });
 
@@ -54,11 +54,11 @@ SpecBegin(Button_specs)
         context(@"button with title", ^{
             beforeEach(^{
                 button = inflate(@"<UIButton>"
-                        "<title forState=\"UIControlStateNormal\" value=\"Normal\" />"
-                        "<title forState=\"UIControlStateSelected\" value=\"Selected\" />"
-                        "<title forState=\"UIControlStateDisabled\" value=\"Disabled\" />"
-                        "<title forState=\"UIControlStateHighlighted\" value=\"Highlighed\" />"
-                        "<title forState=\"UIControlStateApplication\" value=\"Application\" />"
+                        "<title forState=\"UIControlStateNormal\" title=\"Normal\" />"
+                        "<title forState=\"UIControlStateSelected\" title=\"Selected\" />"
+                        "<title forState=\"UIControlStateDisabled\" title=\"Disabled\" />"
+                        "<title forState=\"UIControlStateHighlighted\" title=\"Highlighed\" />"
+                        "<title forState=\"UIControlStateApplication\" title=\"Application\" />"
                         "</UIButton>");
             });
 
@@ -68,11 +68,11 @@ SpecBegin(Button_specs)
         context(@"button with title short form", ^{
             beforeEach(^{
                 button = inflate(@"<UIButton>"
-                        "<title forState=\"normal\" value=\"Normal\" />"
-                        "<title forState=\"selected\" value=\"Selected\" />"
-                        "<title forState=\"disabled\" value=\"Disabled\" />"
-                        "<title forState=\"highlighted\" value=\"Highlighed\" />"
-                        "<title forState=\"application\" value=\"Application\" />"
+                        "<title forState=\"normal\" title=\"Normal\" />"
+                        "<title forState=\"selected\" title=\"Selected\" />"
+                        "<title forState=\"disabled\" title=\"Disabled\" />"
+                        "<title forState=\"highlighted\" title=\"Highlighed\" />"
+                        "<title forState=\"application\" title=\"Application\" />"
                         "</UIButton>");
             });
 

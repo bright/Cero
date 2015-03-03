@@ -44,7 +44,10 @@
     NSScanner *scanner = [NSScanner scannerWithString:hexString];
     [scanner setScanLocation:1]; // bypass '#' character
     [scanner scanHexInt:&rgbValue];
-    return [UIColor colorWithRed:((rgbValue & 0xFF0000) >> 16) / 255.0F green:((rgbValue & 0xFF00) >> 8) / 255.0F blue:(rgbValue & 0xFF) / 255.0f alpha:1.0];
+    return [UIColor colorWithRed:((rgbValue & 0xFF0000) >> 16) / 255.0F
+                           green:((rgbValue & 0xFF00) >> 8) / 255.0F
+                            blue:(rgbValue & 0xFF) / 255.0f
+                           alpha:1.0];
 }
 
 @end
