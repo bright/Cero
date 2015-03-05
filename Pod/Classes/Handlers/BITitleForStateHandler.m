@@ -22,7 +22,7 @@
     NSNumber *state = [anEnum numberValueFor:stateValue orDefault:@(UIControlStateNormal)];
     UIControlState controlState = (UIControlState) state.unsignedIntegerValue;
 
-    NSString *title = element.attributes[@"title"];
+    NSString *title = NSLocalizedString(element.attributes[@"title"], nil);
     if (title.length > 0) {
         [builder addBuildStep:^(BIInflatedViewContainer *container) {
             UIButton *button = (UIButton *) container.current;
