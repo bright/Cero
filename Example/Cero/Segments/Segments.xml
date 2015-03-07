@@ -1,0 +1,20 @@
+<UIView backgroundColor="#eeeeee">
+    <Constraint on="topmargin" with=":topLayoutGuide.bottom"/>
+    <Constraint on="width,bottom" with=":superview"/>
+
+    <UISegmentedControl items="Ala, Ola, Pies">
+        <Constraint on="topmargin" with=":topLayoutGuide.bottom" constant="20"/>
+        <Constraint on="width" with=":superview" multiplier="0.9"/>
+        <Constraint on="centerX" with=":superview"/>
+    </UISegmentedControl>
+
+    <UISegmentedControl>
+        <Constraint on="top" with=":previous.bottom" constant="20"/>
+        <Constraint on="width" with=":superview" multiplier="0.9"/>
+        <Constraint on="centerX" with=":superview"/>
+
+        <segment title="Ala"/>
+        <segment image="bright" width="150"/>
+        <segment title="Pies"/>
+    </UISegmentedControl>
+</UIView>

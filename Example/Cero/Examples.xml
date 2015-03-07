@@ -5,20 +5,27 @@
     <UIButton backgroundColor="#f17e00" id="buttonsAndLabels">
         <Constraint on="width" with=":superview" multiplier="0.8"/>
         <Constraint on="centerX" with=":superview"/>
-        <Constraint on="topmargin" with=":superview" constant="50"/>
+        <Constraint on="topmargin" with=":superview" constant="30"/>
         <title forState="UIControlStateNormal" title="Buttons and Labels"/>
     </UIButton>
 
     <UIButton backgroundColor="#dd2a1b" id="tableSample">
         <Constraint on="width, centerX" with=":previous"/>
-        <Constraint on="top" with=":previous.bottom" constant="50"/>
+        <Constraint on="top" with=":previous.bottom" constant="30"/>
         <title forState="UIControlStateNormal" title="Table view"/>
     </UIButton>
 
     <UIButton backgroundColor="#dddda0" id="scrollSample">
         <Constraint on="width, centerX" with=":previous"/>
-        <Constraint on="top" with=":previous.bottom" constant="50"/>
+        <Constraint on="top" with=":previous.bottom" constant="30"/>
         <title forState="UIControlStateNormal" title="Scroll view"/>
+    </UIButton>
+
+
+    <UIButton backgroundColor="#d0d0ad" id="segmentSample">
+        <Constraint on="width, centerX" with=":previous"/>
+        <Constraint on="top" with=":previous.bottom" constant="30"/>
+        <title forState="UIControlStateNormal" title="Segments"/>
     </UIButton>
 
 

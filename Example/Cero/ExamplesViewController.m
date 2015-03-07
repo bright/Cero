@@ -4,6 +4,7 @@
 #import "ButtonsAndLabelsViewController.h"
 #import "TableSampleViewController.h"
 #import "ScrollSampleViewController.h"
+#import "SegmentsViewController.h"
 
 @protocol Examples <BIInflatedViewHelper>
 - (UIButton *)buttonsAndLabels;
@@ -11,6 +12,8 @@
 - (UIButton *)tableSample;
 
 - (UIButton *)scrollSample;
+
+- (UIButton *)segmentSample;
 @end
 
 @implementation ExamplesViewController {
@@ -40,6 +43,11 @@
     [viewHelper.buttonsAndLabels addTarget:self action:@selector(openButtonsAndLabels) forControlEvents:UIControlEventTouchUpInside];
     [viewHelper.tableSample addTarget:self action:@selector(openTableSample) forControlEvents:UIControlEventTouchUpInside];
     [viewHelper.scrollSample addTarget:self action:@selector(openScrollSample) forControlEvents:UIControlEventTouchUpInside];
+    [viewHelper.segmentSample addTarget:self action:@selector(openSegmentSample) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)openSegmentSample {
+    [self.navigationController pushViewController:SegmentsViewController.new animated:YES];
 }
 
 - (void)openTableSample {
