@@ -31,7 +31,7 @@ SpecBegin(SegmentedControl_specs)
             beforeEach(^{
                 control = inflate(@"<UISegmentedControl>"
                         "<segment title='Ala' />"
-                        "<segment image='bright' />"
+                        "<segment image='bright' width='100' />"
                         "<segment title='Ola' enabled='false' />"
                         "</UISegmentedControl>");
             });
@@ -49,6 +49,10 @@ SpecBegin(SegmentedControl_specs)
                 expect([control isEnabledForSegmentAtIndex:0]).to.equal(YES);
                 expect([control isEnabledForSegmentAtIndex:1]).to.equal(YES);
                 expect([control isEnabledForSegmentAtIndex:2]).to.equal(NO);
+            });
+
+            it(@"should set width attribute", ^{
+                expect([control widthForSegmentAtIndex:1]).to.equal(100);
             });
         });
     });

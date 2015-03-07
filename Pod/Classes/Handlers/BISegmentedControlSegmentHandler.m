@@ -14,7 +14,9 @@
     NSString *title = NSLocalizedString(element.attributes[@"title"], nil);
     NSString *imageName = element.attributes[@"image"];
     NSString *enabledAttribute = element.attributes[@"enabled"];
+    NSString *widthAttribute = element.attributes[@"width"];
     BOOL enabled = enabledAttribute.boolValue;
+    CGFloat width = widthAttribute.floatValue;
     [builder addBuildStep:^(BIInflatedViewContainer *container) {
         UISegmentedControl *control = (UISegmentedControl *) container.current;
         NSNumber *segmentedInsertedAtIndex = nil;
@@ -30,8 +32,12 @@
             }
         }
         if (segmentedInsertedAtIndex != nil) {
+            NSUInteger segmentIndex = segmentedInsertedAtIndex.unsignedIntegerValue;
             if (enabledAttribute.length > 0) {
-                [control setEnabled:enabled forSegmentAtIndex:segmentedInsertedAtIndex.unsignedIntegerValue];
+                [control setEnabled:enabled forSegmentAtIndex:segmentIndex];
+            }
+            if (widthAttribute.length > 0) {
+                [control setWidth:width forSegmentAtIndex:segmentIndex];
             }
         }
     }];
