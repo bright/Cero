@@ -44,6 +44,12 @@ SpecBegin(SegmentedControl_specs)
             it(@"should add image items", ^{
                 expect([control imageForSegmentAtIndex:1]).to.equal([UIImage imageNamed:@"bright"]);
             });
+
+            it(@"should set enabled attribute", ^{
+                expect([control isEnabledForSegmentAtIndex:0]).to.equal(YES);
+                expect([control isEnabledForSegmentAtIndex:1]).to.equal(YES);
+                expect([control isEnabledForSegmentAtIndex:2]).to.equal(NO);
+            });
         });
     });
 SpecEnd
