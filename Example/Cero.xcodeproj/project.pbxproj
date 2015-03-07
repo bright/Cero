@@ -25,6 +25,7 @@
 		65BB22E351A800AE595383D8 /* BrightLogo.xml in Resources */ = {isa = PBXBuildFile; fileRef = 65BB287AE62CBA4A6C8EE129 /* BrightLogo.xml */; };
 		65BB23070956B2F6845901EB /* ScrollSampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BB27C740DCF7840B7C1AF8 /* ScrollSampleViewController.m */; };
 		65BB23327B72604B6AFB7B80 /* ScrollSample.xml in Resources */ = {isa = PBXBuildFile; fileRef = 65BB29D37DAD46CB32D76BE1 /* ScrollSample.xml */; };
+		65BB23554BBE774D4D0ECD18 /* SegmentedControl_specs.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BB2298F029438D3BF61E88 /* SegmentedControl_specs.m */; };
 		65BB2404480CCE43839B7FE7 /* Label_specs.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BB23C2A3A941EA112DDAC0 /* Label_specs.m */; };
 		65BB246F84445E9C67AA2F27 /* TestIncludeParent.xml in Resources */ = {isa = PBXBuildFile; fileRef = 65BB2462F1C8148628D73228 /* TestIncludeParent.xml */; };
 		65BB24D752B0C9FE86C32EE9 /* Include_specs.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BB22EEA1B5DD2C7E933BAA /* Include_specs.m */; };
@@ -93,6 +94,7 @@
 		65BB212CDDA51648EC3F134D /* ExamplesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExamplesViewController.h; sourceTree = "<group>"; };
 		65BB219B9DB591C9AA260050 /* BIExamplesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIExamplesView.h; sourceTree = "<group>"; };
 		65BB2295CF84EEB59CA2EAAA /* Constraints_specs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constraints_specs.m; sourceTree = "<group>"; };
+		65BB2298F029438D3BF61E88 /* SegmentedControl_specs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SegmentedControl_specs.m; sourceTree = "<group>"; };
 		65BB22EEA1B5DD2C7E933BAA /* Include_specs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Include_specs.m; sourceTree = "<group>"; };
 		65BB23C2A3A941EA112DDAC0 /* Label_specs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Label_specs.m; sourceTree = "<group>"; };
 		65BB2462F1C8148628D73228 /* TestIncludeParent.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TestIncludeParent.xml; sourceTree = "<group>"; };
@@ -248,6 +250,7 @@
 				65BB21109B9E1804E01CC187 /* Button_specs.m */,
 				65BB23C2A3A941EA112DDAC0 /* Label_specs.m */,
 				65BB2B22D6568FF48EED2A0B /* View_specs.m */,
+				65BB2298F029438D3BF61E88 /* SegmentedControl_specs.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -516,6 +519,7 @@
 				65BB26B1C844680ED49190F1 /* Button_specs.m in Sources */,
 				65BB2404480CCE43839B7FE7 /* Label_specs.m in Sources */,
 				65BB2BDB72A331E2B3B07854 /* View_specs.m in Sources */,
+				65BB23554BBE774D4D0ECD18 /* SegmentedControl_specs.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
