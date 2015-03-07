@@ -146,6 +146,10 @@
 		642C288CB5757B8921E4CF00 /* EXPMatchers+beSupersetOf.h in Headers */ = {isa = PBXBuildFile; fileRef = 2F54E63AC1D9248C970EEC4C /* EXPMatchers+beSupersetOf.h */; };
 		64676422D4B535364053E591 /* BILayoutElementTreeNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 5692F2BDBC608661EC334F25 /* BILayoutElementTreeNode.m */; };
 		649947FB820C65E05088DC2C /* BIContentChangeObservable.h in Headers */ = {isa = PBXBuildFile; fileRef = AC99FFED0444F9D35973F58D /* BIContentChangeObservable.h */; };
+		65BB21BDA5893973B244522D /* BISegmentedControlSegmentHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BB2BA401826B1A3BBB6085 /* BISegmentedControlSegmentHandler.m */; };
+		65BB266098501C0127693175 /* BISegmentedControlHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 65BB2CD31D3062FA2EA02377 /* BISegmentedControlHandler.h */; };
+		65BB2B6A12C77B29A46A727F /* BISegmentedControlSegmentHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 65BB20EB08FCDFF50F7193F8 /* BISegmentedControlSegmentHandler.h */; };
+		65BB2BF972C5AC57EAACFA22 /* BISegmentedControlHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BB20783D8656CD70DE7066 /* BISegmentedControlHandler.m */; };
 		65F4FC637F0216356B2EADD2 /* BILineBreakModeAttributeHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = DDABD30AB5E3739752590613 /* BILineBreakModeAttributeHandler.h */; };
 		66747A9616DD86AF05A098CF /* BIFontTextStyleAttributeHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C31BA1FB0EEC126452EE921 /* BIFontTextStyleAttributeHandler.h */; };
 		66E5D2997C4B668E90680B7B /* EXPFloatTuple.h in Headers */ = {isa = PBXBuildFile; fileRef = 8DE4EF35BB55921E3FC45423 /* EXPFloatTuple.h */; };
@@ -489,6 +493,10 @@
 		6297CE5A3B40B951A7FB51AE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS7.1.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		64D5732D89F8398F9EADEBAF /* EXPBackwardCompatibility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = EXPBackwardCompatibility.m; path = src/EXPBackwardCompatibility.m; sourceTree = "<group>"; };
 		65475A66D2B9B0E67038B6E3 /* EXPMatchers+contain.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "EXPMatchers+contain.h"; path = "src/matchers/EXPMatchers+contain.h"; sourceTree = "<group>"; };
+		65BB20783D8656CD70DE7066 /* BISegmentedControlHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BISegmentedControlHandler.m; sourceTree = "<group>"; };
+		65BB20EB08FCDFF50F7193F8 /* BISegmentedControlSegmentHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BISegmentedControlSegmentHandler.h; sourceTree = "<group>"; };
+		65BB2BA401826B1A3BBB6085 /* BISegmentedControlSegmentHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BISegmentedControlSegmentHandler.m; sourceTree = "<group>"; };
+		65BB2CD31D3062FA2EA02377 /* BISegmentedControlHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BISegmentedControlHandler.h; sourceTree = "<group>"; };
 		66327FDF55099B38E7784BC7 /* BIButtonHandler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BIButtonHandler.h; sourceTree = "<group>"; };
 		66D7F0217F92B15C55F59339 /* NSObject+KVCExtensions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NSObject+KVCExtensions.m"; sourceTree = "<group>"; };
 		6776E39C79CB88717C74ABF7 /* Pods-Tests-Specta-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Tests-Specta-Private.xcconfig"; sourceTree = "<group>"; };
@@ -743,6 +751,10 @@
 				F1C071291552FE6C44CFD4FC /* BIViewContentModeHandler.m */,
 				C6FD0CF6054ECC4CBA657F38 /* BIViewTintAdjustmentModeHandler.h */,
 				8A65FE3F2AA4F7D4E1D0DB8C /* BIViewTintAdjustmentModeHandler.m */,
+				65BB20783D8656CD70DE7066 /* BISegmentedControlHandler.m */,
+				65BB2CD31D3062FA2EA02377 /* BISegmentedControlHandler.h */,
+				65BB2BA401826B1A3BBB6085 /* BISegmentedControlSegmentHandler.m */,
+				65BB20EB08FCDFF50F7193F8 /* BISegmentedControlSegmentHandler.h */,
 			);
 			name = Handlers;
 			path = Handlers;
@@ -1183,6 +1195,8 @@
 				E7745C2944FA52F9FEF1E2BF /* UIView+BIViewExtensions.h in Headers */,
 				E4BE15735E53555F02FEDA9D /* UIView+Finders.h in Headers */,
 				8AEDD3860A5504027C68D341 /* xlmetamacros.h in Headers */,
+				65BB266098501C0127693175 /* BISegmentedControlHandler.h in Headers */,
+				65BB2B6A12C77B29A46A727F /* BISegmentedControlSegmentHandler.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1659,6 +1673,8 @@
 				8220867F9E14F65F5EB33B51 /* UIView+BIAttributes.m in Sources */,
 				76F9F06A7C34DD278C3422D7 /* UIView+BIViewExtensions.m in Sources */,
 				A0D10A8E9B2AC16943D95D5D /* UIView+Finders.m in Sources */,
+				65BB2BF972C5AC57EAACFA22 /* BISegmentedControlHandler.m in Sources */,
+				65BB21BDA5893973B244522D /* BISegmentedControlSegmentHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

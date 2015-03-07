@@ -20,6 +20,7 @@
 #import "BIImageForStateHandler.h"
 #import "BITextAttributeHandler.h"
 #import "BISegmentedControlHandler.h"
+#import "BISegmentedControlSegmentHandler.h"
 
 
 @implementation BILayoutConfiguration {
@@ -67,10 +68,14 @@ static BILayoutConfiguration *DefaultConfiguration;
     [self registerAttributeHandler:[BIIdAttributeHandler new]];
     [self registerAttributeHandler:[BIViewContentModeHandler new]];
     [self registerAttributeHandler:[BISimpleAttributeHandler new]];
+
+    [self registerElementHandler:[BIButtonHandler new]];
     [self registerElementHandler:[BITitleForStateHandler new]];
     [self registerElementHandler:[BIImageForStateHandler new]];
-    [self registerElementHandler:[BIButtonHandler new]];
+
     [self registerElementHandler:[BISegmentedControlHandler new]];
+    [self registerElementHandler:[BISegmentedControlSegmentHandler new]];
+
     [self registerElementHandler:[BIConstraintHandler new]];
     [self registerElementHandler:[BISimpleViewHandler new]];
     [self registerElementHandler:[BIIncludeHandler new]];

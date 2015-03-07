@@ -5,7 +5,7 @@
 
 @implementation BISegmentedControlHandler
 - (BOOL)canHandle:(BILayoutElement *)element inBuilder:(BIViewHierarchyBuilder *)builder {
-    return [@"UISegmentedControl" isEqualToString:NSStringFromClass([UISegmentedControl class])];
+    return [@"UISegmentedControl" isEqualToString:element.name];
 }
 
 - (void)handleEnter:(BILayoutElement *)element inBuilder:(BIViewHierarchyBuilder *)builder {
