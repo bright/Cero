@@ -21,12 +21,15 @@
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		65BB203EBCE3989491D56FF4 /* TestIncludeParentConstraint.xml in Resources */ = {isa = PBXBuildFile; fileRef = 65BB27819B6085F516E7EB7A /* TestIncludeParentConstraint.xml */; };
 		65BB208F2731F0A3060C4C8B /* TestIncludeChild.xml in Resources */ = {isa = PBXBuildFile; fileRef = 65BB2A85BBD048A3CCE84364 /* TestIncludeChild.xml */; };
+		65BB20B7B2E1F24097A15696 /* CollectionSampleCell_0.xml in Resources */ = {isa = PBXBuildFile; fileRef = 65BB2FBEB4030AFDD2C21164 /* CollectionSampleCell_0.xml */; };
+		65BB212973DCC124F9DC3A92 /* CollectionSampleCell_1.xml in Resources */ = {isa = PBXBuildFile; fileRef = 65BB2020D4ADCA1D236C91E5 /* CollectionSampleCell_1.xml */; };
 		65BB223B955F14D5A3FC623D /* TestIncludeChild.xml in Resources */ = {isa = PBXBuildFile; fileRef = 65BB2A85BBD048A3CCE84364 /* TestIncludeChild.xml */; };
 		65BB2289C0B3BCA823C5F9BD /* Segments.xml in Resources */ = {isa = PBXBuildFile; fileRef = 65BB28F6BFC3283FF3D15FD0 /* Segments.xml */; };
 		65BB22E351A800AE595383D8 /* BrightLogo.xml in Resources */ = {isa = PBXBuildFile; fileRef = 65BB287AE62CBA4A6C8EE129 /* BrightLogo.xml */; };
 		65BB23070956B2F6845901EB /* ScrollSampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BB27C740DCF7840B7C1AF8 /* ScrollSampleViewController.m */; };
 		65BB23327B72604B6AFB7B80 /* ScrollSample.xml in Resources */ = {isa = PBXBuildFile; fileRef = 65BB29D37DAD46CB32D76BE1 /* ScrollSample.xml */; };
 		65BB23554BBE774D4D0ECD18 /* SegmentedControl_specs.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BB2298F029438D3BF61E88 /* SegmentedControl_specs.m */; };
+		65BB23B2CC0936C631A174EA /* ios-8-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 65BB2C39A414959BE0495BCA /* ios-8-icon.png */; };
 		65BB2404480CCE43839B7FE7 /* Label_specs.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BB23C2A3A941EA112DDAC0 /* Label_specs.m */; };
 		65BB246F84445E9C67AA2F27 /* TestIncludeParent.xml in Resources */ = {isa = PBXBuildFile; fileRef = 65BB2462F1C8148628D73228 /* TestIncludeParent.xml */; };
 		65BB24D752B0C9FE86C32EE9 /* Include_specs.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BB22EEA1B5DD2C7E933BAA /* Include_specs.m */; };
@@ -47,8 +50,10 @@
 		65BB2AA0C63F66AFAEB8B290 /* IdAttribute_specs.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BB27DA1669420A576B131E /* IdAttribute_specs.m */; };
 		65BB2B1A479EC8A8C4D589D6 /* TableSampleCellContent_0.xml in Resources */ = {isa = PBXBuildFile; fileRef = 65BB264FA32AA08D7114A7CC /* TableSampleCellContent_0.xml */; };
 		65BB2B2F6AA6E7E871D3C294 /* TestIncludeMerge.xml in Resources */ = {isa = PBXBuildFile; fileRef = 65BB20EB93D02FE2D4A8E0BF /* TestIncludeMerge.xml */; };
+		65BB2B6F9A77264D3BAB83ED /* CollectionSampleCell_2.xml in Resources */ = {isa = PBXBuildFile; fileRef = 65BB27FC124BFD8F3CF713D5 /* CollectionSampleCell_2.xml */; };
 		65BB2BDB72A331E2B3B07854 /* View_specs.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BB2B22D6568FF48EED2A0B /* View_specs.m */; };
 		65BB2DD49C46EC69DDEDBBCC /* ButtonsAndLabels.xml in Resources */ = {isa = PBXBuildFile; fileRef = 65BB26F7D75294D33663CA8E /* ButtonsAndLabels.xml */; };
+		65BB2E2D3771A8FA83C60FBD /* CollectionSampleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BB21C413FAB8C94018B63B /* CollectionSampleController.m */; };
 		65BB2E3862DA7CB13348ED87 /* TestIncludeChildConstraint.xml in Resources */ = {isa = PBXBuildFile; fileRef = 65BB2588965F01FE20830FBA /* TestIncludeChildConstraint.xml */; };
 		65BB2E53971158CBB894D6C1 /* TestIncludeChildConstraint.xml in Resources */ = {isa = PBXBuildFile; fileRef = 65BB2588965F01FE20830FBA /* TestIncludeChildConstraint.xml */; };
 		65BB2E63F4D9267438255099 /* BIExamplesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BB2A003E7D7B89A13AC611 /* BIExamplesView.m */; };
@@ -56,6 +61,7 @@
 		65BB2F0210F676FA6F83AE48 /* TestIncludeMerge.xml in Resources */ = {isa = PBXBuildFile; fileRef = 65BB20EB93D02FE2D4A8E0BF /* TestIncludeMerge.xml */; };
 		65BB2F693EE0D0D5917A623C /* ExamplesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BB257FB5DFCF76D0A3938C /* ExamplesViewController.m */; };
 		65BB2FB1AF70CBA84E56BEB7 /* ButtonsAndLabelsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65BB25EDDED472CB87E32FF1 /* ButtonsAndLabelsViewController.m */; };
+		65BB2FBF6E0C6A9FAEC1A007 /* bright-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 65BB210A9ADB5972D96F580F /* bright-logo.png */; };
 		65BB2FF259E69967C18DC04B /* TableSampleCellContent_1.xml in Resources */ = {isa = PBXBuildFile; fileRef = 65BB282CB15285E472E82F4E /* TableSampleCellContent_1.xml */; };
 		85E715861570E9375DCB3015 /* libPods-Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CF281AAF4474198BA06B5387 /* libPods-Tests.a */; };
 /* End PBXBuildFile section */
@@ -90,12 +96,15 @@
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
+		65BB2020D4ADCA1D236C91E5 /* CollectionSampleCell_1.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = CollectionSampleCell_1.xml; path = CollectionSample/CollectionSampleCell_1.xml; sourceTree = "<group>"; };
 		65BB20E9087135377B50EAD1 /* TableSampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TableSampleViewController.m; path = TableSample/TableSampleViewController.m; sourceTree = "<group>"; };
 		65BB20EB93D02FE2D4A8E0BF /* TestIncludeMerge.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TestIncludeMerge.xml; sourceTree = "<group>"; };
+		65BB210A9ADB5972D96F580F /* bright-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bright-logo.png"; sourceTree = "<group>"; };
 		65BB21109B9E1804E01CC187 /* Button_specs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Button_specs.m; sourceTree = "<group>"; };
 		65BB212CDDA51648EC3F134D /* ExamplesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExamplesViewController.h; sourceTree = "<group>"; };
 		65BB216805FC4D0EF7D0AB05 /* SegmentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SegmentsViewController.m; path = Segments/SegmentsViewController.m; sourceTree = "<group>"; };
 		65BB219B9DB591C9AA260050 /* BIExamplesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIExamplesView.h; sourceTree = "<group>"; };
+		65BB21C413FAB8C94018B63B /* CollectionSampleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CollectionSampleController.m; path = Cero/CollectionSample/CollectionSampleController.m; sourceTree = "<group>"; };
 		65BB2295CF84EEB59CA2EAAA /* Constraints_specs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constraints_specs.m; sourceTree = "<group>"; };
 		65BB2298F029438D3BF61E88 /* SegmentedControl_specs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SegmentedControl_specs.m; sourceTree = "<group>"; };
 		65BB22EEA1B5DD2C7E933BAA /* Include_specs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Include_specs.m; sourceTree = "<group>"; };
@@ -112,8 +121,10 @@
 		65BB27819B6085F516E7EB7A /* TestIncludeParentConstraint.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TestIncludeParentConstraint.xml; sourceTree = "<group>"; };
 		65BB27C740DCF7840B7C1AF8 /* ScrollSampleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScrollSampleViewController.m; path = Cero/ScrollSample/ScrollSampleViewController.m; sourceTree = "<group>"; };
 		65BB27DA1669420A576B131E /* IdAttribute_specs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdAttribute_specs.m; sourceTree = "<group>"; };
+		65BB27FC124BFD8F3CF713D5 /* CollectionSampleCell_2.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = CollectionSampleCell_2.xml; path = CollectionSample/CollectionSampleCell_2.xml; sourceTree = "<group>"; };
 		65BB282CB15285E472E82F4E /* TableSampleCellContent_1.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TableSampleCellContent_1.xml; sourceTree = "<group>"; };
 		65BB287AE62CBA4A6C8EE129 /* BrightLogo.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = BrightLogo.xml; sourceTree = "<group>"; };
+		65BB287F6B04E5B1EFFF1DC6 /* CollectionSampleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CollectionSampleController.h; path = Cero/CollectionSample/CollectionSampleController.h; sourceTree = "<group>"; };
 		65BB28F6BFC3283FF3D15FD0 /* Segments.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Segments.xml; path = Segments/Segments.xml; sourceTree = "<group>"; };
 		65BB2927A89A7DEC293EDAD8 /* ScrollSampleReuseConstraints.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ScrollSampleReuseConstraints.xml; path = ScrollSample/ScrollSampleReuseConstraints.xml; sourceTree = "<group>"; };
 		65BB29D37DAD46CB32D76BE1 /* ScrollSample.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ScrollSample.xml; path = Cero/ScrollSample/ScrollSample.xml; sourceTree = "<group>"; };
@@ -123,12 +134,14 @@
 		65BB2B22D6568FF48EED2A0B /* View_specs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = View_specs.m; sourceTree = "<group>"; };
 		65BB2BABAD6998B7CADD688C /* TestHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestHelper.m; sourceTree = "<group>"; };
 		65BB2BD9DDB5BCF52FB10053 /* ScrollLabelConstraint.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = ScrollLabelConstraint.xml; path = ScrollSample/ScrollLabelConstraint.xml; sourceTree = "<group>"; };
+		65BB2C39A414959BE0495BCA /* ios-8-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ios-8-icon.png"; sourceTree = "<group>"; };
 		65BB2C6F9713261DE3377061 /* SegmentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SegmentsViewController.h; path = Segments/SegmentsViewController.h; sourceTree = "<group>"; };
 		65BB2D7B46AAC5DD398869C7 /* ScrollSampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScrollSampleViewController.h; path = Cero/ScrollSample/ScrollSampleViewController.h; sourceTree = "<group>"; };
 		65BB2DD94228E9203AFCAC3E /* LayoutInflater_specs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LayoutInflater_specs.m; sourceTree = "<group>"; };
 		65BB2EEBB6AA87AF43F59AF0 /* Examples.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = Examples.xml; sourceTree = "<group>"; };
 		65BB2F631E68CC5800F091F2 /* TestHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestHelpers.h; sourceTree = "<group>"; };
 		65BB2F6F426608407F8643AA /* ButtonsAndLabelsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonsAndLabelsViewController.h; sourceTree = "<group>"; };
+		65BB2FBEB4030AFDD2C21164 /* CollectionSampleCell_0.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = CollectionSampleCell_0.xml; path = CollectionSample/CollectionSampleCell_0.xml; sourceTree = "<group>"; };
 		77630BFEAE6ED351EAD0A1BE /* Pods-Cero.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cero.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cero/Pods-Cero.release.xcconfig"; sourceTree = "<group>"; };
 		7856DDCA83FF8AF8A3B39934 /* Pods-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.release.xcconfig"; sourceTree = "<group>"; };
 		C12FD457A764EB473E5E643D /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
@@ -177,6 +190,8 @@
 				65BB29D37DAD46CB32D76BE1 /* ScrollSample.xml */,
 				65BB2D7B46AAC5DD398869C7 /* ScrollSampleViewController.h */,
 				65BB27C740DCF7840B7C1AF8 /* ScrollSampleViewController.m */,
+				65BB287F6B04E5B1EFFF1DC6 /* CollectionSampleController.h */,
+				65BB21C413FAB8C94018B63B /* CollectionSampleController.m */,
 			);
 			sourceTree = "<group>";
 		};
@@ -223,6 +238,9 @@
 				65BB216805FC4D0EF7D0AB05 /* SegmentsViewController.m */,
 				65BB2C6F9713261DE3377061 /* SegmentsViewController.h */,
 				65BB28F6BFC3283FF3D15FD0 /* Segments.xml */,
+				65BB2FBEB4030AFDD2C21164 /* CollectionSampleCell_0.xml */,
+				65BB2020D4ADCA1D236C91E5 /* CollectionSampleCell_1.xml */,
+				65BB27FC124BFD8F3CF713D5 /* CollectionSampleCell_2.xml */,
 			);
 			path = Cero;
 			sourceTree = "<group>";
@@ -300,6 +318,8 @@
 				65BB2F6F426608407F8643AA /* ButtonsAndLabelsViewController.h */,
 				65BB25EDDED472CB87E32FF1 /* ButtonsAndLabelsViewController.m */,
 				65BB271D16C0EC61C9A7AF2F /* bright.png */,
+				65BB210A9ADB5972D96F580F /* bright-logo.png */,
+				65BB2C39A414959BE0495BCA /* ios-8-icon.png */,
 			);
 			name = Sample1;
 			path = Cero/Sample1;
@@ -419,6 +439,11 @@
 				65BB25A237C41453F4EF8C62 /* ScrollLabelConstraint.xml in Resources */,
 				65BB292A89798C5F4CA95E44 /* ScrollSampleReuseConstraints.xml in Resources */,
 				65BB2289C0B3BCA823C5F9BD /* Segments.xml in Resources */,
+				65BB20B7B2E1F24097A15696 /* CollectionSampleCell_0.xml in Resources */,
+				65BB2FBF6E0C6A9FAEC1A007 /* bright-logo.png in Resources */,
+				65BB212973DCC124F9DC3A92 /* CollectionSampleCell_1.xml in Resources */,
+				65BB23B2CC0936C631A174EA /* ios-8-icon.png in Resources */,
+				65BB2B6F9A77264D3BAB83ED /* CollectionSampleCell_2.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -514,6 +539,7 @@
 				65BB2E63F4D9267438255099 /* BIExamplesView.m in Sources */,
 				65BB23070956B2F6845901EB /* ScrollSampleViewController.m in Sources */,
 				65BB255BE6804296478BEBA0 /* SegmentsViewController.m in Sources */,
+				65BB2E2D3771A8FA83C60FBD /* CollectionSampleController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

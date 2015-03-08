@@ -28,6 +28,12 @@
         <title forState="UIControlStateNormal" title="Segments"/>
     </UIButton>
 
+    <UIButton backgroundColor="#0d0dda" id="collectionSample">
+        <Constraint on="width, centerX" with=":previous"/>
+        <Constraint on="top" with=":previous.bottom" constant="30"/>
+        <title forState="UIControlStateNormal" title="Collection"/>
+    </UIButton>
+
 
     <include layout="BrightLogo"/>
 </BIExamplesView>

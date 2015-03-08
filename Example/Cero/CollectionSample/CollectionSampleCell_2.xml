@@ -1,0 +1,8 @@
+<UIView>
+    <Constraint on="width,height" with=":superview"/>
+
+    <UIImageView id="logo" image="ios-8-icon" contentMode="scaleAspectFit">
+        <Constraint on="width,height" with=":superview" constant="10"/>
+        <Constraint on="centerX,centerY" with=":superview"/>
+    </UIImageView>
+</UIView>

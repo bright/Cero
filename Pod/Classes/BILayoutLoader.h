@@ -14,6 +14,8 @@ typedef void (^OnViewInflated)(id <BIInflatedViewHelper>);
 
 - (void)fillViewOfController:(UIViewController *)controller layout:(NSString *)layoutName loaded:(OnViewInflated)notify;
 
+- (UICollectionViewCell *)fillCollectionCellContent:(UICollectionView *)collectionView layout:(NSString *)layoutName indexPath:(NSIndexPath *)path loaded:(OnViewInflated)loaded;
+
 - (UITableViewCell *)fillTableCellContent:(UITableView *)tableView layout:(NSString *)layoutName loaded:(OnViewInflated)loaded;
 
 - (BIInflatedViewContainer *)fillView:(UIView *)superview layout:(NSString *)layoutName loaded:(OnViewInflated)notify;

@@ -33,24 +33,42 @@
     [self fillView:controller.view layout:layoutName loaded:notify];
 }
 
+- (UICollectionViewCell *)fillCollectionCellContent:(UICollectionView *)collectionView layout:(NSString *)layoutName indexPath:(NSIndexPath *)path loaded:(OnViewInflated)loaded {
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:layoutName forIndexPath:path];
+    if (cell == nil) {
+        cell = UICollectionViewCell.new;
+    }
+    [self reloadLayout:layoutName loaded:loaded collectionView:collectionView cell:cell];
+    return cell;
+}
+
 - (UITableViewCell *)fillTableCellContent:(UITableView *)tableView layout:(NSString *)layoutName loaded:(OnViewInflated)loaded {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:layoutName];
     if (cell == nil) {
         cell = UITableViewCell.new;
-        NSString *path = [self layoutPath:layoutName];
-        BIInflatedViewContainer *container = [self reloadSuperview:cell.contentView path:path notify:loaded];
-        cell.bi_cachedViewHelper = container;
-        BIContentChangeObserver *observer = [self contentChangeObserveForPath:path];
-        @weakify(tableView);
-        [observer addNeedsReloadHandler:^{
-            @strongify(tableView);
-            [tableView reloadData];
-        }                       boundTo:tableView];
-    } else {
-        loaded(cell.bi_cachedViewHelper);
     }
 
+    [self reloadLayout:layoutName loaded:loaded collectionView:tableView cell:cell];
+
     return cell;
+}
+
+- (void)reloadLayout:(NSString *)layoutName loaded:(OnViewInflated)loaded collectionView:(UIView *)collectionView cell:(id)cell {
+    UIView *cellView = (UIView *) cell;
+    if (cellView.bi_cachedViewHelper == nil) {
+        NSString *layoutPath = [self layoutPath:layoutName];
+        UIView *contentView = [cell contentView];
+        BIInflatedViewContainer *container = [self reloadSuperview:contentView path:layoutPath notify:loaded];
+        cellView.bi_cachedViewHelper = container;
+        BIContentChangeObserver *observer = [self contentChangeObserveForPath:layoutPath];
+        @weakify(collectionView);
+        [observer addNeedsReloadHandler:^{
+            @strongify(collectionView);
+            [(id) collectionView reloadData];
+        }                       boundTo:collectionView];
+    } else {
+        loaded(cellView.bi_cachedViewHelper);
+    }
 }
 
 - (BIInflatedViewContainer *)fillView:(UIView *)superview layout:(NSString *)layoutName loaded:(OnViewInflated)notify {
