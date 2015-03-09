@@ -4,6 +4,9 @@
 @class UIViewController;
 @class UITableViewCell;
 @class UITableView;
+@class UICollectionViewCell;
+@class UICollectionView;
+@class NSIndexPath;
 
 typedef void (^OnViewInflated)(id <BIInflatedViewHelper>);
 
