@@ -46,4 +46,12 @@
     handler.attributeName = @"keyboardAppearance";
     return handler;
 }
+
+- (NSObject <BIAttributeHandler> *)returnKeyType {
+    BIEnumAttributeHandler *handler = BIEnumAttributeHandler.new;
+    handler.valuesEnum = BIEnumFor(UIReturnKeyType);
+    handler.setter = @selector(setReturnKeyType:);
+    handler.attributeName = @"returnKeyType";
+    return handler;
+}
 @end

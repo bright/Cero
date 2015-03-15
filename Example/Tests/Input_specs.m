@@ -28,5 +28,9 @@ SpecBegin(Input_specs)
             input = inflate(@"<UITextField keyboardAppearance='light' />");
             expect(input.keyboardAppearance).to.equal(UIKeyboardAppearanceLight);
         });
+        it(@"can set return key type", ^{
+            input = inflate(@"<UITextField returnKeyType='yahoo' />");
+            expect(input.returnKeyType).to.equal(UIReturnKeyYahoo);
+        });
     });
 SpecEnd

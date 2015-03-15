@@ -10,4 +10,6 @@
 - (NSObject <BIAttributeHandler> *)keyboardType;
 
 - (NSObject <BIAttributeHandler> *)keyboardAppearance;
+
+- (NSObject <BIAttributeHandler> *)returnKeyType;
 @end

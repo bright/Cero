@@ -64,6 +64,7 @@ static BILayoutConfiguration *DefaultConfiguration;
     [self registerAttributeHandler:attributeHandlers.spellCheckingType];
     [self registerAttributeHandler:attributeHandlers.keyboardType];
     [self registerAttributeHandler:attributeHandlers.keyboardAppearance];
+    [self registerAttributeHandler:attributeHandlers.returnKeyType];
     [self registerAttributeHandler:[BIViewTintAdjustmentModeHandler new]];
     [self registerAttributeHandler:[BILineBreakModeAttributeHandler new]];
     [self registerAttributeHandler:[BITextAttributeHandler new]];
