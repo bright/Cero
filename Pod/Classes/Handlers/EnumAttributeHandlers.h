@@ -8,4 +8,6 @@
 - (NSObject <BIAttributeHandler> *)spellCheckingType;
 
 - (NSObject <BIAttributeHandler> *)keyboardType;
+
+- (NSObject <BIAttributeHandler> *)keyboardAppearance;
 @end

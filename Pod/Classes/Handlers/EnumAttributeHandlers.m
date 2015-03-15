@@ -38,4 +38,12 @@
     handler.attributeName = @"keyboardType";
     return handler;
 }
+
+- (NSObject <BIAttributeHandler> *)keyboardAppearance {
+    BIEnumAttributeHandler *handler = BIEnumAttributeHandler.new;
+    handler.valuesEnum = BIEnumFor(UIKeyboardAppearance);
+    handler.setter = @selector(setKeyboardAppearance:);
+    handler.attributeName = @"keyboardAppearance";
+    return handler;
+}
 @end

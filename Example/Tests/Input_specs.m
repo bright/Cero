@@ -24,5 +24,9 @@ SpecBegin(Input_specs)
             input = inflate(@"<UITextField keyboardType='NumbersAndPunctuation' />");
             expect(input.keyboardType).to.equal(UIKeyboardTypeNumbersAndPunctuation);
         });
+        it(@"can set keyboard appeareance", ^{
+            input = inflate(@"<UITextField keyboardAppearance='light' />");
+            expect(input.keyboardAppearance).to.equal(UIKeyboardAppearanceLight);
+        });
     });
 SpecEnd
