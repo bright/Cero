@@ -56,6 +56,7 @@
                 NSNumber *otherAttributeWrap = self.otherItemAttributes[index];
                 otherAttribute = (NSLayoutAttribute) otherAttributeWrap.integerValue;
             }
+
             UIView *otherItem = nil;
             if (self.otherItemFinder != nil) {
                 otherItem = self.otherItemFinder(container, self);
@@ -63,6 +64,21 @@
                     //TODO Error handling
                     BILog(@"Could not find other item view %@", _sourceReference.sourceDescription);
                     continue;
+                }
+            } else {
+                if (otherAttribute == NSLayoutAttributeTop
+                        || otherAttribute == NSLayoutAttributeTopMargin
+                        || otherAttribute == NSLayoutAttributeBottom
+                        || otherAttribute == NSLayoutAttributeBottomMargin
+                        || otherAttribute == NSLayoutAttributeLeft
+                        || otherAttribute == NSLayoutAttributeLeftMargin
+                        || otherAttribute == NSLayoutAttributeRight
+                        || otherAttribute == NSLayoutAttributeRightMargin
+                        || otherAttribute == NSLayoutAttributeCenterX
+                        || otherAttribute == NSLayoutAttributeCenterXWithinMargins
+                        || otherAttribute == NSLayoutAttributeCenterY
+                        || otherAttribute == NSLayoutAttributeCenterYWithinMargins) {
+                    otherItem = firstItem.superview;
                 }
             }
 

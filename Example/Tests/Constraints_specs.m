@@ -13,7 +13,10 @@ SpecBegin(Constraints_specs)
         NSInteger rootHeight = 300;
         __block id <BIInflatedViewHelper> helper;
         id <BIInflatedViewHelper>(^inflateInParent)(NSString *) = ^(NSString *childViews) {
-            NSString *wrappedInFrame = [NSString stringWithFormat:@"<UIView id='root' width='100' height='300'>\n\n%@\n\n</UIView>", childViews];
+            NSString *wrappedInFrame = [NSString stringWithFormat:@"<UIView id='root' width='100' height='300'>"
+                                                                          "<Constraint on='top' constant='0' />"
+                                                                          "\n\n%@\n\n"
+                                                                          "</UIView>", childViews];
             id <BIInflatedViewHelper> container = testInflate(wrappedInFrame);
             [container.root setNeedsLayout];
             [container.root layoutIfNeeded];
@@ -64,6 +67,23 @@ SpecBegin(Constraints_specs)
             });
             it(@"should properly build constraint", ^{
                 expect([helper findViewById:@"child"].frame.size.width).to.equal(rootWidth * 0.9);
+            });
+        });
+        context(@"constraint with superview top short format that omits superview selector", ^{
+            beforeEach(^{
+                helper = inflateInParent(@"<UIView id='child'>"
+                        "<Constraint on='top' constant='30' with=':superview' />"
+                        "<UIView id='granChild'>"
+                        "<Constraint on='top' constant='15' />"
+                        "</UIView>"
+                        "</UIView>");
+            });
+            it(@"builds a proper view", ^{
+                expect(helper.root).toNot.beNil();
+            });
+            it(@"should properly build constraint", ^{
+                expect([helper findViewById:@"child"].frame.origin.y).to.equal(30);
+                expect([helper findViewById:@"granChild"].frame.origin.y).to.equal(15);
             });
         });
         context(@"constraint height with id", ^{

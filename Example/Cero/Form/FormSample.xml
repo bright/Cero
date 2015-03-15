@@ -1,8 +1,8 @@
 <UIView backgroundColor="#dddddd">
     <Constraint on="top" with=":topLayoutGuide.bottom"/>
-    <Constraint on="width,height" with=":superview"/>
+    <Constraint on="width,height,centerX" with=":superview"/>
     <UIView>
-        <Constraint on="top" with=":superview"/>
+        <Constraint on="top"/>
         <Constraint on="width" with=":superview" constant="-30"/>
         <Constraint on="centerX" with=":superview"/>
         <UILabel text="Nick">
