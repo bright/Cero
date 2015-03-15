@@ -22,4 +22,12 @@
     handler.attributeName = @"autocorrectionType";
     return handler;
 }
+
+- (NSObject <BIAttributeHandler> *)spellCheckingType {
+    BIEnumAttributeHandler *handler = BIEnumAttributeHandler.new;
+    handler.valuesEnum = BIEnumFor(UITextSpellCheckingType);
+    handler.setter = @selector(setSpellCheckingType:);
+    handler.attributeName = @"spellCheckingType";
+    return handler;
+}
 @end

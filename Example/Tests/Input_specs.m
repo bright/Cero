@@ -16,5 +16,9 @@ SpecBegin(Input_specs)
             input = inflate(@"<UITextField autocorrectionType='no' />");
             expect(input.autocorrectionType).to.equal(UITextAutocorrectionTypeNo);
         });
+        it(@"can set text spelling type", ^{
+            input = inflate(@"<UITextField spellCheckingType='no' />");
+            expect(input.spellCheckingType).to.equal(UITextSpellCheckingTypeNo);
+        });
     });
 SpecEnd
