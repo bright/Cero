@@ -6,6 +6,7 @@
 #import "ScrollSampleViewController.h"
 #import "SegmentsViewController.h"
 #import "CollectionSampleController.h"
+#import "FormSampleViewController.h"
 
 @protocol Examples <BIInflatedViewHelper>
 - (UIButton *)buttonsAndLabels;
@@ -17,6 +18,8 @@
 - (UIButton *)segmentSample;
 
 - (UIButton *)collectionSample;
+
+- (UIButton *)formSample;
 @end
 
 @implementation ExamplesViewController {
@@ -48,6 +51,11 @@
     [viewHelper.scrollSample addTarget:self action:@selector(openScrollSample) forControlEvents:UIControlEventTouchUpInside];
     [viewHelper.segmentSample addTarget:self action:@selector(openSegmentSample) forControlEvents:UIControlEventTouchUpInside];
     [viewHelper.collectionSample addTarget:self action:@selector(openCollectionSample) forControlEvents:UIControlEventTouchUpInside];
+    [viewHelper.formSample addTarget:self action:@selector(openFormSample) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)openFormSample {
+    [self.navigationController pushViewController:FormSampleViewController.new animated:YES];
 }
 
 - (void)openCollectionSample {

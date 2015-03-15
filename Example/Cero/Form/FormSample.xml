@@ -1,0 +1,42 @@
+<UIView backgroundColor="#dddddd">
+    <Constraint on="top" with=":topLayoutGuide.bottom"/>
+    <Constraint on="width,height" with=":superview"/>
+    <UIView>
+        <Constraint on="top" with=":superview"/>
+        <Constraint on="width" with=":superview" constant="-30"/>
+        <Constraint on="centerX" with=":superview"/>
+        <UILabel text="Nick">
+            <Constraint on="centerY,left" with=":superview"/>
+        </UILabel>
+        <UITextField id="nick" backgroundColor="whiteColor"
+                     layer.cornerRadius="6"
+                     placeholder="Enter your nick">
+            <Constraint on="centerY,right" with=":superview"/>
+            <Constraint on="height" with=":superview" constant="-20"/>
+            <Constraint on="width" with=":superview" constant="-60"/>
+        </UITextField>
+    </UIView>
+    <UIView>
+        <Constraint on="top" with=":previous.bottom"/>
+        <Constraint on="width" with=":superview" constant="-30"/>
+        <Constraint on="centerX" with=":superview"/>
+        <UILabel text="Comment">
+            <Constraint on="left,top" with=":superview"/>
+        </UILabel>
+        <UITextView id="comment" backgroundColor="whiteColor"
+                    layer.cornerRadius="6">
+            <Constraint on="top" with=":previous.bottom" constant="10"/>
+            <Constraint on="height" constant="130"/>
+            <Constraint on="height" with=":superview" constant="-30"/>
+            <Constraint on="width, left" with=":superview"/>
+        </UITextView>
+    </UIView>
+
+    <UIButton id="submit" backgroundColor="#d0dd00" layer.cornerRadius="4">
+        <Constraint on="top" with=":previous.bottom" constant="10"/>
+        <Constraint on="width" with=":superview" multiplier=".5" constant="-10"/>
+        <Constraint on="left" with=":superview" constant="15"/>
+        <title title="Submit"/>
+    </UIButton>
+
+</UIView>
