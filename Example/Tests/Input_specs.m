@@ -12,5 +12,9 @@ SpecBegin(Input_specs)
             input = inflate(@"<UITextField autocapitalizationType='words' />");
             expect(input.autocapitalizationType).to.equal(UITextAutocapitalizationTypeWords);
         });
+        it(@"can set text autocorrection", ^{
+            input = inflate(@"<UITextField autocorrectionType='no' />");
+            expect(input.autocorrectionType).to.equal(UITextAutocorrectionTypeNo);
+        });
     });
 SpecEnd

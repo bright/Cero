@@ -15,4 +15,11 @@
     return handler;
 }
 
+- (NSObject <BIAttributeHandler> *)textAutocorrectionType {
+    BIEnumAttributeHandler *handler = BIEnumAttributeHandler.new;
+    handler.valuesEnum = BIEnumFor(UITextAutocorrectionType);
+    handler.setter = @selector(setAutocorrectionType:);
+    handler.attributeName = @"autocorrectionType";
+    return handler;
+}
 @end

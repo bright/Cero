@@ -60,6 +60,7 @@ static BILayoutConfiguration *DefaultConfiguration;
 
     EnumAttributeHandlers *attributeHandlers = EnumAttributeHandlers.new;
     [self registerAttributeHandler:attributeHandlers.textAutocapitalizaitonType];
+    [self registerAttributeHandler:attributeHandlers.textAutocorrectionType];
     [self registerAttributeHandler:[BIViewTintAdjustmentModeHandler new]];
     [self registerAttributeHandler:[BILineBreakModeAttributeHandler new]];
     [self registerAttributeHandler:[BITextAttributeHandler new]];
