@@ -20,5 +20,9 @@ SpecBegin(Input_specs)
             input = inflate(@"<UITextField spellCheckingType='no' />");
             expect(input.spellCheckingType).to.equal(UITextSpellCheckingTypeNo);
         });
+        it(@"can set keyboard type", ^{
+            input = inflate(@"<UITextField keyboardType='NumbersAndPunctuation' />");
+            expect(input.keyboardType).to.equal(UIKeyboardTypeNumbersAndPunctuation);
+        });
     });
 SpecEnd

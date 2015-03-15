@@ -6,4 +6,6 @@
 - (NSObject <BIAttributeHandler> *)textAutocorrectionType;
 
 - (NSObject <BIAttributeHandler> *)spellCheckingType;
+
+- (NSObject <BIAttributeHandler> *)keyboardType;
 @end

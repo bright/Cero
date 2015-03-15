@@ -62,6 +62,7 @@ static BILayoutConfiguration *DefaultConfiguration;
     [self registerAttributeHandler:attributeHandlers.textAutocapitalizaitonType];
     [self registerAttributeHandler:attributeHandlers.textAutocorrectionType];
     [self registerAttributeHandler:attributeHandlers.spellCheckingType];
+    [self registerAttributeHandler:attributeHandlers.keyboardType];
     [self registerAttributeHandler:[BIViewTintAdjustmentModeHandler new]];
     [self registerAttributeHandler:[BILineBreakModeAttributeHandler new]];
     [self registerAttributeHandler:[BITextAttributeHandler new]];

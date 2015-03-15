@@ -30,4 +30,12 @@
     handler.attributeName = @"spellCheckingType";
     return handler;
 }
+
+- (NSObject <BIAttributeHandler> *)keyboardType {
+    BIEnumAttributeHandler *handler = BIEnumAttributeHandler.new;
+    handler.valuesEnum = BIEnumFor(UIKeyboardType);
+    handler.setter = @selector(setKeyboardType:);
+    handler.attributeName = @"keyboardType";
+    return handler;
+}
 @end
