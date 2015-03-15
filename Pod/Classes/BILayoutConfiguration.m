@@ -21,6 +21,7 @@
 #import "BITextAttributeHandler.h"
 #import "BISegmentedControlHandler.h"
 #import "BISegmentedControlSegmentHandler.h"
+#import "EnumAttributeHandlers.h"
 
 
 @implementation BILayoutConfiguration {
@@ -56,6 +57,9 @@ static BILayoutConfiguration *DefaultConfiguration;
 
 - (void)setup {
     _buildersCache.rootProjectPath = self.rootProjectPath;
+
+    EnumAttributeHandlers *attributeHandlers = EnumAttributeHandlers.new;
+    [self registerAttributeHandler:attributeHandlers.textAutocapitalizaitonType];
     [self registerAttributeHandler:[BIViewTintAdjustmentModeHandler new]];
     [self registerAttributeHandler:[BILineBreakModeAttributeHandler new]];
     [self registerAttributeHandler:[BITextAttributeHandler new]];
