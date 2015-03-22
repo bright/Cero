@@ -39,4 +39,19 @@
         <title title="Submit"/>
     </UIButton>
 
+    <UIView>
+        <Constraint on="top" with=":previous.bottom" constant="10"/>
+        <Constraint on="left" with=":superview" constant="15"/>
+        <Constraint on="width" with=":superview" constant="-30"/>
+        <Constraint on="height" with="#youLikeItLabel" relation="greaterOrEqual"/>
+        <UILabel text="Do you like it?" id="youLikeItLabel">
+            <Constraint on="top,left" constant="0"/>
+        </UILabel>
+        <UISwitch tintColor="#f17e00" onTintColor="#f17e00" thumbTintColor="#dd2a1b">
+            <Constraint on="centerY" with=":previous"/>
+            <Constraint on="right" with=":superview"/>
+        </UISwitch>
+    </UIView>
+
+
 </UIView>
